@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: blue;
+    align-content: center;
+    justify-content: center;
+    max-width: 500px;
+
+}
+
+
+.pics{
+    width: 80%;
+    border: 2px solid black;
+}    
