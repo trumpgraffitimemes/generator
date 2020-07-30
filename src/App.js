@@ -5,19 +5,40 @@ import PictureSource from "./components/picturesource/PictureSource"
 function App() {
   return (
 
+
     <PictureSource/>
+
+    // Header
+    // ShowButton -> ImagesTab
+    // TopImages
+
+    // Canvas
+        // ImageSelector -> state?
+        // ImageCropper -> state?
+        // TextField - may add ID top / bottom
+    
+    //Form
+        //TextField -> state?
+        //GenerateButton
+    
+    // Generator --> Generates unique URL / push to localStorage / Download
+
+
+
+
+
 
     // Dirk
     // /header - trump memes
     //tabs
     //generator
 
-    <header></header>
+    /*<header></header>
     <div></div>
     <div></div>
     <div></div>
     <div></div>
-    <div></div>
+    <div></div>*/
 
 
 
@@ -28,12 +49,14 @@ function App() {
 
 
 
-    
+
     // Mich
     //Textinput form
     // top-field
     // bottom-field
     // generated button
+    
+
     
     //footer
 
