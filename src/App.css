@@ -36,3 +36,323 @@
     transform: rotate(360deg);
   }
 }
+
+/* Clean Up Code Below */
+
+.featured-images-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+}
+
+/* .featured-images {} */
+
+body {
+  min-height: 100vh;
+  font-family: "IBMPlexSans-Medium";
+}
+
+.App {
+  text-align: center;
+}
+
+header {
+  box-shadow: 0px 0px 2px 0px #888;
+  padding: 10px;
+}
+
+.justin-colors {
+  --text-onbackground: green;
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: none;
+  --textbox-placeholder: black;
+  --priority-1: rgb(0, 255, 255, 0.3);
+  --priority-2: rgb(0, 0, 255, 0.3);
+  --priority-3: rgb(128, 0, 128, 0.3);
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #86cb81;
+  --header-button-color: black;
+  --todo-button-background: rgb(0, 255, 0, 0.3);
+  --todo-button-color: rgb(0, 0, 0, 1);
+}
+
+.dirk-colors {
+  --text-onbackground: white;
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: black;
+  --textbox-placeholder: rgb(115, 120, 124);
+  --priority-1: #ddca67;
+  --priority-2: #e39853;
+  --priority-3: #e79880;
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #86cb81;
+  --header-button-color: black;
+  --todo-button-background: black;
+  --todo-button-color: white;
+}
+
+.radhika-colors {
+  --text-onbackground: rgb(97, 83, 83);
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: black;
+  --textbox-placeholder: rgb(115, 120, 124);
+  --priority-1: #cfe0e8;
+  --priority-2: #b7d7e8;
+  --priority-3: #87bdd8;
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #daebe8;
+  --header-button-color: black;
+  --todo-button-background: #daebe8;
+  --todo-button-color: black;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+h4 {
+  padding: 0px;
+  margin: 5px;
+  color: var(--text-onbackground);
+}
+
+label {
+  color: var(--text-onbackground);
+}
+
+.quicklist-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  padding: 5px;
+  margin: 5px;
+}
+
+.quicklist-item {
+  margin: 2px;
+}
+
+.quicklist-item-btn {
+  padding: 4px 6px;
+  border-radius: 5px;
+  background-color: var(--text-onbackground);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: var(--background-header);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--text-onbackground);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.textbox {
+  margin: 0px 10px 10px 10px;
+  border-radius: 10px;
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  position: relative;
+  border-color: var(--textbox-border);
+}
+
+.textbox:focus {
+  outline: none;
+}
+
+.textbox::placeholder {
+  color: var(--textbox-placeholder);
+  text-align: center;
+  width: 50px;
+}
+
+.create {
+  border-style: solid;
+  border-width: 1px;
+  color: var(--text-onbackground);
+  padding: 5px;
+  text-align: center;
+  text-shadow: 1px 1px 1px var(--textbox-border);
+  margin: 0px;
+}
+
+#id0 {
+  background-color: var(--priority-1);
+}
+
+#id1 {
+  background-color: var(--priority-2);
+}
+
+#id2 {
+  background-color: var(--priority-3);
+}
+
+.App h1 {
+  margin: 1em 0 0.5em 0;
+  color: #030303;
+  font-weight: normal;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 26px;
+  line-height: 42px;
+  text-transform: uppercase;
+}
+
+.entries {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  display: contents;
+  margin: 0 50px;
+}
+
+.todo-text-input {
+  width: auto;
+  height: 20px;
+  min-width: 100px;
+  padding: 5px;
+  margin: 10px;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 15px;
+  color: rgb(65, 60, 60);
+  background-color: rgb(255, 255, 255, 0, 5);
+  border: 1px solid #444;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px var(--outer-shadow) 0.3;
+}
+
+.todo-button {
+  width: 70px;
+  height: 25px;
+  background-color: var(--todo-button-background);
+  color: var(--todo-button-color);
+  border: none;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  text-align: center;
+}
+
+.cut {
+  text-decoration: line-through;
+  border-radius: 10px;
+  border: none;
+  margin: 5px;
+  background-color: transparent;
+}
+
+.addNew {
+  width: 70px;
+  height: 25px;
+  background-color: var(--header-button-background);
+  color: var(--header-button-color);
+  border: none;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer;
+  padding: 1px 2px;
+  text-align: center;
+}
+
+.priority {
+  width: auto;
+  min-width: 100px;
+  padding: 5px;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 15px;
+  color: rgb(65, 60, 60);
+  border-radius: 10px;
+}
+
+.quicklist-container {
+  width: auto;
+  min-width: 100px;
+  padding: 5px;
+  margin: 5px;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 15px;
+  color: rgb(65, 60, 60);
+  background-color: rgb(255, 255, 255, 0, 5);
+  outline: none;
+}
+
+.quicklist-btn {
+  width: 100px;
+  background-color: var(--header-button-background);
+  color: var(--header-button-color);
+  border: none;
+  font-family: "IBMPlexSans-Medium";
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer;
+  padding: 1px 2px;
+  text-align: center;
+}
+
+footer {
+  padding: 20px;
+}
+
+footer button {
+  border-color: transparent;
+  border-radius: 4px;
+  margin: 2px;
+  background-color: rgb(187, 194, 199);
+  padding: 2px 4px;
+}
+
+footer button:focus {
+  border-color: transparent !important;
+  outline: none;
+}
+
+.pop-effect-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.pop-effect-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
