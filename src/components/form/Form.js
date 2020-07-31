@@ -8,13 +8,13 @@ export default function Form(props) {
                     <input 
                         type="text"
                         name="topText"
-                        placeholder="Enter Your"
+                        placeholder="ENTER YOUR"
                         /*onChange={(e) => setValue(e.target.value)}*/
                         /> 
                     <input 
                         type="text"
                         name="bottomText"
-                        placeholder="Text Here"
+                        placeholder="TEXT HERE"
                         /*onChange={(e) => setValue(e.target.value)}*/
                         /> 
                 
