@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
-import styles from "./PictureSource.module.css";
+import React, { useEffect /*, useState*/ } from "react";
+//import styles from "./PictureSource.module.css";
 
-export default function PictureSource() {
-  const [pics, setPics] = useState();
-  const [numberg, setNumberg] = useState(0);
-  const [zz, setZz] = useState(0);
+export default function PictureSource({picdata}) {
+  //const [pics, setPics] = useState();
+  //const [numberg, setNumberg] = useState(0);
+  //const [zz, setZz] = useState(0);
 
+  //picdata = pics
+  
   useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes")
+    fetch("https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=50")
       .then(function (response) {
         return response.json();
       })
       .then(function (rep) {
-        const memes = rep.data.memes;
-        setPics(memes);
-        setZz(Math.floor(Math.random() * memes.length - 1));
+        const memes = rep.hits;
+        console.log(memes)
+        //setPics(memes);
+        picdata(memes);
+        //setZz(Math.floor(Math.random() * memes.length - 1));
       });
   }, []);
 
-  function onhandle() {
+  /*function onhandle() {
     const long = pics.length;
 
     if (zz === long) {
@@ -29,16 +33,18 @@ export default function PictureSource() {
       setNumberg(zz);
       setZz(zz + 1);
     }
-  }
+  }*7
 
-  return (
-    <div className={styles.container}>
-      <button onClick={onhandle}>Change pic</button>
-      {pics ? (
+/*  {pics ? (
         <img src={pics[numberg].url} alt="meme" className={styles.pics} />
       ) : (
-        <></>
-      )}
+        <></>*/
+      //<button onClick={onhandle}>Change pic</button>  
+  return (
+    <div>
+      
+      
+    
     </div>
   );
 }
