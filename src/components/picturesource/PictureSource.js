@@ -15,7 +15,7 @@ export default function PictureSource({picdata}) {
       })
       .then(function (rep) {
         const memes = rep.hits;
-        console.log(memes)
+        //console.log(memes)
         //setPics(memes);
         picdata(memes);
         //setZz(Math.floor(Math.random() * memes.length - 1));

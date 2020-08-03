@@ -11,7 +11,8 @@
   const [zz, setZz] = useState(0);
   const [pics, setPics] = useState();
   const [numberg, setNumberg] = useState(0);
-  const [qstate, setQstate] = useState()
+  //const [qstate, setQstate] = useState()
+  const [previousstate, setPreviousstate] = useState()
   //const [picturedata, setPicturedata] = useState();
   //const pictureload = []
   
@@ -21,36 +22,45 @@
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
       contextRef.current = context;
+      contextRef.current.font="bold 20px Roman";
+      //console.log(contextRef)
+      setPreviousstate(contextRef)
     }, []);
   
     // function call for the first picture
     function picdata(memes){
       const img = new Image(); // Create new img element
       //const randomnumber=Math.floor(Math.random() * memes.length - 1)
-      //console.log(memes[numberg].webformatWidth)
       img.src = memes[numberg].webformatURL;
       setCanvasSize({width: memes[numberg].webformatWidth, height: memes[numberg].webformatHeight})
       if(memes !==undefined){
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, memes[numberg].webformatWidth, memes[numberg].webformatHeight);
         setPics(memes);
-      }, 300);}
+      }, 2000);
+      
+      //const imut = contextRef
+      //setPreviousstate(imut)
+      //console.log(contextRef.current)
+      
+    }
 
     }
 
     //show the next picture when numberg changes
     useEffect(() => {
-      contextRef.current.restore();
+      //console.log(prevstate)
       const img = new Image(); // Create new img element
-      //console.log(numberg)
-     
       if(pics !==undefined){
 
        img.src = pics[numberg].webformatURL;
       setCanvasSize({width: pics[numberg].webformatWidth, height: pics[numberg].webformatHeight})
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, pics[numberg].webformatWidth, pics[numberg].webformatHeight);
-      }, 300);}
+        
+      }, 2000);
+      //setPreviousstate(contextRef)
+    }
     }, [numberg])
 
     // draw, set a starting point and an end point
@@ -80,15 +90,34 @@
 
     // make the text more interesting
     // how to clear the quote properly when the next one is loaded (2canvasses?)
-    // need to control process if quote is too wide for canvas - probably should filter first to only make fitting quotes available
     // if 2 canvases how to add them together when extracting data
+    //useEffect(() =>console.log(previousstate))
+    //console.log(previousstate)
+    
+    //useEffect((pers) => {
 
     function quotep(pers){
+      
+      console.log(previousstate)
+      
+      //setPrevstate(contextRef.current)
+      
+      
+      retry();
       //setQstate(contextRef.current)
+      //const [contRef, setContref]= useState(contextRef.current)
+      function retry(){
+      
+      const lengt = pers.length
+      const randomnum=Math.floor(Math.random()*lengt-1)
+      const singleq = pers[randomnum]
+     
+      //console.log(singleq)
+      
       contextRef.current.font="bold 30px Arial";
-      const message= "Robert" + pers    
+      const message= "Robert" + singleq    
       const long = Math.floor(contextRef.current.measureText(message).width)
-      const start = (canvassize.width/2)-(long/2)-10
+      const start = (canvassize.width/2)-(long/2)
       
       if(long < canvassize.width ){
       //const height = Math.floor(contextRef.current.measureText(message).height)
@@ -99,16 +128,16 @@
       contextRef.current.shadowColor="black";
       contextRef.current.shadowBlur=10;
       contextRef.current.fillStyle = "black"
-      contextRef.current.fillText("Robert " + pers, start + 1, 50 + 1 , canvassize.width - 30)
-      contextRef.current.fillText("Robert " + pers, start + 2, 50 + 2 , canvassize.width - 30)
+      contextRef.current.fillText("Robert " + singleq, start + 1, 50 + 1 , canvassize.width - 30)
+      contextRef.current.fillText("Robert " + singleq, start + 2, 50 + 2 , canvassize.width - 30)
       contextRef.current.fillStyle = "pink"
-      contextRef.current.fillText("Robert " + pers, start, 50, canvassize.width - 30)
-      
-      
-      
+      contextRef.current.fillText("Robert " + singleq, start, 50, canvassize.width - 30)
+      //console.log(contextRef.current.fillText)
       ;}
-      //else{quotep()}
-  }
+      else{ retry()}
+    }
+  } 
+  //[quotep()])
       
     //navigate up and down the pictures
     function handleUp(){

@@ -26,9 +26,9 @@ function Quote({quotep}) {
         function handleClick(){ 
         setTimeout(()=>{
             
-            const long = quote.messages.personalized.length
-            const randomnum=Math.floor(Math.random()*long-1)
-            quotep(quote.messages.personalized[randomnum])
+            //const long = quote.messages.personalized.length
+            //const randomnum=Math.floor(Math.random()*long-1)
+            quotep(quote.messages.personalized)
         }, 100)}     
 
 //{quotep ? <p className={styles.quote}>"ROBERT" {quotep}</p> : <></>}
