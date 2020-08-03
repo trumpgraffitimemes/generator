@@ -39,13 +39,31 @@
 
 /* Clean Up Code Below */
 
-.featured-images-container {
+.featured-images {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   list-style-type: none;
+}
+
+.featured-images li img {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 5px;
+  background-color: rgb(78, 177, 177);
+}
+
+.selectedImage {
+  height: 100px;
+  width: auto;
+  background-color: blue;
+  /* margin-left: 20%;
+  margin-right: 20%; */
+  margin-bottom: 100px;
+  text-align: center;
 }
 
 /* .featured-images {} */
