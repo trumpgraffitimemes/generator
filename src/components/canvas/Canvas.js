@@ -4,7 +4,7 @@
  import PictureSource from "../picturesource/PictureSource"
  import Quote from "../quote/Quote"
  
- export default function Canvas() {
+ export default function Canvas({toptext, bottomtext, generate}) {
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -14,9 +14,9 @@
   const [numberg, setNumberg] = useState(0);
   //const [qstate, setQstate] = useState()
   const [previousstate, setPreviousstate] = useState()
-  //const [picturedata, setPicturedata] = useState();
+  const [myImage, setMyImage]=useState()
+  const [picturedata, setPicturedata] = useState();
   //const pictureload = []
-  
   //set the basic canvas properties
 
     useEffect(() => {
@@ -25,27 +25,13 @@
       contextRef.current = context;
       contextRef.current.font="bold 20px Roman";
       //console.log(contextRef)
-      setPreviousstate(contextRef)
+      //const fish=contextRef.current
+      setPreviousstate(contextRef.current)
     }, []);
   
-    // function call for the first picture
+    // function call for the first picture set the state of pics
     function picdata(memes){
-      const img = new Image(); // Create new img element
-      //const randomnumber=Math.floor(Math.random() * memes.length - 1)
-      img.src = memes[numberg].webformatURL;
-      setCanvasSize({width: memes[numberg].webformatWidth, height: memes[numberg].webformatHeight})
-      if(memes !==undefined){
-      setTimeout(() => {    
-        contextRef.current.drawImage(img, 0, 0, memes[numberg].webformatWidth, memes[numberg].webformatHeight);
         setPics(memes);
-      }, 2000);
-      
-      //const imut = contextRef
-      //setPreviousstate(imut)
-      //console.log(contextRef.current)
-      
-    }
-
     }
 
     //show the next picture when numberg changes
@@ -55,14 +41,16 @@
       if(pics !==undefined){
 
        img.src = pics[numberg].webformatURL;
+       img.setAttribute("crossorigin", "anonymous")
       setCanvasSize({width: pics[numberg].webformatWidth, height: pics[numberg].webformatHeight})
+      setPicturedata(img)
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, pics[numberg].webformatWidth, pics[numberg].webformatHeight);
-        
+        setPreviousstate(contextRef.current)
       }, 2000);
-      //setPreviousstate(contextRef)
+      
     }
-    }, [numberg])
+    }, [numberg, pics])
 
     // draw, set a starting point and an end point
     const startDrawing = ({ nativeEvent }) => {
@@ -95,11 +83,34 @@
     //useEffect(() =>console.log(previousstate))
     //console.log(previousstate)
     
-    //useEffect((pers) => {
+   //console.log(generate)
+   useEffect(()=>{
+    //contextRef.current=previousstate;
+    if (toptext !== undefined||bottomtext !== undefined) {
+      contextRef.current.font="bold 30px Arial"; 
+      const longtop = Math.floor(contextRef.current.measureText(toptext).width)
+      const starttop = (canvassize.width/2)-(longtop/2)
+      const longbottom = Math.floor(contextRef.current.measureText(bottomtext).width)
+      const startbottom = (canvassize.width/2)-(longbottom/2)
 
+      contextRef.current.shadowColor="black";
+      contextRef.current.shadowBlur=10;
+      contextRef.current.fillStyle = "black"
+      contextRef.current.fillText(toptext, starttop + 1, 50 + 1 , canvassize.width - 30)
+      contextRef.current.fillText(toptext, starttop + 2, 50 + 2 , canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom + 1, canvassize.height-49 , canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom + 2, canvassize.heigth-48 , canvassize.width - 30)
+      contextRef.current.fillStyle = "pink"
+      contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)}
+      setPreviousstate(contextRef.current)
+   }, [generate])
+    //if(generate===true){create() } 
+    
+  
     function quotep(pers){
+      //contextRef.current=previousstate;
       
-      console.log(previousstate)
       
       //setPrevstate(contextRef.current)
       
@@ -126,19 +137,23 @@
       //contextRef.current.fillStyle = "White"
       //contextRef.current.fillRect(start, 15, (long+10), 45); 
       //contextRef.current.save();
+      contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height)
+      contextRef.current.drawImage(picturedata, 0, 0)
       contextRef.current.shadowColor="black";
       contextRef.current.shadowBlur=10;
       contextRef.current.fillStyle = "black"
       contextRef.current.fillText("Robert " + singleq, start + 1, 50 + 1 , canvassize.width - 30)
       contextRef.current.fillText("Robert " + singleq, start + 2, 50 + 2 , canvassize.width - 30)
+     
       contextRef.current.fillStyle = "pink"
       contextRef.current.fillText("Robert " + singleq, start, 50, canvassize.width - 30)
+     
       //console.log(contextRef.current.fillText)
       ;}
       else{ retry()}
     }
-  } 
-  //[quotep()])
+  }
+  //)
       
     //navigate up and down the pictures
     function handleUp(){
@@ -162,6 +177,15 @@
       setZz(zz - 1);
     }}
 
+    function downloa(el){
+      var image = canvasRef.current.toDataURL("image/jpg")
+      
+      //el.href=image
+      setMyImage(image)
+    //console.log(el.href)
+    }
+
+
    return (
      <div>
       <PictureSource picdata={picdata}/>
@@ -175,6 +199,7 @@
             onMouseUp={finishDrawing}
             onMouseMove={draw}
             width={canvassize.width} height={canvassize.height}></canvas>
+          <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
         </div>
         <button onClick={handleDown} className={styles.button}>Down</button>
       </div>

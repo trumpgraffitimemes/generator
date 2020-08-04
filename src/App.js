@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 
 import Header from "./components/header/Header";
@@ -11,13 +11,31 @@ import Canvas from "./components/canvas/Canvas"
 
 
 function App() {
+  const [toptexte, setToptexte]=useState();
+  const [bottomtexte, setBottomtexte]=useState();
+  const [generatee, setGeneratee]=useState();
+   
+   
+  function toptextf(e){
+     setToptexte(e) 
+   }
+
+   function bottomtextf(e){
+    setBottomtexte(e) 
+  }
+
+  function generatef(){
+    setGeneratee(true) 
+  }
+ 
+
   return (
     <div id="main">
       <Header />
       <QuickNav />
       <TopImages />
-      <Canvas />
-      <Form />
+      <Canvas toptext={toptexte} bottomtext={bottomtexte} generate={generatee}/>
+      <Form toptext={toptextf} bottomtext={bottomtextf} generate={generatef}/>
       {/* <Downloader /> */}
     </div>
   );

@@ -1,8 +1,13 @@
-import React from "react";
-// import React, { useState } from "react";
-// import Styles from "./Form.module.css";
+//import React from "react";
+import React, { useState } from "react";
+import Styles from "./Form.module.css";
 
-export default function Form(props) {
+export default function Form({toptext, bottomtext, generate}) {
+
+  function clickHandle(){
+    generate()
+  }
+
   return (
     <div>
       <form className="meme-form">
@@ -10,16 +15,16 @@ export default function Form(props) {
           type="text"
           name="topText"
           placeholder="ENTER YOUR"
-          /*onChange={(e) => setValue(e.target.value)}*/
+          onChange={(e) => toptext(e.target.value)}
         />
         <input
           type="text"
           name="bottomText"
           placeholder="TEXT HERE"
-          /*onChange={(e) => setValue(e.target.value)}*/
+          onChange={(e) => bottomtext(e.target.value)}
         />
 
-        <button>Generate</button>
+        <button onClick={clickHandle}>Generate</button>
       </form>
     </div>
   );
