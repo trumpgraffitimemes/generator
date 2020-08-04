@@ -12,6 +12,7 @@
   const [zz, setZz] = useState(0);
   const [pics, setPics] = useState();
   const [numberg, setNumberg] = useState(0);
+  const [currentImg, setCurrentImg] = useState(new Image());
   //const [qstate, setQstate] = useState()
   const [previousstate, setPreviousstate] = useState()
   //const [picturedata, setPicturedata] = useState();
@@ -34,6 +35,7 @@
       //const randomnumber=Math.floor(Math.random() * memes.length - 1)
       img.src = memes[numberg].webformatURL;
       setCanvasSize({width: memes[numberg].webformatWidth, height: memes[numberg].webformatHeight})
+      setCurrentImg(img);
       if(memes !==undefined){
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, memes[numberg].webformatWidth, memes[numberg].webformatHeight);
@@ -126,6 +128,9 @@
       //contextRef.current.fillStyle = "White"
       //contextRef.current.fillRect(start, 15, (long+10), 45); 
       //contextRef.current.save();
+
+      contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      contextRef.current.drawImage(currentImg, 0, 0);
       contextRef.current.shadowColor="black";
       contextRef.current.shadowBlur=10;
       contextRef.current.fillStyle = "black"
