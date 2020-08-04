@@ -17,6 +17,7 @@ export default function Canvas() {
   //const pictureload = []
 
   //set the basic canvas properties
+  // <PictureSource picdata={picdata} />
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,6 +31,7 @@ export default function Canvas() {
   // function call for the first picture
   function picdata(memes) {
     const img = new Image(); // Create new img element
+    img.crossOrigin = "Anonymous";
     //const randomnumber=Math.floor(Math.random() * memes.length - 1)
     img.src = memes[numberg].webformatURL;
     setCanvasSize({
@@ -58,6 +60,7 @@ export default function Canvas() {
   useEffect(() => {
     //console.log(prevstate)
     const img = new Image(); // Create new img element
+    img.crossOrigin = "Anonymous";
     if (pics !== undefined) {
       img.src = pics[numberg].webformatURL;
       setCanvasSize({
@@ -117,8 +120,8 @@ export default function Canvas() {
     //setQstate(contextRef.current)
     //const [contRef, setContref]= useState(contextRef.current)
     function retry() {
-      const lengt = pers.length;
-      const randomnum = Math.floor(Math.random() * lengt - 1);
+      const length = pers.length;
+      const randomnum = Math.floor(Math.random() * length - 1);
       const singleq = pers[randomnum];
 
       //console.log(singleq)
@@ -188,14 +191,26 @@ export default function Canvas() {
     }
   }
 
+  // function download_img() {
+  //   let imageURL =
+  //     "https://cdn.glitch.com/4c9ebeb9-8b9a-4adc-ad0a-238d9ae00bb5%2Fmdn_logo-only_color.svg?1535749917189";
+  //   downloadedImg = new Image();
+  //   downloadedImg.crossOrigin = "Anonymous";
+  //   downloadedImg.addEventListener("load", imageReceived, false);
+  //   downloadedImg.src = imageURL;
+  // }
+
   // var canvas = document.getElementById("canvas");
   // const canvas = canvasRef.current;
 
-  // function download_img(el) {
-  //   const image = canvasRef.toDataURL("image/png");
-  //   image.crossOrigin = "Anonymous";
-  //   el.href = image;
-  // }
+  // load -> img to url
+  // download -> img from url
+
+  function download_img() {
+    // console.log(canvasRef.current);
+    // canvasRef.current.src = imgURL;
+    // return blah;
+  }
 
   // var button = document.getElementById("btn-download");
   // button.addEventListener("click", function (e) {
@@ -203,27 +218,41 @@ export default function Canvas() {
   //   button.href = dataURL;
   // });
 
-  // const TempImage = window.Image;
+  const TempImage = window.Image;
+  const download_img = function () {
+    const img = new TempImage();
 
-  // const download_img = function () {
-  //   const img = new TempImage();
-  //   img.crossOrigin = "anonymous";
-  //   return img;
-  // };
+    // var dataURL = canvasRef.toDataURL("image/png");
+    // button.href = dataURL;
 
-  function download() {
-    var canvas = document.getElementById("canvas");
-    canvas.crossOrigin = "Anonymous";
-    var url = canvas.toDataURL("image/png");
-    var link = document.createElement("a");
-    link.download = "filename.png";
-    link.href = document.getElementById("canvas").toDataURL();
-    link.click();
-  }
+    img.crossOrigin = "anonymous";
+    return img;
+  };
+
+  // function download() {
+  //   var canvas = document.getElementById("canvas");
+  //   canvas.crossOrigin = "Anonymous";
+  //   var url = canvas.toDataURL("image/png");
+  //   var link = document.createElement("a");
+  //   link.download = "filename.png";
+  //   link.href = document.getElementById("canvas").toDataURL();
+  //   link.click();
+  // }
+
+  // const img = new Image();
+  // img.origin = 'anonymous';
+  // img.src = 'http://example.com/img/example.jpg';
+
+  // function saveCanvas() {
+  //   const canvasSave = document.getElementById("canvas");
+  //   const d = canvasSave.toDataURL("image/png");
+  //   const w = window.open("about:blank", "image from canvas");
+  //   w.document.write("<img src='" + d + "' alt='from canvas'/>");
+  //   console.log("Saved!");
+  // }
 
   return (
     <div>
-      <PictureSource picdata={picdata} />
       <Quote quotep={quotep} />
       <div className={styles.Container}>
         <button onClick={handleUp} className={styles.button}>
@@ -246,17 +275,18 @@ export default function Canvas() {
       </div>
 
       <div>
-        {/* <a
+        <a
           id="btn-download"
           className="button"
-          download="myImage.jpg"
-          crossorigin="anonymous"
-          href=""
+          crossOrigin="anonymous"
+          // href={canvasRef.current.toDataURL()}
+          // href="https://miro.medium.com/max/1042/1*NBIVIuebyE12Q8Fps-rXfw.png"
+          download="fish.png"
           onClick={download_img}
         >
-          Download to myImage.jpg
-        </a> */}
-        <button onClick={download}>Download!</button>
+          Download to fish.png
+        </a>
+        {/* <button onClick={download_img}>Download!</button> */}
       </div>
     </div>
   );
