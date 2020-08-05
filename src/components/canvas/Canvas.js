@@ -1,3 +1,8 @@
+import React, { useRef, useEffect, useState } from "react";
+import styles from "./Canvas.module.css";
+import PictureSource from "../picturesource/PictureSource";
+import Quote from "../quote/Quote";
+
 
  import React, {useRef, useEffect, useState, useContext} from "react";
  import styles from "./Canvas.module.css";
@@ -7,20 +12,34 @@
  
  export default function Canvas({toptext, bottomtext, generate}) {
   const {picdatanew, quotenew} = useContext(StateContext)
+  
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [canvassize, setCanvasSize] = useState({width: 800, height: 800});
+  const [canvassize, setCanvasSize] = useState({ width: 800, height: 800 });
   const [zz, setZz] = useState(0);
   //const [pics, setPics] = useState();
   const [numberg, setNumberg] = useState(0);
   //const [qstate, setQstate] = useState()
+
   //const [previousstate, setPreviousstate] = useState()
   const [myImage, setMyImage]=useState()
   const [picturedata, setPicturedata] = useState();
   const [line, setLine] = useState();
   //const pictureload = []
+
   //set the basic canvas properties
+  // <PictureSource picdata={picdata} />
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    contextRef.current = context;
+    contextRef.current.font = "bold 20px Roman";
+    //console.log(contextRef)
+    setPreviousstate(contextRef);
+  }, []);
+
 
     useEffect(() => {
       const canvas = canvasRef.current;
@@ -41,9 +60,11 @@
       setPicturedata(img)
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, picdatanew[numberg].webformatWidth, picdatanew[numberg].webformatHeight);
+
       }, 2000);
       
     }
+
     }, [numberg, picdatanew])
 
     // draw, set a starting point and an end point
@@ -150,24 +171,57 @@
     function handleUp(){
       const long = picdatanew.length-1;
       
+
     if (zz === long) {
       setNumberg(0);
-      setZz(0)
+      setZz(0);
     } else {
       setNumberg(zz);
       setZz(zz + 1);
-    }}
+    }
+  }
+
 
     function handleDown(){
       const long = picdatanew.length-1;
+
     if (zz === 0) {
       setNumberg(long);
-      setZz(long)
+      setZz(long);
     } else {
       setNumberg(zz);
       setZz(zz - 1);
-    }}
+    }
+  }
 
+  // function download_img() {
+  //   let imageURL =
+  //     "https://cdn.glitch.com/4c9ebeb9-8b9a-4adc-ad0a-238d9ae00bb5%2Fmdn_logo-only_color.svg?1535749917189";
+  //   downloadedImg = new Image();
+  //   downloadedImg.crossOrigin = "Anonymous";
+  //   downloadedImg.addEventListener("load", imageReceived, false);
+  //   downloadedImg.src = imageURL;
+  // }
+
+  // var canvas = document.getElementById("canvas");
+  // const canvas = canvasRef.current;
+
+  // load -> img to url
+  // download -> img from url
+
+  function download_img() {
+    // console.log(canvasRef.current);
+    // canvasRef.current.src = imgURL;
+    // return blah;
+  }
+
+  // var button = document.getElementById("btn-download");
+  // button.addEventListener("click", function (e) {
+  //   var dataURL = canvasRef.toDataURL("image/png");
+  //   button.href = dataURL;
+  // });
+
+<
     function downloa(el){
       var image = canvasRef.current.toDataURL("image/jpg")
       //const fish = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data;
@@ -185,18 +239,27 @@
    return (
      <div>     
       
+
       <div className={styles.Container}>
-         <button onClick={handleUp} className={styles.button}>Up</button>
-         <div>
-          <canvas 
-            ref={canvasRef} 
+        <button onClick={handleUp} className={styles.button}>
+          Up
+        </button>
+        <div>
+          <canvas
+            id="canvas"
+            ref={canvasRef}
             onMouseDown={startDrawing}
             onMouseUp={finishDrawing}
             onMouseMove={draw}
-            width={canvassize.width} height={canvassize.height}></canvas>
+            width={canvassize.width}
+            height={canvassize.height}
+          ></canvas>
         </div>
-        <button onClick={handleDown} className={styles.button}>Down</button>
+        <button onClick={handleDown} className={styles.button}>
+          Down
+        </button>
       </div>
+
       <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
       <button className={styles.button}>Generate</button>
       <button className={styles.button} onClick={handleClick}>Random Quote</button>    
@@ -205,3 +268,21 @@
  }
  
 
+
+      <div>
+        <a
+          id="btn-download"
+          className="button"
+          crossOrigin="anonymous"
+          // href={canvasRef.current.toDataURL()}
+          // href="https://miro.medium.com/max/1042/1*NBIVIuebyE12Q8Fps-rXfw.png"
+          download="fish.png"
+          onClick={download_img}
+        >
+          Download to fish.png
+        </a>
+        {/* <button onClick={download_img}>Download!</button> */}
+      </div>
+    </div>
+  );
+}

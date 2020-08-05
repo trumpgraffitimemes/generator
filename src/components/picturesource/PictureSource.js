@@ -1,15 +1,16 @@
 import React, { useEffect /*, useState*/ } from "react";
 //import styles from "./PictureSource.module.css";
 
-export default function PictureSource({picdata}) {
+export default function PictureSource({ picdata }) {
   //const [pics, setPics] = useState();
   //const [numberg, setNumberg] = useState(0);
   //const [zz, setZz] = useState(0);
-
   //picdata = pics
-  
+
   useEffect(() => {
-    fetch("https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=50")
+    fetch(
+      "https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=50"
+    )
       .then(function (response) {
         return response.json();
       })
@@ -39,12 +40,6 @@ export default function PictureSource({picdata}) {
         <img src={pics[numberg].url} alt="meme" className={styles.pics} />
       ) : (
         <></>*/
-      //<button onClick={onhandle}>Change pic</button>  
-  return (
-    <div>
-      
-      
-    
-    </div>
-  );
+  //<button onClick={onhandle}>Change pic</button>
+  return <div></div>;
 }
