@@ -1,19 +1,21 @@
 
- import React, {useRef, useEffect, useState} from "react";
+ import React, {useRef, useEffect, useState, useContext} from "react";
  import styles from "./Canvas.module.css";
  import PictureSource from "../picturesource/PictureSource"
  import Quote from "../quote/Quote"
+ import { StateContext } from "../statecontext/stateContext";
  
  export default function Canvas({toptext, bottomtext, generate}) {
+  const {picdatanew} = useContext(StateContext)
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [canvassize, setCanvasSize] = useState({width: 800, height: 800});
   const [zz, setZz] = useState(0);
-  const [pics, setPics] = useState();
+  //const [pics, setPics] = useState();
   const [numberg, setNumberg] = useState(0);
   //const [qstate, setQstate] = useState()
-  const [previousstate, setPreviousstate] = useState()
+  //const [previousstate, setPreviousstate] = useState()
   const [myImage, setMyImage]=useState()
   const [picturedata, setPicturedata] = useState();
   //const pictureload = []
@@ -26,31 +28,31 @@
       contextRef.current.font="bold 20px Roman";
       //console.log(contextRef)
       //const fish=contextRef.current
-      setPreviousstate(contextRef.current)
+      //setPreviousstate(contextRef.current)
     }, []);
   
     // function call for the first picture set the state of pics
-    function picdata(memes){
-        setPics(memes);
-    }
+    //function picdata(memes){
+      //  setPics(memes);
+    //}
 
     //show the next picture when numberg changes
     useEffect(() => {
       //console.log(prevstate)
       const img = new Image(); // Create new img element
-      if(pics !==undefined){
+      if(picdatanew !==undefined){
 
-       img.src = pics[numberg].webformatURL;
+       img.src = picdatanew[numberg].webformatURL;
        img.setAttribute("crossorigin", "anonymous")
-      setCanvasSize({width: pics[numberg].webformatWidth, height: pics[numberg].webformatHeight})
+      setCanvasSize({width: picdatanew[numberg].webformatWidth, height: picdatanew[numberg].webformatHeight})
       setPicturedata(img)
       setTimeout(() => {    
-        contextRef.current.drawImage(img, 0, 0, pics[numberg].webformatWidth, pics[numberg].webformatHeight);
-        setPreviousstate(contextRef.current)
+        contextRef.current.drawImage(img, 0, 0, picdatanew[numberg].webformatWidth, picdatanew[numberg].webformatHeight);
+        //setPreviousstate(contextRef.current)
       }, 2000);
       
     }
-    }, [numberg, pics])
+    }, [numberg, picdatanew])
 
     // draw, set a starting point and an end point
     const startDrawing = ({ nativeEvent }) => {
@@ -84,15 +86,27 @@
     //console.log(previousstate)
     
    //console.log(generate)
-   useEffect(()=>{
+   //useEffect(()=>{
+
+    //if (generate){ 
+      //generater()
+    //console.log(generate)
+    //console.log("123")
+    function generater(){
+      
     //contextRef.current=previousstate;
-    if (toptext !== undefined||bottomtext !== undefined) {
-      contextRef.current.font="bold 30px Arial"; 
+    if (toptext !== undefined && bottomtext !== undefined) {
+      
+      //console.log(picturedata)
+      
+      contextRef.current.font="bold 50px Arial"; 
       const longtop = Math.floor(contextRef.current.measureText(toptext).width)
       const starttop = (canvassize.width/2)-(longtop/2)
       const longbottom = Math.floor(contextRef.current.measureText(bottomtext).width)
       const startbottom = (canvassize.width/2)-(longbottom/2)
 
+      contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height);
+      contextRef.current.drawImage(picturedata, 0, 0);
       contextRef.current.shadowColor="black";
       contextRef.current.shadowBlur=10;
       contextRef.current.fillStyle = "black"
@@ -102,16 +116,19 @@
       contextRef.current.fillText(bottomtext, startbottom + 2, canvassize.heigth-48 , canvassize.width - 30)
       contextRef.current.fillStyle = "pink"
       contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30)
-      contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)}
-      setPreviousstate(contextRef.current)
-   }, [generate])
+      contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)
+     }
+      //setPreviousstate(contextRef.current)
+   }
+  //}
+   //, [generate])
     //if(generate===true){create() } 
     
   
     function quotep(pers){
       //contextRef.current=previousstate;
       
-      
+      //console.log("123")
       //setPrevstate(contextRef.current)
       
       
@@ -157,7 +174,7 @@
       
     //navigate up and down the pictures
     function handleUp(){
-      const long = pics.length-1;
+      const long = picdatanew.length-1;
       
     if (zz === long) {
       setNumberg(0);
@@ -168,7 +185,7 @@
     }}
 
     function handleDown(){
-      const long = pics.length-1;
+      const long = picdatanew.length-1;
     if (zz === 0) {
       setNumberg(long);
       setZz(long)
@@ -179,16 +196,19 @@
 
     function downloa(el){
       var image = canvasRef.current.toDataURL("image/jpg")
-      
+      //new ClipboardItem(image)
+      const fish = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data;
+      console.log(fish)
+      //contextRef.current.execCommand("Copy")
       //el.href=image
       setMyImage(image)
-    //console.log(el.href)
+    //console.log(image)
     }
-
+//<PictureSource picdata={picdata}/>
 
    return (
      <div>
-      <PictureSource picdata={picdata}/>
+      
       <Quote quotep={quotep}/>
       <div className={styles.Container}>
          <button onClick={handleUp} className={styles.button}>Up</button>
@@ -199,10 +219,12 @@
             onMouseUp={finishDrawing}
             onMouseMove={draw}
             width={canvassize.width} height={canvassize.height}></canvas>
-          <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
+          
         </div>
         <button onClick={handleDown} className={styles.button}>Down</button>
       </div>
+      <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
+      <button onClick={generater} className={styles.button}>Generate</button>
     </div>
    );
  }
