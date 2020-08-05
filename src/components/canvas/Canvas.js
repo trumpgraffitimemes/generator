@@ -18,6 +18,7 @@
   //const [previousstate, setPreviousstate] = useState()
   const [myImage, setMyImage]=useState()
   const [picturedata, setPicturedata] = useState();
+  const [line, setLine] = useState();
   //const pictureload = []
   //set the basic canvas properties
 
@@ -26,19 +27,11 @@
       const context = canvas.getContext("2d");
       contextRef.current = context;
       contextRef.current.font="bold 20px Roman";
-      //console.log(contextRef)
-      //const fish=contextRef.current
-      //setPreviousstate(contextRef.current)
     }, []);
   
-    // function call for the first picture set the state of pics
-    //function picdata(memes){
-      //  setPics(memes);
-    //}
 
     //show the next picture when numberg changes
     useEffect(() => {
-      //console.log(prevstate)
       const img = new Image(); // Create new img element
       if(picdatanew !==undefined){
 
@@ -48,7 +41,6 @@
       setPicturedata(img)
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, picdatanew[numberg].webformatWidth, picdatanew[numberg].webformatHeight);
-        //setPreviousstate(contextRef.current)
       }, 2000);
       
     }
@@ -63,12 +55,11 @@
       contextRef.current.moveTo(offsetX, offsetY);
       setIsDrawing(true);
     };
-  
-    const finishDrawing = () => {
-      contextRef.current.closePath();
-      setIsDrawing(false);
-    };
-  
+    const fishX = [];
+    const fishY = [];
+    const xx = []
+    const yy = []
+    
     const draw = ({ nativeEvent }) => {
       if (!isDrawing) {
         return;
@@ -76,28 +67,25 @@
       const { offsetX, offsetY } = nativeEvent;
       contextRef.current.lineTo(offsetX, offsetY);
       contextRef.current.stroke();
+      //var x=offsetX
+      //var y=offsetY
+      //fishX.map(...fishX, offsetX)
+      //fishY.map(...fishY, offsetY)
+      setLine({fishX, fishY})
+      //console.log(offsetX)
     };
 
+    const finishDrawing = () => {
+      //contextRef.current.closePath();
+      setIsDrawing(false);
+    };
 
     // make the text more interesting
-    // how to clear the quote properly when the next one is loaded (2canvasses?)
-    // if 2 canvases how to add them together when extracting data
-    //useEffect(() =>console.log(previousstate))
-    //console.log(previousstate)
-    
-   //console.log(generate)
-   //useEffect(()=>{
 
-    //if (generate){ 
-      //generater()
-    //console.log(generate)
-    //console.log("123")
-    function generater(){
-      
-    //contextRef.current=previousstate;
+    //function generater(){
+    useEffect(()=>{  
     if (toptext !== undefined && bottomtext !== undefined) {
       
-      //console.log(picturedata)
       
       contextRef.current.font="bold 50px Arial"; 
       const longtop = Math.floor(contextRef.current.measureText(toptext).width)
@@ -107,6 +95,7 @@
 
       contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height);
       contextRef.current.drawImage(picturedata, 0, 0);
+      //contextRef.current.stroke(line)
       contextRef.current.shadowColor="black";
       contextRef.current.shadowBlur=10;
       contextRef.current.fillStyle = "black"
@@ -118,30 +107,17 @@
       contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30)
       contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)
      }
-      //setPreviousstate(contextRef.current)
-   }
-  //}
-   //, [generate])
-    //if(generate===true){create() } 
+   }, [toptext, bottomtext])
     
   
     function quotep(pers){
-      //contextRef.current=previousstate;
-      
-      //console.log("123")
-      //setPrevstate(contextRef.current)
-      
-      
+    
       retry();
-      //setQstate(contextRef.current)
-      //const [contRef, setContref]= useState(contextRef.current)
       function retry(){
       
       const lengt = pers.length
       const randomnum=Math.floor(Math.random()*lengt-1)
       const singleq = pers[randomnum]
-     
-      //console.log(singleq)
       
       contextRef.current.font="bold 30px Arial";
       const message= "Robert" + singleq    
@@ -165,12 +141,10 @@
       contextRef.current.fillStyle = "pink"
       contextRef.current.fillText("Robert " + singleq, start, 50, canvassize.width - 30)
      
-      //console.log(contextRef.current.fillText)
       ;}
       else{ retry()}
     }
   }
-  //)
       
     //navigate up and down the pictures
     function handleUp(){
@@ -196,20 +170,13 @@
 
     function downloa(el){
       var image = canvasRef.current.toDataURL("image/jpg")
-      //new ClipboardItem(image)
-      const fish = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data;
-      console.log(fish)
-      //contextRef.current.execCommand("Copy")
-      //el.href=image
+      //const fish = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data;
+      //console.log(fish)
       setMyImage(image)
-    //console.log(image)
     }
 
     function handleClick(){ 
       setTimeout(()=>{
-          
-          //const long = quote.messages.personalized.length
-          //const randomnum=Math.floor(Math.random()*long-1)
           quotep(quotenew.messages.personalized)
       }, 100)}     
 
@@ -217,7 +184,7 @@
 
    return (
      <div>     
-      <button className={styles.button} onClick={handleClick}>Random Quote</button>    
+      
       <div className={styles.Container}>
          <button onClick={handleUp} className={styles.button}>Up</button>
          <div>
@@ -227,12 +194,12 @@
             onMouseUp={finishDrawing}
             onMouseMove={draw}
             width={canvassize.width} height={canvassize.height}></canvas>
-          
         </div>
         <button onClick={handleDown} className={styles.button}>Down</button>
       </div>
       <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
-      <button onClick={generater} className={styles.button}>Generate</button>
+      <button className={styles.button}>Generate</button>
+      <button className={styles.button} onClick={handleClick}>Random Quote</button>    
     </div>
    );
  }
