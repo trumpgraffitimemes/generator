@@ -8,8 +8,9 @@ function StateContextProvider({children}){
 
 
     const [picdatanew, setPicdatanew] = useState();
+    const [quotenew, setQuotenew]=useState();
  
- useEffect(() => {
+    useEffect(() => {
         fetch("https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=50")
           .then(function (response) {
             return response.json();
@@ -23,8 +24,20 @@ function StateContextProvider({children}){
           });
       }, []);  
 
+
+      useEffect(() => {     
+        fetch('https://api.whatdoestrumpthink.com/api/v1/quotes')
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (rep) {
+            setQuotenew(rep);            
+        });
+          
+        }, []);
+
 return (
-    <StateContext.Provider value={{picdatanew}}>
+    <StateContext.Provider value={{picdatanew, quotenew}}>
         {children}
     </StateContext.Provider>
     );

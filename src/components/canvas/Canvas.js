@@ -6,7 +6,7 @@
  import { StateContext } from "../statecontext/stateContext";
  
  export default function Canvas({toptext, bottomtext, generate}) {
-  const {picdatanew} = useContext(StateContext)
+  const {picdatanew, quotenew} = useContext(StateContext)
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -204,12 +204,20 @@
       setMyImage(image)
     //console.log(image)
     }
-//<PictureSource picdata={picdata}/>
+
+    function handleClick(){ 
+      setTimeout(()=>{
+          
+          //const long = quote.messages.personalized.length
+          //const randomnum=Math.floor(Math.random()*long-1)
+          quotep(quotenew.messages.personalized)
+      }, 100)}     
+
+//<PictureSource picdata={picdata}/><Quote quotep={quotep}/>
 
    return (
-     <div>
-      
-      <Quote quotep={quotep}/>
+     <div>     
+      <button className={styles.button} onClick={handleClick}>Random Quote</button>    
       <div className={styles.Container}>
          <button onClick={handleUp} className={styles.button}>Up</button>
          <div>
