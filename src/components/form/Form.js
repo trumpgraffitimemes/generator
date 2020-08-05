@@ -5,19 +5,19 @@ import Styles from "./Form.module.css";
 
 export default function Form({toptext, bottomtext, generate}) {
 
-  function clickHandle(){
+  function clickHandle(e){
+    e.preventDefault()
     generate()
   }
 
 
   return (
     <div>
-      <form className="meme-form" onSubmit={handleSubmit}>
+      <form className="meme-form">
         <input
           type="text"
           name="topText"
           placeholder="ENTER YOUR"
-<
           onChange={(e) => toptext(e.target.value)}
 
         />
