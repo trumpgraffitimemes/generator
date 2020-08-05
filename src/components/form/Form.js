@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-// import Styles from "./Form.module.css";
 
-export default function Form() {
-  const [inputText, setInputText] = useState({
-    topText: "",
-    bottomText: "",
-  });
-  const handleChange = (e) => {
-    setInputText({
-      ...inputText,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted");
-  };
+//import React from "react";
+import React, { useState } from "react";
+import Styles from "./Form.module.css";
+
+export default function Form({toptext, bottomtext, generate}) {
+
+  function clickHandle(){
+    generate()
+  }
+
+
   return (
     <div>
       <form className="meme-form" onSubmit={handleSubmit}>
@@ -23,18 +17,20 @@ export default function Form() {
           type="text"
           name="topText"
           placeholder="ENTER YOUR"
-          value={inputText.topText}
-          onChange={handleChange}
+<
+          onChange={(e) => toptext(e.target.value)}
+
         />
         <input
           type="text"
           name="bottomText"
           placeholder="TEXT HERE"
-          value={inputText.bottomText}
-          onChange={handleChange}
+
+          onChange={(e) => bottomtext(e.target.value)}
+
         />
 
-        <button>Generate</button>
+        <button onClick={clickHandle}>Generate</button>
       </form>
     </div>
   );

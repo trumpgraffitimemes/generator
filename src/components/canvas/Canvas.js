@@ -3,17 +3,29 @@ import styles from "./Canvas.module.css";
 import PictureSource from "../picturesource/PictureSource";
 import Quote from "../quote/Quote";
 
-export default function Canvas() {
+
+ import React, {useRef, useEffect, useState, useContext} from "react";
+ import styles from "./Canvas.module.css";
+ import PictureSource from "../picturesource/PictureSource"
+ import Quote from "../quote/Quote"
+ import { StateContext } from "../statecontext/stateContext";
+ 
+ export default function Canvas({toptext, bottomtext, generate}) {
+  const {picdatanew, quotenew} = useContext(StateContext)
+  
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [canvassize, setCanvasSize] = useState({ width: 800, height: 800 });
   const [zz, setZz] = useState(0);
-  const [pics, setPics] = useState();
+  //const [pics, setPics] = useState();
   const [numberg, setNumberg] = useState(0);
   //const [qstate, setQstate] = useState()
-  const [previousstate, setPreviousstate] = useState();
-  //const [picturedata, setPicturedata] = useState();
+
+  //const [previousstate, setPreviousstate] = useState()
+  const [myImage, setMyImage]=useState()
+  const [picturedata, setPicturedata] = useState();
+  const [line, setLine] = useState();
   //const pictureload = []
 
   //set the basic canvas properties
@@ -28,148 +40,137 @@ export default function Canvas() {
     setPreviousstate(contextRef);
   }, []);
 
-  // function call for the first picture
-  function picdata(memes) {
-    const img = new Image(); // Create new img element
-    img.crossOrigin = "Anonymous";
-    //const randomnumber=Math.floor(Math.random() * memes.length - 1)
-    img.src = memes[numberg].webformatURL;
-    setCanvasSize({
-      width: memes[numberg].webformatWidth,
-      height: memes[numberg].webformatHeight,
-    });
-    if (memes !== undefined) {
-      setTimeout(() => {
-        contextRef.current.drawImage(
-          img,
-          0,
-          0,
-          memes[numberg].webformatWidth,
-          memes[numberg].webformatHeight
-        );
-        setPics(memes);
+
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      contextRef.current = context;
+      contextRef.current.font="bold 20px Roman";
+    }, []);
+  
+
+    //show the next picture when numberg changes
+    useEffect(() => {
+      const img = new Image(); // Create new img element
+      if(picdatanew !==undefined){
+
+       img.src = picdatanew[numberg].webformatURL;
+       img.setAttribute("crossorigin", "anonymous")
+      setCanvasSize({width: picdatanew[numberg].webformatWidth, height: picdatanew[numberg].webformatHeight})
+      setPicturedata(img)
+      setTimeout(() => {    
+        contextRef.current.drawImage(img, 0, 0, picdatanew[numberg].webformatWidth, picdatanew[numberg].webformatHeight);
+
       }, 2000);
-
-      //const imut = contextRef
-      //setPreviousstate(imut)
-      //console.log(contextRef.current)
+      
     }
-  }
 
-  //show the next picture when numberg changes
-  useEffect(() => {
-    //console.log(prevstate)
-    const img = new Image(); // Create new img element
-    img.crossOrigin = "Anonymous";
-    if (pics !== undefined) {
-      img.src = pics[numberg].webformatURL;
-      setCanvasSize({
-        width: pics[numberg].webformatWidth,
-        height: pics[numberg].webformatHeight,
-      });
-      setTimeout(() => {
-        contextRef.current.drawImage(
-          img,
-          0,
-          0,
-          pics[numberg].webformatWidth,
-          pics[numberg].webformatHeight
-        );
-      }, 2000);
-      //setPreviousstate(contextRef)
-    }
-  }, [numberg]);
+    }, [numberg, picdatanew])
 
-  // draw, set a starting point and an end point
-  const startDrawing = ({ nativeEvent }) => {
-    const { offsetX, offsetY } = nativeEvent;
-    contextRef.current.lineWidth = 10;
-    contextRef.current.beginPath();
-    contextRef.current.moveTo(offsetX, offsetY);
-    setIsDrawing(true);
-  };
-
-  const finishDrawing = () => {
-    contextRef.current.closePath();
-    setIsDrawing(false);
-  };
-
-  const draw = ({ nativeEvent }) => {
-    if (!isDrawing) {
-      return;
-    }
-    const { offsetX, offsetY } = nativeEvent;
-    contextRef.current.lineTo(offsetX, offsetY);
-    contextRef.current.stroke();
-  };
-
-  // make the text more interesting
-  // how to clear the quote properly when the next one is loaded (2canvasses?)
-  // if 2 canvases how to add them together when extracting data
-  //useEffect(() =>console.log(previousstate))
-  //console.log(previousstate)
-
-  //useEffect((pers) => {
-
-  function quotep(pers) {
-    console.log(previousstate);
-
-    //setPrevstate(contextRef.current)
-
-    retry();
-    //setQstate(contextRef.current)
-    //const [contRef, setContref]= useState(contextRef.current)
-    function retry() {
-      const length = pers.length;
-      const randomnum = Math.floor(Math.random() * length - 1);
-      const singleq = pers[randomnum];
-
-      //console.log(singleq)
-
-      contextRef.current.font = "bold 30px Arial";
-      const message = "Robert" + singleq;
-      const long = Math.floor(contextRef.current.measureText(message).width);
-      const start = canvassize.width / 2 - long / 2;
-
-      if (long < canvassize.width) {
-        //const height = Math.floor(contextRef.current.measureText(message).height)
-        //var rectangle = new Path2D();
-        //contextRef.current.fillStyle = "White"
-        //contextRef.current.fillRect(start, 15, (long+10), 45);
-        //contextRef.current.save();
-        contextRef.current.shadowColor = "black";
-        contextRef.current.shadowBlur = 10;
-        contextRef.current.fillStyle = "black";
-        contextRef.current.fillText(
-          "Robert " + singleq,
-          start + 1,
-          50 + 1,
-          canvassize.width - 30
-        );
-        contextRef.current.fillText(
-          "Robert " + singleq,
-          start + 2,
-          50 + 2,
-          canvassize.width - 30
-        );
-        contextRef.current.fillStyle = "pink";
-        contextRef.current.fillText(
-          "Robert " + singleq,
-          start,
-          50,
-          canvassize.width - 30
-        );
-        //console.log(contextRef.current.fillText)
-      } else {
-        retry();
+    // draw, set a starting point and an end point
+    const startDrawing = ({ nativeEvent }) => {
+      
+      const { offsetX, offsetY } = nativeEvent;
+      contextRef.current.lineWidth = 10;
+      contextRef.current.beginPath();
+      contextRef.current.moveTo(offsetX, offsetY);
+      setIsDrawing(true);
+    };
+    const fishX = [];
+    const fishY = [];
+    const xx = []
+    const yy = []
+    
+    const draw = ({ nativeEvent }) => {
+      if (!isDrawing) {
+        return;
       }
+      const { offsetX, offsetY } = nativeEvent;
+      contextRef.current.lineTo(offsetX, offsetY);
+      contextRef.current.stroke();
+      //var x=offsetX
+      //var y=offsetY
+      //fishX.map(...fishX, offsetX)
+      //fishY.map(...fishY, offsetY)
+      setLine({fishX, fishY})
+      //console.log(offsetX)
+    };
+
+    const finishDrawing = () => {
+      //contextRef.current.closePath();
+      setIsDrawing(false);
+    };
+
+    // make the text more interesting
+
+    //function generater(){
+    useEffect(()=>{  
+    if (toptext !== undefined && bottomtext !== undefined) {
+      
+      
+      contextRef.current.font="bold 50px Arial"; 
+      const longtop = Math.floor(contextRef.current.measureText(toptext).width)
+      const starttop = (canvassize.width/2)-(longtop/2)
+      const longbottom = Math.floor(contextRef.current.measureText(bottomtext).width)
+      const startbottom = (canvassize.width/2)-(longbottom/2)
+
+      contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height);
+      contextRef.current.drawImage(picturedata, 0, 0);
+      //contextRef.current.stroke(line)
+      contextRef.current.shadowColor="black";
+      contextRef.current.shadowBlur=10;
+      contextRef.current.fillStyle = "black"
+      contextRef.current.fillText(toptext, starttop + 1, 50 + 1 , canvassize.width - 30)
+      contextRef.current.fillText(toptext, starttop + 2, 50 + 2 , canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom + 1, canvassize.height-49 , canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom + 2, canvassize.heigth-48 , canvassize.width - 30)
+      contextRef.current.fillStyle = "pink"
+      contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)
+     }
+   }, [toptext, bottomtext])
+    
+  
+    function quotep(pers){
+    
+      retry();
+      function retry(){
+      
+      const lengt = pers.length
+      const randomnum=Math.floor(Math.random()*lengt-1)
+      const singleq = pers[randomnum]
+      
+      contextRef.current.font="bold 30px Arial";
+      const message= "Robert" + singleq    
+      const long = Math.floor(contextRef.current.measureText(message).width)
+      const start = (canvassize.width/2)-(long/2)
+      
+      if(long < canvassize.width ){
+      //const height = Math.floor(contextRef.current.measureText(message).height)
+      //var rectangle = new Path2D();
+      //contextRef.current.fillStyle = "White"
+      //contextRef.current.fillRect(start, 15, (long+10), 45); 
+      //contextRef.current.save();
+      contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height)
+      contextRef.current.drawImage(picturedata, 0, 0)
+      contextRef.current.shadowColor="black";
+      contextRef.current.shadowBlur=10;
+      contextRef.current.fillStyle = "black"
+      contextRef.current.fillText("Robert " + singleq, start + 1, 50 + 1 , canvassize.width - 30)
+      contextRef.current.fillText("Robert " + singleq, start + 2, 50 + 2 , canvassize.width - 30)
+     
+      contextRef.current.fillStyle = "pink"
+      contextRef.current.fillText("Robert " + singleq, start, 50, canvassize.width - 30)
+     
+      ;}
+      else{ retry()}
     }
   }
-  //[quotep()])
-
-  //navigate up and down the pictures
-  function handleUp() {
-    const long = pics.length - 1;
+      
+    //navigate up and down the pictures
+    function handleUp(){
+      const long = picdatanew.length-1;
+      
 
     if (zz === long) {
       setNumberg(0);
@@ -180,8 +181,10 @@ export default function Canvas() {
     }
   }
 
-  function handleDown() {
-    const long = pics.length - 1;
+
+    function handleDown(){
+      const long = picdatanew.length-1;
+
     if (zz === 0) {
       setNumberg(long);
       setZz(long);
@@ -218,42 +221,25 @@ export default function Canvas() {
   //   button.href = dataURL;
   // });
 
-  const TempImage = window.Image;
-  const download_img = function () {
-    const img = new TempImage();
+<
+    function downloa(el){
+      var image = canvasRef.current.toDataURL("image/jpg")
+      //const fish = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data;
+      //console.log(fish)
+      setMyImage(image)
+    }
 
-    // var dataURL = canvasRef.toDataURL("image/png");
-    // button.href = dataURL;
+    function handleClick(){ 
+      setTimeout(()=>{
+          quotep(quotenew.messages.personalized)
+      }, 100)}     
 
-    img.crossOrigin = "anonymous";
-    return img;
-  };
+//<PictureSource picdata={picdata}/><Quote quotep={quotep}/>
 
-  // function download() {
-  //   var canvas = document.getElementById("canvas");
-  //   canvas.crossOrigin = "Anonymous";
-  //   var url = canvas.toDataURL("image/png");
-  //   var link = document.createElement("a");
-  //   link.download = "filename.png";
-  //   link.href = document.getElementById("canvas").toDataURL();
-  //   link.click();
-  // }
+   return (
+     <div>     
+      
 
-  // const img = new Image();
-  // img.origin = 'anonymous';
-  // img.src = 'http://example.com/img/example.jpg';
-
-  // function saveCanvas() {
-  //   const canvasSave = document.getElementById("canvas");
-  //   const d = canvasSave.toDataURL("image/png");
-  //   const w = window.open("about:blank", "image from canvas");
-  //   w.document.write("<img src='" + d + "' alt='from canvas'/>");
-  //   console.log("Saved!");
-  // }
-
-  return (
-    <div>
-      <Quote quotep={quotep} />
       <div className={styles.Container}>
         <button onClick={handleUp} className={styles.button}>
           Up
@@ -273,6 +259,15 @@ export default function Canvas() {
           Down
         </button>
       </div>
+
+      <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
+      <button className={styles.button}>Generate</button>
+      <button className={styles.button} onClick={handleClick}>Random Quote</button>    
+    </div>
+   );
+ }
+ 
+
 
       <div>
         <a
