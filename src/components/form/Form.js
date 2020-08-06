@@ -2,11 +2,8 @@
 import React, { useState } from "react";
 import Styles from "./Form.module.css";
 
-export default function Form({toptext, bottomtext, generate}) {
+export default function Form({toptext, bottomtext}) {
 
-  function clickHandle(){
-    generate()
-  }
 
   return (
     <div>
@@ -24,7 +21,6 @@ export default function Form({toptext, bottomtext, generate}) {
           onChange={(e) => bottomtext(e.target.value)}
         />
 
-        <button onClick={clickHandle}>Generate</button>
       </form>
     </div>
   );

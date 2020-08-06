@@ -349,6 +349,11 @@ label {
   text-align: center;
 }
 
+.quicklist-pic{
+  width: 50px;
+  height: 50px;
+}
+
 footer {
   padding: 20px;
 }

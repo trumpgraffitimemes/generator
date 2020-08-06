@@ -11,9 +11,8 @@ import Canvas from "./components/canvas/Canvas"
 
 
 function App() {
-  const [toptexte, setToptexte]=useState();
-  const [bottomtexte, setBottomtexte]=useState();
-  const [generatee, setGeneratee]=useState();
+  const [toptexte, setToptexte]=useState("");
+  const [bottomtexte, setBottomtexte]=useState("");
    
    
   function toptextf(e){
@@ -24,9 +23,6 @@ function App() {
     setBottomtexte(e) 
   }
 
-  function generatef(){
-    setGeneratee(true) 
-  }
  
 
   return (
@@ -34,8 +30,8 @@ function App() {
       <Header />
       <QuickNav />
       <TopImages />
-      <Canvas toptext={toptexte} bottomtext={bottomtexte} generate={generatee}/>
-      <Form toptext={toptextf} bottomtext={bottomtextf} generate={generatef}/>
+      <Canvas toptext={toptexte} bottomtext={bottomtexte} />
+      <Form toptext={toptextf} bottomtext={bottomtextf} />
       {/* <Downloader /> */}
     </div>
   );

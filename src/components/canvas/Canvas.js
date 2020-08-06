@@ -1,25 +1,26 @@
 
  import React, {useRef, useEffect, useState, useContext} from "react";
- import styles from "./Canvas.module.css";
- import PictureSource from "../picturesource/PictureSource"
- import Quote from "../quote/Quote"
+ import Styles from "./Canvas.module.css";
+ //import PictureSource from "../picturesource/PictureSource"
+ //import Quote from "../quote/Quote"
  import { StateContext } from "../statecontext/stateContext";
  
- export default function Canvas({toptext, bottomtext, generate}) {
-  const {picdatanew, quotenew} = useContext(StateContext)
+ export default function Canvas({toptext, bottomtext}) {
+  const {picdatanew, quotenew, picID, colorList, textColor, grafitiColor, fontSize} = useContext(StateContext)
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [canvassize, setCanvasSize] = useState({width: 800, height: 800});
-  const [zz, setZz] = useState(0);
-  //const [pics, setPics] = useState();
-  const [numberg, setNumberg] = useState(0);
-  //const [qstate, setQstate] = useState()
-  //const [previousstate, setPreviousstate] = useState()
+ 
   const [myImage, setMyImage]=useState()
   const [picturedata, setPicturedata] = useState();
-  const [line, setLine] = useState();
-  //const pictureload = []
+  const [lined, setLined] = useState([]);
+  const [startstop, setStartstop] = useState([]);
+  const [wholedata, setWholedata] = useState([]);
+  const [startpos, setStartpos] = useState([]);
+  const [randomQuoteName, setRandomQuoteName] = useState("Robert")
+  const [pers, setPers]= useState(false)
+
   //set the basic canvas properties
 
     useEffect(() => {
@@ -30,36 +31,42 @@
     }, []);
   
 
-    //show the next picture when numberg changes
+    //show the selected picture
     useEffect(() => {
       const img = new Image(); // Create new img element
-      if(picdatanew !==undefined){
+      if(picdatanew.length !==0){
 
-       img.src = picdatanew[numberg].webformatURL;
+       img.src = picdatanew[picID].webformatURL;
        img.setAttribute("crossorigin", "anonymous")
-      setCanvasSize({width: picdatanew[numberg].webformatWidth, height: picdatanew[numberg].webformatHeight})
+      setCanvasSize({width: picdatanew[picID].webformatWidth, height: picdatanew[picID].webformatHeight})
       setPicturedata(img)
+      setWholedata(()=>[])
+     
       setTimeout(() => {    
-        contextRef.current.drawImage(img, 0, 0, picdatanew[numberg].webformatWidth, picdatanew[numberg].webformatHeight);
+        contextRef.current.drawImage(img, 0, 0, picdatanew[picID].webformatWidth, picdatanew[picID].webformatHeight);
+         console.log(wholedata)
       }, 2000);
       
     }
-    }, [numberg, picdatanew])
+    }, [picID, picdatanew])
+
+
+
 
     // draw, set a starting point and an end point
     const startDrawing = ({ nativeEvent }) => {
-      
+     
       const { offsetX, offsetY } = nativeEvent;
+      contextRef.current.strokeStyle = colorList[grafitiColor]
       contextRef.current.lineWidth = 10;
+      contextRef.current.shadowBlur=0;
       contextRef.current.beginPath();
       contextRef.current.moveTo(offsetX, offsetY);
       setIsDrawing(true);
+      setStartpos(pre=>{return[...pre, [offsetX, offsetY]]})
     };
-    const fishX = [];
-    const fishY = [];
-    const xx = []
-    const yy = []
     
+    let nn=0
     const draw = ({ nativeEvent }) => {
       if (!isDrawing) {
         return;
@@ -67,27 +74,27 @@
       const { offsetX, offsetY } = nativeEvent;
       contextRef.current.lineTo(offsetX, offsetY);
       contextRef.current.stroke();
-      //var x=offsetX
-      //var y=offsetY
-      //fishX.map(...fishX, offsetX)
-      //fishY.map(...fishY, offsetY)
-      setLine({fishX, fishY})
-      //console.log(offsetX)
+      nn=nn+1
+     
+      const fishX = {offsetX, offsetY};
+      if(nn%5 === 0){
+      setLined(gp=>[...gp, fishX]);}
     };
 
     const finishDrawing = () => {
-      //contextRef.current.closePath();
+      setStartstop({movT: startpos, lineT: lined})
+      setWholedata(ln=>[...ln, startstop])
       setIsDrawing(false);
     };
 
     // make the text more interesting
-
+    
     //function generater(){
     useEffect(()=>{  
-    if (toptext !== undefined && bottomtext !== undefined) {
+    if (toptext.length !== 0 && bottomtext.length !== 0) {
       
       
-      contextRef.current.font="bold 50px Arial"; 
+      contextRef.current.font="bold "+fontSize+"px Arial"
       const longtop = Math.floor(contextRef.current.measureText(toptext).width)
       const starttop = (canvassize.width/2)-(longtop/2)
       const longbottom = Math.floor(contextRef.current.measureText(bottomtext).width)
@@ -95,32 +102,56 @@
 
       contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height);
       contextRef.current.drawImage(picturedata, 0, 0);
-      //contextRef.current.stroke(line)
+      
+      let n = 0
+      drawagain()
+      console.log("123")
+      function drawagain(){
+      var z
+      for(z=n; z<wholedata.length; z++){
+      const dog = wholedata[z]
+      console.log(wholedata)
+      console.log(z)
+      
+      if (wholedata.length!==0){
+        console.log("123")
+      var i 
+      contextRef.current.moveTo(dog.movT[0].offsetX, dog.movT[0].offsetY)
+      for(i=0; i<wholedata[z].lineT.length; i++){
+      contextRef.current.lineTo(dog.lineT[i].offsetX, dog.lineT[i].offsetY);
+      contextRef.current.stroke()
+      }}else{
+        n=n+1;
+        drawagain();}
+    }}
+     
       contextRef.current.shadowColor="black";
-      contextRef.current.shadowBlur=10;
+      contextRef.current.shadowBlur=20;
       contextRef.current.fillStyle = "black"
       contextRef.current.fillText(toptext, starttop + 1, 50 + 1 , canvassize.width - 30)
       contextRef.current.fillText(toptext, starttop + 2, 50 + 2 , canvassize.width - 30)
       contextRef.current.fillText(bottomtext, startbottom + 1, canvassize.height-49 , canvassize.width - 30)
       contextRef.current.fillText(bottomtext, startbottom + 2, canvassize.heigth-48 , canvassize.width - 30)
-      contextRef.current.fillStyle = "pink"
+      contextRef.current.fillStyle = textColor
       contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30)
       contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)
      }
-   }, [toptext, bottomtext])
+   }, [toptext, bottomtext, textColor, fontSize])
     
   
-    function quotep(pers){
-    
-      retry();
+    //function quotep(pers){
+    useEffect(()=>{
+      if(quotenew.length!==0)
+        {retry()}
+      
       function retry(){
-      
-      const lengt = pers.length
+      //console.log(quotenew)
+      const lengt = quotenew.messages.personalized.length
       const randomnum=Math.floor(Math.random()*lengt-1)
-      const singleq = pers[randomnum]
+      const singleq = quotenew.messages.personalized[randomnum]
       
-      contextRef.current.font="bold 30px Arial";
-      const message= "Robert" + singleq    
+      contextRef.current.font="bold "+fontSize+"px Calibri";
+      const message= randomQuoteName + " " + singleq    
       const long = Math.floor(contextRef.current.measureText(message).width)
       const start = (canvassize.width/2)-(long/2)
       
@@ -132,41 +163,20 @@
       //contextRef.current.save();
       contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height)
       contextRef.current.drawImage(picturedata, 0, 0)
-      contextRef.current.shadowColor="black";
-      contextRef.current.shadowBlur=10;
-      contextRef.current.fillStyle = "black"
-      contextRef.current.fillText("Robert " + singleq, start + 1, 50 + 1 , canvassize.width - 30)
-      contextRef.current.fillText("Robert " + singleq, start + 2, 50 + 2 , canvassize.width - 30)
+      contextRef.current.shadowColor="blue";
+      contextRef.current.shadowBlur=20;
+      contextRef.current.fillStyle = "orange"
+      contextRef.current.fillText(randomQuoteName + " " + singleq, start + 1, 50 + 1 , canvassize.width - 30)
+      contextRef.current.fillText(randomQuoteName + " " + singleq, start + 2, 50 + 2 , canvassize.width - 30)
      
-      contextRef.current.fillStyle = "pink"
-      contextRef.current.fillText("Robert " + singleq, start, 50, canvassize.width - 30)
+      contextRef.current.fillStyle = textColor
+      contextRef.current.fillText(randomQuoteName + " " + singleq, start, 50, canvassize.width - 30)
      
       ;}
       else{ retry()}
     }
-  }
+  }, [pers] )
       
-    //navigate up and down the pictures
-    function handleUp(){
-      const long = picdatanew.length-1;
-      
-    if (zz === long) {
-      setNumberg(0);
-      setZz(0)
-    } else {
-      setNumberg(zz);
-      setZz(zz + 1);
-    }}
-
-    function handleDown(){
-      const long = picdatanew.length-1;
-    if (zz === 0) {
-      setNumberg(long);
-      setZz(long)
-    } else {
-      setNumberg(zz);
-      setZz(zz - 1);
-    }}
 
     function downloa(el){
       var image = canvasRef.current.toDataURL("image/jpg")
@@ -175,31 +185,35 @@
       setMyImage(image)
     }
 
-    function handleClick(){ 
+    /*function handleClick(){ 
       setTimeout(()=>{
           quotep(quotenew.messages.personalized)
-      }, 100)}     
+      }, 100)}     */
 
 //<PictureSource picdata={picdata}/><Quote quotep={quotep}/>
-
+//<button className={styles.button}>Generate</button>
    return (
      <div>     
       
-      <div className={styles.Container}>
-         <button onClick={handleUp} className={styles.button}>Up</button>
+      <div className={Styles.buttoncontainer}>
+        <a download="myimage.jpg" href={myImage} onClick={downloa} className={Styles.button}>DOWNLOAD TO myImage</a>
+        <button className={Styles.button} onClick={()=>setPers(!pers)}>Random Quote</button>   
+        <input type="text" placeholder="name" className={Styles.input} onChange={(e)=>setRandomQuoteName(e.target.value)}/>
+      </div>
+      
+      <div className={Styles.container}>
          <div>
           <canvas 
             ref={canvasRef} 
             onMouseDown={startDrawing}
             onMouseUp={finishDrawing}
             onMouseMove={draw}
-            width={canvassize.width} height={canvassize.height}></canvas>
+            width={canvassize.width} height={canvassize.height}
+            className={Styles.canvas}
+            ></canvas>
         </div>
-        <button onClick={handleDown} className={styles.button}>Down</button>
       </div>
-      <a download="myimage.jpg" href={myImage} onClick={downloa}>"Download to myImage.jpg"</a>
-      <button className={styles.button}>Generate</button>
-      <button className={styles.button} onClick={handleClick}>Random Quote</button>    
+       
     </div>
    );
  }

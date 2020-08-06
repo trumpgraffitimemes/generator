@@ -1,4 +1,4 @@
-.Container {
+.container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,5 +12,37 @@
 }
 
 .button {
-  width: 60px;
+  width: 120px;
+  background-color: grey;
+  border-radius: 3px;
+  border: 2px solid black;
+  float: left;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+
+
+}
+
+.canvas {
+  cursor: url(../../assets/Trump.cur), default;
+}
+
+.buttoncontainer{
+   display: flex;
+   position: relative;
+   flex-direction: row; 
+   max-width: 800px;
+   left: 50%;
+   transform: translate(-400px, 0);
+   justify-content: center;
+   align-items: center;
+   
+
+}
+
+.header {
+
+  margin: 20px;
+
 }
