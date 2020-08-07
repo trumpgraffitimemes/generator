@@ -1,8 +1,7 @@
-//import React from "react";
 import React, { useState } from "react";
 import Styles from "./Form.module.css";
 
-export default function Form({ toptext, bottomtext }) {
+export default function Form({toptext, bottomtext}) {
   return (
     <div>
       <form className="meme-form">

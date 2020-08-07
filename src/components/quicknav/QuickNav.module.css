@@ -1,0 +1,83 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.boxes {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    border: none;
+    outline-style: none;
+}
+
+.hide{
+    display: none;
+}
+
+.list {
+    list-style-type: none;
+    position: absolute;
+    line-height: 2em;
+}
+
+.indieFlower {
+    font-family: "Indie Flower";
+}
+
+.kaushanScript {
+    font-family: "Kraushan Script";
+}
+
+.pacifico {
+    font-family: "Pacifico";
+}
+
+.homemadeApple {
+    font-family: "Homemade Apple";
+}
+
+.wallpoet {
+    font-family: "Wallpoet";
+}
+    
+.robotoMono {
+    font-family: "Roboto Mono";
+}
+
+.bebasNeue {
+    font-family: "Bebas Neue";
+}
+
+.monoton {
+    font-family: "Monoto";
+}
+
+.pressStart2P {
+    font-family: "Press Start 2p";
+}
+
+.bangers {
+    font-family: "Bangers";
+}
+
+.piedra {
+    font-family: "Piedra";
+}
+
+.frederickaTheGreat {
+    font-family: "Fredericka the Great";
+}
+
+.vt323 {
+    font-family: "VT323";
+}
+
+.vastShadow {
+    font-family: "Vast Shadow";
+}
+
+
+

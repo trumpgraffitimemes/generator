@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background: grey;
+  color: red;
+  align-items: center;
+  width: 70vw; 
+  left: 50%;
+  transform: translate(-35vw, 0);
+}
+
+.h1, h2, h3{
+    text-align: center;
+
+}
+
+.img {
+    width: 200px;
+    height: 200px;
+
+}

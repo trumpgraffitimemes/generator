@@ -12,24 +12,24 @@ function App() {
 
   const [picID, setPicID] = useState(0);
 
-  function toptextf(e) {
-    setToptexte(e);
-  }
-
+function App() {
+  const [toptexte, setToptexte]=useState("");
+  const [bottomtexte, setBottomtexte]=useState("");
+   
+  function toptextf(e){
+     setToptexte(e) 
+   }
+  
   function bottomtextf(e) {
     setBottomtexte(e);
-  }
-
-  function picidf(e) {
-    setPicID(e);
   }
 
   return (
     <div id="main">
       <Header />
-      <QuickNav picid={picidf} />
-      <TopImages />
-      <Canvas toptext={toptexte} bottomtext={bottomtexte} picid={picID} />
+      <QuickNav />
+      {/*<TopImages />*/}
+      <Canvas toptext={toptexte} bottomtext={bottomtexte} />
       <Form toptext={toptextf} bottomtext={bottomtextf} />
       {/* <Downloader /> */}
     </div>
