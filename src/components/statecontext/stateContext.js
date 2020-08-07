@@ -11,9 +11,8 @@ function StateContextProvider({children}){
     const [quotenew, setQuotenew]=useState([]);
     const [picID, setPicID]=useState(0);
     const [colorList, setColorList] = useState(["red", "blue", "pink", "yellow", "green", "purple", "gold", "orange", "brown", "black"])
-    const [textColor, setTextColor] = useState("#FF0000")
     const [grafitiColor, setGrafitiColor] = useState(0)
-    const [fontSize, setFontSize] = useState(30)
+    const [textParam, setTextParam] = useState({textColor: "#FF0000", fontSize: 30, blurWidth: 10, blurColor: "#000000", threeDColor: "#FFFF00", font: "Arial"})
  
     useEffect(() => {
         fetch("https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=200")
@@ -42,7 +41,7 @@ function StateContextProvider({children}){
         }, []);
 
 return (
-    <StateContext.Provider value={{picdatanew, quotenew, picID, setPicID, colorList, setTextColor, textColor, grafitiColor, setGrafitiColor, fontSize, setFontSize}}>
+    <StateContext.Provider value={{picdatanew, quotenew, picID, setPicID, colorList, grafitiColor, setGrafitiColor, textParam, setTextParam}}>
         {children}
     </StateContext.Provider>
     );

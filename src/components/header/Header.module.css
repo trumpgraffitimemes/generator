@@ -7,9 +7,9 @@
   background: grey;
   color: red;
   align-items: center;
-  max-width: 800px;
+  width: 70vw; 
   left: 50%;
-  transform: translate(-400px, 0);
+  transform: translate(-35vw, 0);
 }
 
 .h1, h2, h3{

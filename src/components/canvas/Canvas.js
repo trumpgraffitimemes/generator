@@ -6,7 +6,7 @@
  import { StateContext } from "../statecontext/stateContext";
  
  export default function Canvas({toptext, bottomtext}) {
-  const {picdatanew, quotenew, picID, colorList, textColor, grafitiColor, fontSize} = useContext(StateContext)
+  const {picdatanew, quotenew, picID, colorList, grafitiColor, textParam} = useContext(StateContext)
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -15,13 +15,14 @@
   const [myImage, setMyImage]=useState()
   const [picturedata, setPicturedata] = useState();
   const [lined, setLined] = useState([]);
-  const [startstop, setStartstop] = useState([]);
+  const [startstop, setStartstop] = useState({});
   const [wholedata, setWholedata] = useState([]);
   const [startpos, setStartpos] = useState([]);
   const [randomQuoteName, setRandomQuoteName] = useState("Robert")
   const [pers, setPers]= useState(false)
 
   //set the basic canvas properties
+  
 
     useEffect(() => {
       const canvas = canvasRef.current;
@@ -40,7 +41,7 @@
        img.setAttribute("crossorigin", "anonymous")
       setCanvasSize({width: picdatanew[picID].webformatWidth, height: picdatanew[picID].webformatHeight})
       setPicturedata(img)
-      setWholedata(()=>[])
+      setWholedata([])
      
       setTimeout(() => {    
         contextRef.current.drawImage(img, 0, 0, picdatanew[picID].webformatWidth, picdatanew[picID].webformatHeight);
@@ -50,9 +51,7 @@
     }
     }, [picID, picdatanew])
 
-
-
-
+  
     // draw, set a starting point and an end point
     const startDrawing = ({ nativeEvent }) => {
      
@@ -63,9 +62,11 @@
       contextRef.current.beginPath();
       contextRef.current.moveTo(offsetX, offsetY);
       setIsDrawing(true);
-      setStartpos(pre=>{return[...pre, [offsetX, offsetY]]})
+      setStartpos(pre=>[...pre, [offsetX, offsetY]])
     };
     
+
+    // folow the cursor and draw
     let nn=0
     const draw = ({ nativeEvent }) => {
       if (!isDrawing) {
@@ -81,20 +82,22 @@
       setLined(gp=>[...gp, fishX]);}
     };
 
+    //finish the drawing process and construct the data Array
     const finishDrawing = () => {
-      setStartstop({movT: startpos, lineT: lined})
-      setWholedata(ln=>[...ln, startstop])
+      const newStartStop = {movT: startpos, lineT: lined};
+      setStartstop(newStartStop)
+      setWholedata(ln=>[...ln, newStartStop])
+      //contextRef.current.closePath()
       setIsDrawing(false);
     };
-
+    //console.log(wholedata)
     // make the text more interesting
-    
     //function generater(){
     useEffect(()=>{  
     if (toptext.length !== 0 && bottomtext.length !== 0) {
       
       
-      contextRef.current.font="bold "+fontSize+"px Arial"
+      contextRef.current.font="italic "+textParam.fontSize+"px "+textParam.font
       const longtop = Math.floor(contextRef.current.measureText(toptext).width)
       const starttop = (canvassize.width/2)-(longtop/2)
       const longbottom = Math.floor(contextRef.current.measureText(bottomtext).width)
@@ -105,38 +108,38 @@
       
       let n = 0
       drawagain()
-      console.log("123")
       function drawagain(){
       var z
       for(z=n; z<wholedata.length; z++){
-      const dog = wholedata[z]
-      console.log(wholedata)
-      console.log(z)
+      //const dog = wholedata[z]
       
       if (wholedata.length!==0){
-        console.log("123")
       var i 
-      contextRef.current.moveTo(dog.movT[0].offsetX, dog.movT[0].offsetY)
+      contextRef.current.moveTo(wholedata[z].movT[0].offsetX, wholedata[z].movT[0].offsetY)
       for(i=0; i<wholedata[z].lineT.length; i++){
-      contextRef.current.lineTo(dog.lineT[i].offsetX, dog.lineT[i].offsetY);
+      contextRef.current.lineTo(wholedata[z].lineT[i].offsetX, wholedata[z].lineT[i].offsetY);
       contextRef.current.stroke()
       }}else{
         n=n+1;
         drawagain();}
     }}
-     
-      contextRef.current.shadowColor="black";
-      contextRef.current.shadowBlur=20;
+      //console.log(textParam)
+
+      contextRef.current.shadowColor= textParam.blurColor;
+      contextRef.current.shadowBlur= textParam.blurWidth;
       contextRef.current.fillStyle = "black"
-      contextRef.current.fillText(toptext, starttop + 1, 50 + 1 , canvassize.width - 30)
+      contextRef.current.fillText(toptext, starttop + 6, 50 + 6, canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom + 6, canvassize.height-44 , canvassize.width - 30)
+      contextRef.current.fillStyle = textParam.threeDColor
+      contextRef.current.fillText(toptext, starttop + 4, 50 + 4 , canvassize.width - 30)
       contextRef.current.fillText(toptext, starttop + 2, 50 + 2 , canvassize.width - 30)
-      contextRef.current.fillText(bottomtext, startbottom + 1, canvassize.height-49 , canvassize.width - 30)
-      contextRef.current.fillText(bottomtext, startbottom + 2, canvassize.heigth-48 , canvassize.width - 30)
-      contextRef.current.fillStyle = textColor
+      contextRef.current.fillText(bottomtext, startbottom + 4, canvassize.height-46 , canvassize.width - 30)
+      contextRef.current.fillText(bottomtext, startbottom + 2, canvassize.height-48 , canvassize.width - 30)
+      contextRef.current.fillStyle = textParam.textColor
       contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30)
       contextRef.current.fillText(bottomtext, startbottom, canvassize.height-50, canvassize.width - 30)
      }
-   }, [toptext, bottomtext, textColor, fontSize])
+   }, [toptext, bottomtext, textParam])
     
   
     //function quotep(pers){
@@ -150,29 +153,65 @@
       const randomnum=Math.floor(Math.random()*lengt-1)
       const singleq = quotenew.messages.personalized[randomnum]
       
-      contextRef.current.font="bold "+fontSize+"px Calibri";
+      contextRef.current.font="bold "+textParam.fontSize+"px "+ textParam.font;
       const message= randomQuoteName + " " + singleq    
       const long = Math.floor(contextRef.current.measureText(message).width)
       const start = (canvassize.width/2)-(long/2)
       
+
+
+
       if(long < canvassize.width ){
-      //const height = Math.floor(contextRef.current.measureText(message).height)
-      //var rectangle = new Path2D();
-      //contextRef.current.fillStyle = "White"
-      //contextRef.current.fillRect(start, 15, (long+10), 45); 
-      //contextRef.current.save();
+      // const height = Math.floor(contextRef.current.measureText(message).height)
+      // var rectangle = new Path2D();
+      // contextRef.current.fillStyle = "White"
+      // contextRef.current.fillRect(start, 15, (long+10), 45); 
+      // contextRef.current.save();
+      
+      
+      
       contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height)
       contextRef.current.drawImage(picturedata, 0, 0)
-      contextRef.current.shadowColor="blue";
-      contextRef.current.shadowBlur=20;
-      contextRef.current.fillStyle = "orange"
-      contextRef.current.fillText(randomQuoteName + " " + singleq, start + 1, 50 + 1 , canvassize.width - 30)
+
+      let n = 0
+        drawagain()
+        function drawagain(){
+        var z
+        for(z=n; z<wholedata.length; z++){
+        //const dog = wholedata[z]
+      
+        if (wholedata.length!==0){
+        var i 
+        contextRef.current.moveTo(wholedata[z].movT[0].offsetX, wholedata[z].movT[0].offsetY)
+        //console.log(z)
+        for(i=0; i<wholedata[z].lineT.length; i++){
+        contextRef.current.lineTo(wholedata[z].lineT[i].offsetX, wholedata[z].lineT[i].offsetY);
+        
+        contextRef.current.stroke()
+        }}else{
+          n=n+1;
+          drawagain();}
+        //contextRef.current.fillStyle = "blue";
+      }}
+      
+
+
+
+
+
+      contextRef.current.shadowColor= textParam.blurColor;
+      contextRef.current.shadowBlur= textParam.blurWidth;
+      contextRef.current.fillStyle = "black"
+      contextRef.current.fillText(randomQuoteName + " " + singleq, start + 6, 50 + 6 , canvassize.width - 30)
+      contextRef.current.fillStyle = textParam.threeDColor
+      contextRef.current.fillText(randomQuoteName + " " + singleq, start + 4, 50 + 4 , canvassize.width - 30)
       contextRef.current.fillText(randomQuoteName + " " + singleq, start + 2, 50 + 2 , canvassize.width - 30)
-     
-      contextRef.current.fillStyle = textColor
+        
+      contextRef.current.fillStyle = textParam.textColor
       contextRef.current.fillText(randomQuoteName + " " + singleq, start, 50, canvassize.width - 30)
      
-      ;}
+      ;} 
+      //else if(long > canvassize.width ){};
       else{ retry()}
     }
   }, [pers] )

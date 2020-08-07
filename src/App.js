@@ -29,7 +29,7 @@ function App() {
     <div id="main">
       <Header />
       <QuickNav />
-      <TopImages />
+      {/*<TopImages />*/}
       <Canvas toptext={toptexte} bottomtext={bottomtexte} />
       <Form toptext={toptextf} bottomtext={bottomtextf} />
       {/* <Downloader /> */}

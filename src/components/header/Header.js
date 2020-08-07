@@ -19,13 +19,13 @@ export default function Header() {
     setSingquote(quotenew.messages.non_personalized[randomnum])
   }, 30000)} 
   }}, [quotenew])
-
+//<h3>King Of Memes</h3>
   return (
     <div className={Styles.container}>
       <h1>Master Trump Memes Graffiti</h1>
-      <h3>King Of Memes</h3>
-      <h3>{singquote}</h3>
       <img src={require("../../assets/trump-lightning.gif")} alt="test" className={Styles.img} />
+      <h3>{singquote}</h3>
+      
     </div>
   );
 }
