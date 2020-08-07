@@ -1,4 +1,3 @@
-
  import React, {useRef, useEffect, useState, useContext} from "react";
  import Styles from "./Canvas.module.css";
  //import PictureSource from "../picturesource/PictureSource"
@@ -47,7 +46,6 @@
         contextRef.current.drawImage(img, 0, 0, picdatanew[picID].webformatWidth, picdatanew[picID].webformatHeight);
          console.log(wholedata)
       }, 2000);
-      
     }
     }, [picID, picdatanew])
 
@@ -223,6 +221,7 @@
       //console.log(fish)
       setMyImage(image)
     }
+  }
 
     /*function handleClick(){ 
       setTimeout(()=>{
@@ -252,9 +251,6 @@
             ></canvas>
         </div>
       </div>
-       
     </div>
-   );
- }
- 
-
+  );
+}

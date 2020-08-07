@@ -1,3 +1,4 @@
+
 import React, {useContext, useState, useEffect} from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 //import QuickListData from "../../data/QuickListData";
@@ -99,6 +100,5 @@ useEffect(()=>{
       </div>
     );
   }
-
 
 export default HideAndShowDivOnClick;

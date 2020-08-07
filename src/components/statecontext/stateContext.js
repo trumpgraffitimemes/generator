@@ -2,10 +2,7 @@ import React, {createContext, useState, useEffect} from "react"
 
 export const StateContext = createContext({})
 
-
-
 function StateContextProvider({children}){
-
 
     const [picdatanew, setPicdatanew] = useState([]);
     const [quotenew, setQuotenew]=useState([]);
@@ -42,9 +39,9 @@ function StateContextProvider({children}){
 
 return (
     <StateContext.Provider value={{picdatanew, quotenew, picID, setPicID, colorList, grafitiColor, setGrafitiColor, textParam, setTextParam}}>
-        {children}
+        {children}    
     </StateContext.Provider>
-    );
+  );
 }
 
-export default StateContextProvider
+export default StateContextProvider;
