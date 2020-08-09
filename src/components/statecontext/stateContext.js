@@ -1,8 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
 
 export const StateContext = createContext({});
+// export const StateContext = createContext();
 
-function StateContextProvider({ children }) {
+export default function StateContextProvider({ children }) {
+  const [theme, setTheme] = useState("light");
   const [picdatanew, setPicdatanew] = useState([]);
   const [quotenew, setQuotenew] = useState([]);
   const [picID, setPicID] = useState(0);
@@ -66,11 +68,11 @@ function StateContextProvider({ children }) {
         setGrafitiColor,
         textParam,
         setTextParam,
+        theme,
+        setTheme,
       }}
     >
       {children}
     </StateContext.Provider>
   );
 }
-
-export default StateContextProvider;
