@@ -34,11 +34,11 @@ export default function Header() {
           Trump <span className={Styles.graffitiText}>GRAFFITI</span> Memes
         </h1>
       </div>
-      {/* <h3 className={Styles.quotes}>
+      <h3 className={Styles.quotes}>
         <span className={Styles.quotemark}>" </span>
         {singquote}
         <span className={Styles.quotemark}> "</span>
-      </h3> */}
+      </h3>
     </div>
   );
 }
