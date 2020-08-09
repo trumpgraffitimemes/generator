@@ -3,7 +3,13 @@
     flex-direction: row;
     justify-content: center;
     position: relative;
+    justify-items: center;
 }
+
+.container:hover {
+    cursor: url(../../assets/Trump.cur), default;
+}
+
 
 .boxes {
     display: flex;
@@ -11,6 +17,12 @@
     width: 180px;
     border: none;
     outline-style: none;
+    margin: 15px;
+}
+
+input {
+    cursor: url(../../assets/Trump.cur), default;
+    width: 100px;
 }
 
 .hide{
@@ -21,6 +33,10 @@
     list-style-type: none;
     position: absolute;
     line-height: 2em;
+}
+
+.list:hover {
+    cursor: url(../../assets/Trump.cur), default;
 }
 
 .indieFlower {

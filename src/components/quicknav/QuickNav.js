@@ -6,9 +6,10 @@ import { StateContext } from "../statecontext/stateContext";
 import Styles from "./QuickNav.module.css";
 
 function HideAndShowDivOnClick () {
-  const { picdatanew, setPicID, colorList, setGrafitiColor, textParam, setTextParam } = useContext(StateContext)
+  const { picdatanew, setPicID, grafitiParam, setGrafitiParam, textParam, setTextParam, setTabIndex, icons, setIconID } = useContext(StateContext)
   const [showDiv, setShowDiv] = useState(false)
   const [chips, setChips] = useState()
+  const [fish, setFish] = useState()
   const [hideFontList, setHideFontList] = useState(Styles.hide)
  
 function getInfo(e){
@@ -16,11 +17,22 @@ function getInfo(e){
 
 }
 
+function IconID(e){
+  setIconID(e.target.id)
+
+}
+
 useEffect(()=>{
     if(picdatanew!==undefined){
       setChips(picdatanew.map((v, i) => (
-            <img key={i} id={i} onClick={getInfo} type="image" src={v.previewURL} alt="choice image" className="quicklist-pic"/>
+            <img key={i} id={i} onClick={getInfo} onTouchStart={getInfo} type="image" src={v.previewURL} alt="choose donald" className="quicklist-pic"/>
       ))) }}, [picdatanew])
+
+useEffect(()=>{
+        if(icons!==undefined){
+          setFish(icons.map((v, i) => (
+                <img key={i} id={i} onClick={IconID} onTouchStart={IconID} type="image" src={v.previewURL} alt="choose donald" className="quicklist-pic"/>
+          ))) }}, [icons])
 
 
       //{(colorList.map((v, i) => (
@@ -29,11 +41,12 @@ useEffect(()=>{
  return (
       <div className="quicklist-container">
         {showDiv && (
-          <Tabs>
+          <Tabs defaultIndex={0} onSelect={index=>setTabIndex(index)}>
             <TabList>
-              <Tab>Donald</Tab>
-              <Tab>Text-style</Tab>
-              <Tab>Graffiti-style</Tab>
+              <Tab >Donald</Tab>
+              <Tab >Text-style</Tab>
+              <Tab >Graffiti-style</Tab>
+              <Tab >Icons</Tab>
             </TabList>
             
               <TabPanel >
@@ -82,9 +95,21 @@ useEffect(()=>{
                 </div>                
               </TabPanel>
               <TabPanel>
-              {(colorList.map((v, i) => (
-                  <input key={i} id={i} onClick={(e)=>setGrafitiColor(e.target.id)} alt="color" Style={"background-color:"+v}  className="quicklist-pic"/>
-              )))}
+                <div className= {Styles.container}>
+                  <div className = {Styles.boxes}>
+                    <input type="color" value={grafitiParam.Color} onChange={(e)=>setGrafitiParam({...grafitiParam, Color: e.target.value})}/><label>Grafiti COLOR</label>
+                  </div>
+                  <div className = {Styles.boxes}>
+                    <input type="range" value={grafitiParam.Width} onChange={(e)=>setGrafitiParam({...grafitiParam, Width: e.target.value})}  min="1" max="40"/><label>Grafiti WIDTH: {grafitiParam.Width}</label>
+                  </div>
+                </div>
+                
+              </TabPanel>
+              <TabPanel>
+              <ul className="quicklist-content">
+                 {fish}    
+                </ul>
+
               </TabPanel>
           </Tabs>
         )}
