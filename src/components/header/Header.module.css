@@ -17,9 +17,13 @@ h1 {
 
 .quotes {
   font-family: "PatuaOne-Regular";
-  background-color: rgb(28, 40, 207);
+  /* background-color: rgb(226, 44, 44); */
+  background-image: url("../../assets/usa.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   color: white;
-  font-size: medium;
+  font-size: small;
   padding: 20px;
   border-radius: 5px;
 }
@@ -29,7 +33,6 @@ h1 {
   height: 50px;
   border-radius: 50%;
   padding: 10px;
-  /* padding: 10px; */
 }
 
 .titleFlex {
@@ -42,10 +45,7 @@ h1 {
 
 .graffitiText {
   color: rgb(28, 40, 207);
-  /* background-color: blue; */
-  /* background-image: url("../../assets/trump-lightning.gif"); */
   background-repeat: no-repeat;
-  /* position: absolute; */
   width: 100%;
   height: 100%;
   font-family: "UrbanHeroes";

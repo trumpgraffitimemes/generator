@@ -1,8 +1,19 @@
+.startcontainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  max-width: 800px;
+  left: 50%;
+  transform: translate(-400px, 0);
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
 .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
 }
 
 .Wrapper {
@@ -11,38 +22,35 @@
   justify-content: space-between;
 }
 
-.button {
-  width: 120px;
-  background-color: grey;
-  border-radius: 3px;
-  border: 2px solid black;
-  float: left;
-  margin: 20px;
-  color: white;
-  text-decoration: none;
-
-
-}
-
 .canvas {
   cursor: url(../../assets/Trump.cur), default;
+  max-width: 600px;
+  max-height: 600px;
 }
 
-.buttoncontainer{
-   display: flex;
-   position: relative;
-   flex-direction: row; 
-   max-width: 800px;
-   left: 50%;
-   transform: translate(-400px, 0);
-   justify-content: center;
-   align-items: center;
-   
+.buttoncontainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  max-width: 800px;
+  left: 50%;
+  transform: translate(-400px, 0);
+  justify-content: center;
+  align-items: center;
+}
 
+.button {
+  margin: 20px;
+  text-decoration: none;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  font-family: "PatuaOne-Regular";
+  background-color: rgb(28, 40, 207);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
 }
 
 .header {
-
   margin: 20px;
-
 }

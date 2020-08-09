@@ -319,6 +319,33 @@ export default function Canvas({ toptext, bottomtext }) {
   //<button className={styles.button}>Generate</button>
   return (
     <div>
+      <div className={Styles.startcontainer}>
+        <h4>Or, Generate A Random Quote ...</h4>
+      </div>
+      <div className={Styles.buttoncontainer}>
+        <input
+          type="text"
+          placeholder="Enter *name* for quote"
+          className={Styles.input}
+          onChange={(e) => setRandomQuoteName(e.target.value)}
+        />
+        <button className={Styles.button} onClick={() => setPers(!pers)}>
+          Generate
+        </button>
+      </div>
+
+      <div className={Styles.container}>
+        <canvas
+          ref={canvasRef}
+          onMouseDown={startDrawing}
+          onMouseUp={finishDrawing}
+          onMouseMove={draw}
+          width={canvassize.width}
+          height={canvassize.height}
+          className={Styles.canvas}
+        ></canvas>
+      </div>
+
       <div className={Styles.buttoncontainer}>
         <a
           download="myimage.jpg"
@@ -326,31 +353,8 @@ export default function Canvas({ toptext, bottomtext }) {
           onClick={downloa}
           className={Styles.button}
         >
-          DOWNLOAD TO myImage
+          Download
         </a>
-        <button className={Styles.button} onClick={() => setPers(!pers)}>
-          Random Quote
-        </button>
-        <input
-          type="text"
-          placeholder="name"
-          className={Styles.input}
-          onChange={(e) => setRandomQuoteName(e.target.value)}
-        />
-      </div>
-
-      <div className={Styles.container}>
-        <div>
-          <canvas
-            ref={canvasRef}
-            onMouseDown={startDrawing}
-            onMouseUp={finishDrawing}
-            onMouseMove={draw}
-            width={canvassize.width}
-            height={canvassize.height}
-            className={Styles.canvas}
-          ></canvas>
-        </div>
       </div>
     </div>
   );

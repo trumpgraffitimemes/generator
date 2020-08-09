@@ -23,8 +23,8 @@ function App() {
       <Header />
       <QuickNav />
       {/* <TopImages /> */}
-      <Canvas toptext={toptexte} bottomtext={bottomtexte} />
       <Form toptext={toptextf} bottomtext={bottomtextf} />
+      <Canvas toptext={toptexte} bottomtext={bottomtexte} />
       {/* <Downloader /> */}
     </div>
   );

@@ -21,7 +21,7 @@ export default function Header() {
       }
     }
   }, [quotenew]);
-  //<h3>King Of Memes</h3>
+
   return (
     <div className={Styles.container}>
       <div className={Styles.titleFlex}>
@@ -34,11 +34,11 @@ export default function Header() {
           Trump <span className={Styles.graffitiText}>GRAFFITI</span> Memes
         </h1>
       </div>
-      <h3 className={Styles.quotes}>
+      {/* <h3 className={Styles.quotes}>
         <span className={Styles.quotemark}>" </span>
         {singquote}
         <span className={Styles.quotemark}> "</span>
-      </h3>
+      </h3> */}
     </div>
   );
 }

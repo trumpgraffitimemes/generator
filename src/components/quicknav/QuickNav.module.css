@@ -1,83 +1,104 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: relative;
+.quicklistContainer {
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.quicklistBtn {
+  text-align: center;
+  padding: 4px;
+  margin-bottom: 20px;
+  font-family: "PatuaOne-Regular";
+  background-color: rgb(28, 40, 207);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
 }
 
 .boxes {
-    display: flex;
-    flex-direction: column;
-    width: 180px;
-    border: none;
-    outline-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  border: none;
+  outline-style: none;
 }
 
-.hide{
-    display: none;
+.quicklistPic {
+  width: 40px;
+  height: 40px;
+  margin: 2px;
+}
+
+.hide {
+  display: none;
 }
 
 .list {
-    list-style-type: none;
-    position: absolute;
-    line-height: 2em;
+  list-style-type: none;
+  position: absolute;
+  line-height: 2em;
 }
 
 .indieFlower {
-    font-family: "Indie Flower";
+  font-family: "Indie Flower";
 }
 
 .kaushanScript {
-    font-family: "Kraushan Script";
+  font-family: "Kraushan Script";
 }
 
 .pacifico {
-    font-family: "Pacifico";
+  font-family: "Pacifico";
 }
 
 .homemadeApple {
-    font-family: "Homemade Apple";
+  font-family: "Homemade Apple";
 }
 
 .wallpoet {
-    font-family: "Wallpoet";
+  font-family: "Wallpoet";
 }
-    
+
 .robotoMono {
-    font-family: "Roboto Mono";
+  font-family: "Roboto Mono";
 }
 
 .bebasNeue {
-    font-family: "Bebas Neue";
+  font-family: "Bebas Neue";
 }
 
 .monoton {
-    font-family: "Monoto";
+  font-family: "Monoto";
 }
 
 .pressStart2P {
-    font-family: "Press Start 2p";
+  font-family: "Press Start 2p";
 }
 
 .bangers {
-    font-family: "Bangers";
+  font-family: "Bangers";
 }
 
 .piedra {
-    font-family: "Piedra";
+  font-family: "Piedra";
 }
 
 .frederickaTheGreat {
-    font-family: "Fredericka the Great";
+  font-family: "Fredericka the Great";
 }
 
 .vt323 {
-    font-family: "VT323";
+  font-family: "VT323";
 }
 
 .vastShadow {
-    font-family: "Vast Shadow";
+  font-family: "Vast Shadow";
 }
-
-
-
