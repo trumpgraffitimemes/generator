@@ -3,8 +3,8 @@ import "./App.css";
 import Header from "./components/header/Header";
 import QuickNav from "./components/quicknav/QuickNav";
 // import TopImages from "./components/topimages/TopImages";
-import Form from "./components/form/Form";
 import Canvas from "./components/canvas/Canvas";
+import Form from "./components/form/Form";
 
 function App() {
   const [toptexte, setToptexte] = useState("");
@@ -22,7 +22,7 @@ function App() {
     <div id="main">
       <Header />
       <QuickNav />
-      {/*<TopImages />*/}
+      {/* <TopImages /> */}
       <Canvas toptext={toptexte} bottomtext={bottomtexte} />
       <Form toptext={toptextf} bottomtext={bottomtextf} />
       {/* <Downloader /> */}

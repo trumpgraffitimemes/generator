@@ -43,6 +43,7 @@ function HideAndShowDivOnClick() {
   //{(colorList.map((v, i) => (
   //          <input key={i} id={i} onClick={(e)=>setTextColor(e.target.id)} alt="color" Style={"background-color:"+v}  className="quicklist-pic"/>
   //    )))}
+
   return (
     <div className="quicklist-container">
       {showDiv && (
