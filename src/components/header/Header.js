@@ -21,7 +21,7 @@ export default function Header() {
       }
     }
   }, [quotenew]);
-  //<h3>King Of Memes</h3>
+
   return (
     <div className={Styles.container}>
       <div className={Styles.titleFlex}>

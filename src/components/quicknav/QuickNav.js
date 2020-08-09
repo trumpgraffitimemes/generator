@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-//import QuickListData from "../../data/QuickListData";
 import "react-tabs/style/react-tabs.css";
 import { StateContext } from "../statecontext/stateContext";
 import Styles from "./QuickNav.module.css";
@@ -33,7 +32,7 @@ function HideAndShowDivOnClick() {
             type="image"
             src={v.previewURL}
             alt="choice image"
-            className="quicklist-pic"
+            className={Styles.quicklistPic}
           />
         ))
       );
@@ -45,7 +44,13 @@ function HideAndShowDivOnClick() {
   //    )))}
 
   return (
-    <div className="quicklist-container">
+    <div className={Styles.quicklistContainer}>
+      <button
+        className={Styles.quicklistBtn}
+        onClick={() => setShowDiv(!showDiv)}
+      >
+        {showDiv ? "Hide" : "Quicklist"}
+      </button>
       {showDiv && (
         <Tabs>
           <TabList>
@@ -258,10 +263,6 @@ function HideAndShowDivOnClick() {
           </TabPanel>
         </Tabs>
       )}
-
-      <button className="quicklist-btn" onClick={() => setShowDiv(!showDiv)}>
-        {showDiv ? "Hide" : "Quicklist"}
-      </button>
     </div>
   );
 }
