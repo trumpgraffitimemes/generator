@@ -1,14 +1,26 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Indie Flower', 'Kaushan Script', 'Pacifico', 'Homemade Apple',
-     'Wallpoet', 'Roboto Mono', 'Bebas Neue', 'Monoton', 'Press Start 2P', 'Bangers', 'Piedra', 'Fredericka the Great', 'VT323', 'Vast Shadow',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Indie Flower", "Kaushan Script", "Pacifico", "Homemade Apple", "Wallpoet",
+    "Roboto Mono", "Bebas Neue", "Monoton", "Press Start 2P", "Bangers",
+    "Piedra", "Fredericka the Great", "VT323", "Vast Shadow", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "UrbanHeroes";
+  src: local("UrbanHeroes"), url(./fonts/UrbanHeroes.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "PatuaOne-Regular";
+  src: local("PatuaOne-Regular.ttf"),
+    url(./fonts/PatuaOne-Regular.ttf) format("truetype");
 }
