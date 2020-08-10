@@ -40,6 +40,9 @@
 .quicklistPic:hover {
   transform: scale(0.9);
 }
+.input {
+  width: 100px;
+}
 
 .hide {
   display: none;

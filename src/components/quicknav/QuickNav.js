@@ -62,6 +62,7 @@ function HideAndShowDivOnClick() {
             <div className={Styles.container}>
               <div className={Styles.boxes}>
                 <input
+                  className={Styles.input}
                   type="color"
                   value={textParam.textColor}
                   onChange={(e) =>
