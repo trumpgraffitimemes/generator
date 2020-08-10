@@ -1,19 +1,11 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-// import styles from "./Canvas.module.css";
 import Styles from "./Canvas.module.css";
-// import PictureSource from "../picturesource/PictureSource";
-// import Quote from "../quote/Quote";
 import { StateContext } from "../statecontext/stateContext";
 
 export default function Canvas({ toptext, bottomtext }) {
-  const {
-    picdatanew,
-    quotenew,
-    picID,
-    colorList,
-    grafitiColor,
-    textParam,
-  } = useContext(StateContext);
+  const { picdatanew, quotenew, picID, grafitiParam, textParam } = useContext(
+    StateContext
+  );
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -22,7 +14,7 @@ export default function Canvas({ toptext, bottomtext }) {
   const [myImage, setMyImage] = useState();
   const [picturedata, setPicturedata] = useState();
   const [lined, setLined] = useState([]);
-  const [startstop, setStartstop] = useState({});
+  //const [startstop, setStartstop] = useState({});
   const [wholedata, setWholedata] = useState([]);
   const [startpos, setStartpos] = useState([]);
   const [randomQuoteName, setRandomQuoteName] = useState("Robert");
@@ -58,7 +50,6 @@ export default function Canvas({ toptext, bottomtext }) {
           picdatanew[picID].webformatWidth,
           picdatanew[picID].webformatHeight
         );
-        // console.log(wholedata);
       }, 2000);
     }
   }, [picID, picdatanew]);
@@ -66,13 +57,20 @@ export default function Canvas({ toptext, bottomtext }) {
   // draw, set a starting point and an end point
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
-    contextRef.current.strokeStyle = colorList[grafitiColor];
-    contextRef.current.lineWidth = 10;
+    contextRef.current.strokeStyle = grafitiParam.Color;
+    contextRef.current.lineWidth = grafitiParam.Width;
     contextRef.current.shadowBlur = 0;
+    contextRef.current.lineCap = "round";
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setIsDrawing(true);
-    setStartpos((pre) => [...pre, [offsetX, offsetY]]);
+    setStartpos([]);
+    setLined([]);
+    const LineColor = grafitiParam.Color;
+    const LineWidth = grafitiParam.Width;
+    const xy = [offsetX, offsetY, LineColor, LineWidth];
+
+    setStartpos((previous) => [...previous, xy]);
   };
 
   // folow the cursor and draw
@@ -87,7 +85,7 @@ export default function Canvas({ toptext, bottomtext }) {
     nn = nn + 1;
 
     const fishX = { offsetX, offsetY };
-    if (nn % 5 === 0) {
+    if (nn % 1 === 0) {
       setLined((gp) => [...gp, fishX]);
     }
   };
@@ -95,19 +93,18 @@ export default function Canvas({ toptext, bottomtext }) {
   //finish the drawing process and construct the data Array
   const finishDrawing = () => {
     const newStartStop = { movT: startpos, lineT: lined };
-    setStartstop(newStartStop);
+    //setStartstop(newStartStop);
     setWholedata((ln) => [...ln, newStartStop]);
     //contextRef.current.closePath()
     setIsDrawing(false);
   };
 
-  //console.log(wholedata)
   // make the text more interesting
   //function generater(){
   useEffect(() => {
     if (toptext.length !== 0 && bottomtext.length !== 0) {
       contextRef.current.font =
-        "italic " + textParam.fontSize + "px " + textParam.font;
+        "bold " + textParam.fontSize + "px " + textParam.font;
       const longtop = Math.floor(contextRef.current.measureText(toptext).width);
       const starttop = canvassize.width / 2 - longtop / 2;
       const longbottom = Math.floor(
@@ -123,33 +120,33 @@ export default function Canvas({ toptext, bottomtext }) {
       );
       contextRef.current.drawImage(picturedata, 0, 0);
 
-      let n = 0;
-      drawagain();
-      function drawagain() {
-        var z;
-        for (z = n; z < wholedata.length; z++) {
-          //const dog = wholedata[z]
+      drawagainline();
 
-          if (wholedata.length !== 0) {
-            var i;
-            contextRef.current.moveTo(
-              wholedata[z].movT[0].offsetX,
-              wholedata[z].movT[0].offsetY
+      function drawagainline() {
+        contextRef.current.shadowBlur = 0;
+        var z;
+        for (z = 0; z < wholedata.length; z++) {
+          contextRef.current.lineWidth = wholedata[z].movT[0][3];
+          contextRef.current.strokeStyle = wholedata[z].movT[0][2];
+          contextRef.current.lineCap = "round";
+          contextRef.current.beginPath();
+
+          // const i = [];
+          var i;
+          contextRef.current.moveTo(
+            wholedata[z].movT[0][0],
+            wholedata[z].movT[0][1]
+          );
+
+          for (i = 0; i < wholedata[z].lineT.length; i++) {
+            contextRef.current.lineTo(
+              wholedata[z].lineT[i].offsetX,
+              wholedata[z].lineT[i].offsetY
             );
-            for (i = 0; i < wholedata[z].lineT.length; i++) {
-              contextRef.current.lineTo(
-                wholedata[z].lineT[i].offsetX,
-                wholedata[z].lineT[i].offsetY
-              );
-              contextRef.current.stroke();
-            }
-          } else {
-            n = n + 1;
-            drawagain();
+            contextRef.current.stroke();
           }
         }
       }
-      //console.log(textParam)
 
       contextRef.current.shadowColor = textParam.blurColor;
       contextRef.current.shadowBlur = textParam.blurWidth;
@@ -202,14 +199,12 @@ export default function Canvas({ toptext, bottomtext }) {
     }
   }, [toptext, bottomtext, textParam]);
 
-  //function quotep(pers){
   useEffect(() => {
     if (quotenew.length !== 0) {
       retry();
     }
 
     function retry() {
-      //console.log(quotenew)
       const lengt = quotenew.messages.personalized.length;
       const randomnum = Math.floor(Math.random() * lengt - 1);
       const singleq = quotenew.messages.personalized[randomnum];
@@ -221,12 +216,6 @@ export default function Canvas({ toptext, bottomtext }) {
       const start = canvassize.width / 2 - long / 2;
 
       if (long < canvassize.width) {
-        // const height = Math.floor(contextRef.current.measureText(message).height)
-        // var rectangle = new Path2D();
-        // contextRef.current.fillStyle = "White"
-        // contextRef.current.fillRect(start, 15, (long+10), 45);
-        // contextRef.current.save();
-
         contextRef.current.clearRect(
           0,
           0,
@@ -235,33 +224,32 @@ export default function Canvas({ toptext, bottomtext }) {
         );
         contextRef.current.drawImage(picturedata, 0, 0);
 
-        let n = 0;
         drawagain();
         function drawagain() {
-          var z;
-          for (z = n; z < wholedata.length; z++) {
-            //const dog = wholedata[z]
+          contextRef.current.shadowBlur = 0;
 
-            if (wholedata.length !== 0) {
+          if (wholedata.length !== 0) {
+            var z;
+            for (z = 0; z < wholedata.length; z++) {
+              contextRef.current.lineWidth = wholedata[z].movT[0][3];
+              contextRef.current.strokeStyle = wholedata[z].movT[0][2];
+              contextRef.current.lineCap = "round";
+              contextRef.current.beginPath();
+
               var i;
               contextRef.current.moveTo(
-                wholedata[z].movT[0].offsetX,
-                wholedata[z].movT[0].offsetY
+                wholedata[z].movT[0][0],
+                wholedata[z].movT[0][1]
               );
-              //console.log(z)
+
               for (i = 0; i < wholedata[z].lineT.length; i++) {
                 contextRef.current.lineTo(
                   wholedata[z].lineT[i].offsetX,
                   wholedata[z].lineT[i].offsetY
                 );
-
-                contextRef.current.stroke();
               }
-            } else {
-              n = n + 1;
-              drawagain();
+              contextRef.current.stroke();
             }
-            //contextRef.current.fillStyle = "blue";
           }
         }
 
@@ -295,9 +283,7 @@ export default function Canvas({ toptext, bottomtext }) {
           50,
           canvassize.width - 30
         );
-      }
-      //else if(long > canvassize.width ){};
-      else {
+      } else {
         retry();
       }
     }
@@ -305,18 +291,10 @@ export default function Canvas({ toptext, bottomtext }) {
 
   function downloa(el) {
     var image = canvasRef.current.toDataURL("image/jpg");
-    //const fish = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data;
-    //console.log(fish)
+
     setMyImage(image);
   }
 
-  /*function handleClick(){ 
-      setTimeout(()=>{
-          quotep(quotenew.messages.personalized)
-      }, 100)}     */
-
-  //<PictureSource picdata={picdata}/><Quote quotep={quotep}/>
-  //<button className={styles.button}>Generate</button>
   return (
     <div>
       <div className={Styles.startcontainer}>

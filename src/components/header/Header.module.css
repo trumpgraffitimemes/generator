@@ -11,13 +11,16 @@ h3 {
   text-align: center;
 }
 
+.yellowBanner {
+  background-color: yellow;
+}
+
 h1 {
   font-family: "PatuaOne-Regular";
 }
 
 .quotes {
   font-family: "PatuaOne-Regular";
-  /* background-color: rgb(226, 44, 44); */
   background-image: url("../../assets/usa.jpg");
   background-repeat: no-repeat;
   background-size: cover;

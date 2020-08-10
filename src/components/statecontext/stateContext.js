@@ -8,25 +8,18 @@ export default function StateContextProvider({ children }) {
   const [picdatanew, setPicdatanew] = useState([]);
   const [quotenew, setQuotenew] = useState([]);
   const [picID, setPicID] = useState(0);
-  const [colorList, setColorList] = useState([
-    "red",
-    "blue",
-    "pink",
-    "yellow",
-    "green",
-    "purple",
-    "gold",
-    "orange",
-    "brown",
-    "black",
-  ]);
+  const [iconID, setIconID] = useState(0);
+  const [grafitiParam, setGrafitiParam] = useState({
+    Color: "#FFFF00",
+    Width: 10,
+  });
   const [grafitiColor, setGrafitiColor] = useState(0);
   const [textParam, setTextParam] = useState({
-    textColor: "#FF0000",
-    fontSize: 30,
+    textColor: "#FFFFFF",
+    fontSize: 40,
     blurWidth: 10,
     blurColor: "#000000",
-    threeDColor: "#FFFF00",
+    threeDColor: "#737a75",
     font: "Arial",
   });
 
@@ -39,10 +32,7 @@ export default function StateContextProvider({ children }) {
       })
       .then(function (rep) {
         const memes = rep.hits;
-        //console.log(memes)
-        //setPics(memes);
         setPicdatanew(memes);
-        //setZz(Math.floor(Math.random() * memes.length - 1));
       });
   }, []);
 
@@ -63,9 +53,8 @@ export default function StateContextProvider({ children }) {
         quotenew,
         picID,
         setPicID,
-        colorList,
-        grafitiColor,
-        setGrafitiColor,
+        grafitiParam,
+        setGrafitiParam,
         textParam,
         setTextParam,
         theme,

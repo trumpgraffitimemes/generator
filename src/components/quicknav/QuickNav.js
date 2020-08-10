@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import { StateContext } from "../statecontext/stateContext";
 import Styles from "./QuickNav.module.css";
+import "react-tabs/style/react-tabs.css";
 
 function HideAndShowDivOnClick() {
   const {
     picdatanew,
     setPicID,
-    colorList,
-    setGrafitiColor,
+    grafitiParam,
+    setGrafitiParam,
     textParam,
     setTextParam,
   } = useContext(StateContext);
@@ -38,10 +38,6 @@ function HideAndShowDivOnClick() {
       );
     }
   }, [picdatanew]);
-
-  //{(colorList.map((v, i) => (
-  //          <input key={i} id={i} onClick={(e)=>setTextColor(e.target.id)} alt="color" Style={"background-color:"+v}  className="quicklist-pic"/>
-  //    )))}
 
   return (
     <div className={Styles.quicklistContainer}>
@@ -195,14 +191,6 @@ function HideAndShowDivOnClick() {
                   </li>
                   <li
                     onClick={() =>
-                      setTextParam({ ...textParam, font: "Press Start 2P" })
-                    }
-                    className={Styles.pressStart2P}
-                  >
-                    Press Start 2P
-                  </li>
-                  <li
-                    onClick={() =>
                       setTextParam({ ...textParam, font: "Bangers" })
                     }
                     className={Styles.bangers}
@@ -250,16 +238,30 @@ function HideAndShowDivOnClick() {
             </div>
           </TabPanel>
           <TabPanel>
-            {colorList.map((v, i) => (
-              <input
-                key={i}
-                id={i}
-                onClick={(e) => setGrafitiColor(e.target.id)}
-                alt="color"
-                Style={"background-color:" + v}
-                className="quicklist-pic"
-              />
-            ))}
+            <div className={Styles.container}>
+              <div className={Styles.boxes}>
+                <input
+                  type="color"
+                  value={grafitiParam.Color}
+                  onChange={(e) =>
+                    setGrafitiParam({ ...grafitiParam, Color: e.target.value })
+                  }
+                />
+                <label>Grafiti COLOR</label>
+              </div>
+              <div className={Styles.boxes}>
+                <input
+                  type="range"
+                  value={grafitiParam.Width}
+                  onChange={(e) =>
+                    setGrafitiParam({ ...grafitiParam, Width: e.target.value })
+                  }
+                  min="1"
+                  max="40"
+                />
+                <label>Grafiti WIDTH: {grafitiParam.Width}</label>
+              </div>
+            </div>
           </TabPanel>
         </Tabs>
       )}
