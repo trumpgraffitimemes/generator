@@ -37,6 +37,10 @@
   margin: 2px;
 }
 
+.quicklistPic:hover {
+  transform: scale(0.9);
+}
+
 .hide {
   display: none;
 }
@@ -77,10 +81,6 @@
 
 .monoton {
   font-family: "Monoto";
-}
-
-.pressStart2P {
-  font-family: "Press Start 2p";
 }
 
 .bangers {

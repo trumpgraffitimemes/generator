@@ -1,11 +1,7 @@
 import React, { useContext } from "react";
-// import { ThemeContext } from "./themeContext";
-// import {StateContext} from "..stateContext";
-// import { StateContext } from "./components/statecontext/stateContext";
 import { StateContext } from "../statecontext/stateContext";
 
-// import { StateContext } from "./components/statecontext/stateContext";
-// import "./styles.css";
+// create a separate css module file here still
 import "../../App.css";
 
 export default function ToolBar() {
