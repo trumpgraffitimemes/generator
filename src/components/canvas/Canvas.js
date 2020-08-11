@@ -319,7 +319,7 @@ export default function Canvas() {
 
     setMyImage(image);
   }
-
+//some code change
   return (
     <div>
       <div className={Styles.startcontainer}>
