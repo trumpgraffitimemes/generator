@@ -38,6 +38,8 @@ h1 {
   align-content: center;
   justify-content: center;
   padding: 10px;
+  max-width: 1000px;
+  justify-content: space-between;
 }
 
 .graffitiText {

@@ -32,12 +32,14 @@
 .App.dark {
   background-color: #363940;
   color: white;
+  height: 100%;
 }
 
 /* Light Mode */
 
 .App.light {
   background-color: #fff;
+  height: 100%;
 }
 
 
@@ -45,6 +47,7 @@
 .flex-body-container {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   /* justify-content: space-between; */
   align-items: center;
 }
@@ -53,4 +56,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+
+@media screen and (max-width: 1000px){
+  .flex-body-container {
+    flex-direction: column;
+  }
 }

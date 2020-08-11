@@ -11,13 +11,10 @@ export default function Canvas() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [canvassize, setCanvasSize] = useState({ width: 800, height: 800 });
 
-  //const [myImage, setMyImage] = useState();
   const [picturedata, setPicturedata] = useState();
   const [lined, setLined] = useState([]);
   const [wholedata, setWholedata] = useState([]);
   const [startpos, setStartpos] = useState([]);
-  // const [randomQuoteName, setRandomQuoteName] = useState("Robert");
-  // const [pers, setPers] = useState(false);
   const [singleQ, setSingleQ] = useState("")
   const [mouseTouch, setMouseTouch] = useState(true)
 
@@ -109,15 +106,7 @@ export default function Canvas() {
     setLined(gp=>[...gp, fishX]);
 
     }
-    
-    
-    
-   
-    contextRef.current.stroke();
-    
-    
-      
-    
+    contextRef.current.stroke();    
   };
 
   //finish the drawing process and construct the data Array
@@ -321,35 +310,10 @@ export default function Canvas() {
    setMyImage(image);
   }}
 
-  function downloa(el) {
-    var image = canvasRef.current.toDataURL("image/jpg");
-    console.log("123")
-
-    setMyImage(image);
-  }
 
   return (
     <div>
-
-      
-      {/*<div className={Styles.startcontainer}>
-        <h4>Or, Generate A Random Quote ...</h4>
-      </div>
-      <div className={Styles.buttoncontainer}>
-        <input
-          type="text"
-          placeholder="Enter *name* for quote"
-          className={Styles.input}
-          onChange={(e) => setRandomQuoteName(e.target.value)}
-        />
-        <button className={Styles.button} onClick={() => setPers(true)}>
-          Generate
-        </button>
-  </div>*/}
-
-
-
-      <div className={Styles.container}>
+     <div>
         <canvas
           ref={canvasRef}
           onMouseDown={(e)=>{
