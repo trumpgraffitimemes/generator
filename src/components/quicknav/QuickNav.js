@@ -62,7 +62,7 @@ function HideAndShowDivOnClick() {
             <div className={Styles.container}>
               <div className={Styles.boxes}>
                 <input
-                  className={Styles.input}
+                  className={Styles.inputs}
                   type="color"
                   value={textParam.textColor}
                   onChange={(e) =>
@@ -74,6 +74,7 @@ function HideAndShowDivOnClick() {
               <div className={Styles.boxes}>
                 <input
                   type="range"
+                  className={Styles.inputs}
                   value={textParam.fontSize}
                   onChange={(e) =>
                     setTextParam({ ...textParam, fontSize: e.target.value })
@@ -86,6 +87,7 @@ function HideAndShowDivOnClick() {
               <div className={Styles.boxes}>
                 <input
                   type="range"
+                  className={Styles.inputs}
                   value={textParam.blurWidth}
                   onChange={(e) =>
                     setTextParam({ ...textParam, blurWidth: e.target.value })
@@ -98,6 +100,7 @@ function HideAndShowDivOnClick() {
               <div className={Styles.boxes}>
                 <input
                   type="color"
+                  className={Styles.inputs}
                   value={textParam.blurColor}
                   onChange={(e) =>
                     setTextParam({ ...textParam, blurColor: e.target.value })
@@ -108,6 +111,7 @@ function HideAndShowDivOnClick() {
               <div className={Styles.boxes}>
                 <input
                   type="color"
+                  className={Styles.inputs}
                   value={textParam.threeDColor}
                   onChange={(e) =>
                     setTextParam({ ...textParam, threeDColor: e.target.value })
@@ -243,6 +247,7 @@ function HideAndShowDivOnClick() {
               <div className={Styles.boxes}>
                 <input
                   type="color"
+                  className={Styles.inputs}
                   value={grafitiParam.Color}
                   onChange={(e) =>
                     setGrafitiParam({ ...grafitiParam, Color: e.target.value })
@@ -253,6 +258,7 @@ function HideAndShowDivOnClick() {
               <div className={Styles.boxes}>
                 <input
                   type="range"
+                  className={Styles.inputs}
                   value={grafitiParam.Width}
                   onChange={(e) =>
                     setGrafitiParam({ ...grafitiParam, Width: e.target.value })

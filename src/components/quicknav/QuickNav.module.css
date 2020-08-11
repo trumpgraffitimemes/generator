@@ -26,9 +26,11 @@
 .boxes {
   display: flex;
   flex-direction: column;
-  width: 180px;
+  width: 130px;
   border: none;
   outline-style: none;
+  font-size: 0.8em;
+  text-align: left;
 }
 
 .quicklistPic {
@@ -40,8 +42,8 @@
 .quicklistPic:hover {
   transform: scale(0.9);
 }
-.input {
-  width: 100px;
+.inputs {
+  width: 80px;
 }
 
 .hide {

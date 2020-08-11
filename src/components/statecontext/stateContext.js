@@ -8,7 +8,7 @@ export default function StateContextProvider({ children }) {
   const [picdatanew, setPicdatanew] = useState([]);
   const [quotenew, setQuotenew] = useState([]);
   const [picID, setPicID] = useState(0);
-  const [iconID, setIconID] = useState(0);
+  //const [iconID, setIconID] = useState(0);
   const [grafitiParam, setGrafitiParam] = useState({
     Color: "#FFFF00",
     Width: 10,
@@ -22,6 +22,7 @@ export default function StateContextProvider({ children }) {
     threeDColor: "#737a75",
     font: "Arial",
   });
+  const[textInput, setTextInput] = useState({toptext: "", bottomtext: ""})
 
   useEffect(() => {
     fetch(
@@ -59,6 +60,8 @@ export default function StateContextProvider({ children }) {
         setTextParam,
         theme,
         setTheme,
+        textInput, 
+        setTextInput
       }}
     >
       {children}
