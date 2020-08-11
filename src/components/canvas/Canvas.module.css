@@ -1,54 +1,22 @@
-.startcontainer {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  max-width: 800px;
-  left: 50%;
-  transform: translate(-400px, 0);
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-}
-
-.container {
-  display: block;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.Wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
 .canvas {
   cursor: url(../../assets/Trump.cur), default;
-  max-width: 700px;
-  max-height: 700px;
+;}
+
+@media screen and (max-width: 800px){
+  .canvas {
+    transform: scale(0.8);
+  }
 }
 
-.buttoncontainer {
-  display: block;
-  position: absolute;
-  max-width: 800px;
-  left: 60%;
-  justify-content: center;
-  align-items: center;
+@media screen and (max-width: 600px){
+  .canvas {
+    transform: scale(0.6);
+  }
 }
 
-.button {
-  margin: 20px;
-  text-decoration: none;
-  padding: 5px 20px;
-  margin-bottom: 20px;
-  font-family: "PatuaOne-Regular";
-  background-color: rgb(28, 40, 207);
-  color: white;
-  font-size: medium;
-  border-radius: 5px;
-}
-
-.header {
-  margin: 20px;
+@media screen and (max-width: 500px){
+  .canvas {
+    transform: scale(0.5);
+  }
 }

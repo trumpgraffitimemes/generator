@@ -17,12 +17,24 @@ code {
     monospace;
 }
 
-#root {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
+
+
+button {
+  margin: 20px;
+  text-decoration: none;
+  padding: 5px 20px;
+  background-color: rgb(28, 40, 207);
+  font-family: "PatuaOne-Regular";
+  /* background-color: rgb(28, 40, 207); */
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
 }
+
+button:hover {
+  transform: scale(0.9);
+}
+
 
 @font-face {
   font-family: "UrbanHeroes";
