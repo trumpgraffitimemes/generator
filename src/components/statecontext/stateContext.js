@@ -23,12 +23,12 @@ export default function StateContextProvider({ children }) {
     threeDColor: "#737a75",
     font: "Arial",
   });
-  const[textInput, setTextInput] = useState({toptext: "", bottomtext: ""})
-  const[myImage, setMyImage] = useState();
+  const [textInput, setTextInput] = useState({ toptext: "", bottomtext: "" });
+  const [myImage, setMyImage] = useState();
 
   useEffect(() => {
     fetch(
-      "https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=40"
+      "https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=200"
     )
       .then(function (response) {
         return response.json();
@@ -62,14 +62,14 @@ export default function StateContextProvider({ children }) {
         setTextParam,
         theme,
         setTheme,
-        textInput, 
+        textInput,
         setTextInput,
-        pers, 
-        setPers, 
+        pers,
+        setPers,
         randomQuoteName,
         setRandomQuoteName,
-        myImage, 
-        setMyImage
+        myImage,
+        setMyImage,
       }}
     >
       {children}
