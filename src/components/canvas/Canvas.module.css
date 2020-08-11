@@ -1,21 +1,25 @@
+/* .canvasContainer {
+  max-width: 500px;
+  max-height: 600px;
+} */
 
 .canvas {
   cursor: url(../../assets/Trump.cur), default;
-;}
+}
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .canvas {
     transform: scale(0.8);
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .canvas {
     transform: scale(0.6);
   }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   .canvas {
     transform: scale(0.5);
   }

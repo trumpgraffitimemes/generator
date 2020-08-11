@@ -4,42 +4,55 @@ import { StateContext } from "../statecontext/stateContext";
 
 export default function Form() {
   const {
-    textInput, setTextInput, pers, setPers, setRandomQuoteName
+    textInput,
+    setTextInput,
+    pers,
+    setPers,
+    setRandomQuoteName,
   } = useContext(StateContext);
-
 
   return (
     <div>
-      <form  className={Styles.forminp}>
+      <form className={Styles.forminp}>
+        <h4>Great memes start with funny text!</h4>
         <input
           className={Styles.inputinp}
           type="text"
           name="topText"
-          placeholder="ENTER YOUR"
-          onChange={(e) => setTextInput({...textInput, toptext: e.target.value})}
+          placeholder="Enter your"
+          onChange={(e) =>
+            setTextInput({ ...textInput, toptext: e.target.value })
+          }
         />
         <input
           className={Styles.inputinp}
           type="text"
           name="bottomText"
-          placeholder="TEXT HERE"
-          onChange={(e) => setTextInput({...textInput, bottomtext: e.target.value})}
+          placeholder="Text here"
+          onChange={(e) =>
+            setTextInput({ ...textInput, bottomtext: e.target.value })
+          }
         />
       </form>
       <div>
-        <h4>Or, Generate A Random Quote ...</h4>
-      </div>
-      <div>
+        <h4>or.. add a random quote</h4>
         <input
           type="text"
-          placeholder="Enter *name* for quote"
+          placeholder="Enter *name* for quote here"
           className={Styles.inputinp}
           onChange={(e) => setRandomQuoteName(e.target.value)}
         />
-        <button onClick={() => {setPers(!pers);
-        }}>
+        <button
+          onClick={() => {
+            setPers(!pers);
+          }}
+        >
           Generate
         </button>
+        <p>
+          (Pssst... Don't forget to{" "}
+          <span className={Styles.graffitiText}>GRAFFITI</span> Donald!)
+        </p>
       </div>
     </div>
   );

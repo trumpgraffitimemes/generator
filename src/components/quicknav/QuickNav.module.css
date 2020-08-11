@@ -21,6 +21,22 @@
   transform: scale(0.9);
 }
 
+.downloadBtn {
+  text-align: center;
+  padding: 4px;
+  margin-bottom: 20px;
+  font-family: "PatuaOne-Regular";
+  background-color: rgb(49, 131, 49);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.downloadBtn:hover {
+  transform: scale(0.9);
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -52,7 +68,7 @@
   cursor: pointer;
 }
 
-.listactive:hover{
+.listactive:hover {
   transform: scale(0.9);
 }
 
@@ -62,7 +78,6 @@
 .inputs {
   width: 80px;
   cursor: pointer;
-  
 }
 
 .inputs:hover {
@@ -79,8 +94,6 @@
   line-height: 2em;
   cursor: pointer;
   background-color: white;
-
-  
 }
 
 .fontContainer {
@@ -98,13 +111,11 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
-
 }
 
 .wrapper2 {
   display: flex;
   flex-direction: column;
-  
 }
 
 .wrapper3 {
@@ -155,7 +166,7 @@
   font-family: "Homemade Apple";
 }
 
-.wallpoet:hover{
+.wallpoet:hover {
   transform: scale(0.9);
 }
 
@@ -195,7 +206,7 @@
   font-family: "Bangers";
 }
 
-.piedra:hover{
+.piedra:hover {
   transform: scale(0.9);
 }
 
@@ -203,7 +214,7 @@
   font-family: "Piedra";
 }
 
-.frederickaTheGreat:hover{
+.frederickaTheGreat:hover {
   transform: scale(0.9);
 }
 
@@ -211,7 +222,7 @@
   font-family: "Fredericka the Great";
 }
 
-.vt323:hover{
+.vt323:hover {
   transform: scale(0.9);
 }
 
@@ -219,14 +230,13 @@
   font-family: "VT323";
 }
 
-.vastShadow:hover{
+.vastShadow:hover {
   transform: scale(0.9);
 }
 
 .vastShadow {
   font-family: "Vast Shadow";
 }
-
 
 .button {
   margin: 20px;

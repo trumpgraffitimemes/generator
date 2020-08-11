@@ -14,7 +14,6 @@
   width: 40px;
 }
 
-
 .yellowBanner {
   font-family: "PatuaOne-Regular";
   background-color: yellow;
@@ -31,7 +30,7 @@
 
 .App.dark {
   background-color: #363940;
-  color: white;
+  color: rgb(163, 158, 158);
   height: 100vh;
 }
 
@@ -41,8 +40,6 @@
   background-color: #fff;
   height: 100vh;
 }
-
-
 
 .flex-body-container {
   display: flex;
@@ -58,9 +55,7 @@
   align-items: center;
 }
 
-
-
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
   .flex-body-container {
     flex-direction: column;
   }
