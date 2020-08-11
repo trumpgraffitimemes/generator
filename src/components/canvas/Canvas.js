@@ -219,6 +219,8 @@ export default function Canvas() {
     setMyImage(image);
   }, [textInput, textParam]);
 
+
+  //generate the random text
   useEffect(() => {
     if (quotenew.length !== 0) {
       retry();
@@ -228,6 +230,7 @@ export default function Canvas() {
       const lengt = quotenew.messages.personalized.length;
       const randomnum = Math.floor(Math.random() * lengt - 1);
       const singleq = quotenew.messages.personalized[randomnum];
+      
 
       contextRef.current.font =
         "bold 50px " + textParam.font;
@@ -236,11 +239,11 @@ export default function Canvas() {
       contextRef.current.font =
         "bold " + textParam.fontSize + "px " + textParam.font;
     
-
+     
       if (long < canvassize.width) {
         setSingleQ(singleq)
         drawforrandom(singleq)
-        setPers(false)
+        //setPers(false)
         setTextInput({toptext: "", bottomtext: ""})
       } 
       else {
@@ -250,6 +253,7 @@ export default function Canvas() {
     }
   }, [pers]);
 
+  // allow text modification of the random quote
   useEffect(()=>{
     if(textInput.toptext.length===0&&textInput.bottomtext.length===0){
     contextRef.current.font="bold "+textParam.fontSize+"px "+ textParam.font;
@@ -258,7 +262,7 @@ export default function Canvas() {
   }, [textInput, textParam])
 
 
-
+  // put the generated text on the canvas
   function drawforrandom(singleq){
     if(picturedata!==undefined||singleQ!==""){
      contextRef.current.font="bold "+textParam.fontSize+"px "+ textParam.font;
@@ -274,7 +278,6 @@ export default function Canvas() {
      contextRef.current.shadowBlur=0
      contextRef.current.lineWidth = 10;
      if (wholedata.length!==0){
-       console.log(wholedata.length)
      var z
      for(z=0; z<wholedata.length; z++){
      contextRef.current.lineWidth = wholedata[z].movT[0][3];
