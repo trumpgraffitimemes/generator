@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Styles from "./Form.module.css";
+import { StateContext } from "../statecontext/stateContext";
 
-export default function Form({ toptext, bottomtext }) {
+export default function Form() {
+  const {
+    textInput, setTextInput
+  } = useContext(StateContext);
+
+
   return (
     <div>
       <form className="meme-form">
@@ -9,13 +15,13 @@ export default function Form({ toptext, bottomtext }) {
           type="text"
           name="topText"
           placeholder="ENTER YOUR"
-          onChange={(e) => toptext(e.target.value)}
+          onChange={(e) => setTextInput({...textInput, toptext: e.target.value})}
         />
         <input
           type="text"
           name="bottomText"
           placeholder="TEXT HERE"
-          onChange={(e) => bottomtext(e.target.value)}
+          onChange={(e) => setTextInput({...textInput, bottomtext: e.target.value})}
         />
       </form>
     </div>

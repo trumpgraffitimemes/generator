@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import Styles from "./Canvas.module.css";
 import { StateContext } from "../statecontext/stateContext";
 
-export default function Canvas({ toptext, bottomtext }) {
-  const { picdatanew, quotenew, picID, grafitiParam, textParam } = useContext(
+export default function Canvas() {
+  const { picdatanew, quotenew, picID, grafitiParam, textParam, textInput, setTextInput } = useContext(
     StateContext
   );
   const contextRef = useRef(null);
@@ -125,16 +125,16 @@ export default function Canvas({ toptext, bottomtext }) {
     setIsDrawing(false);
   };
 
-  // make the text more interesting
+  
   //function generater(){
   useEffect(() => {
-    if (toptext.length !== 0 && bottomtext.length !== 0) {
+    if (textInput.toptext.length !== 0 || textInput.bottomtext.length !== 0) {
       contextRef.current.font =
         "bold " + textParam.fontSize + "px " + textParam.font;
-      const longtop = Math.floor(contextRef.current.measureText(toptext).width);
+      const longtop = Math.floor(contextRef.current.measureText(textInput.toptext).width);
       const starttop = canvassize.width / 2 - longtop / 2;
       const longbottom = Math.floor(
-        contextRef.current.measureText(bottomtext).width
+        contextRef.current.measureText(textInput.bottomtext).width
       );
       const startbottom = canvassize.width / 2 - longbottom / 2;
 
@@ -177,75 +177,76 @@ export default function Canvas({ toptext, bottomtext }) {
       contextRef.current.shadowBlur = textParam.blurWidth;
       contextRef.current.fillStyle = "black";
       contextRef.current.fillText(
-        toptext,
+        textInput.toptext,
         starttop + 6,
         50 + 6,
         canvassize.width - 30
       );
       contextRef.current.fillText(
-        bottomtext,
+        textInput.bottomtext,
         startbottom + 6,
         canvassize.height - 44,
         canvassize.width - 30
       );
       contextRef.current.fillStyle = textParam.threeDColor;
       contextRef.current.fillText(
-        toptext,
+        textInput.toptext,
         starttop + 4,
         50 + 4,
         canvassize.width - 30
       );
       contextRef.current.fillText(
-        toptext,
+        textInput.toptext,
         starttop + 2,
         50 + 2,
         canvassize.width - 30
       );
       contextRef.current.fillText(
-        bottomtext,
+        textInput.bottomtext,
         startbottom + 4,
         canvassize.height - 46,
         canvassize.width - 30
       );
       contextRef.current.fillText(
-        bottomtext,
+        textInput.bottomtext,
         startbottom + 2,
         canvassize.height - 48,
         canvassize.width - 30
       );
       contextRef.current.fillStyle = textParam.textColor;
-      contextRef.current.fillText(toptext, starttop, 50, canvassize.width - 30);
+      contextRef.current.fillText(textInput.toptext, starttop, 50, canvassize.width - 30);
       contextRef.current.fillText(
-        bottomtext,
+        textInput.bottomtext,
         startbottom,
         canvassize.height - 50,
         canvassize.width - 30
       );
     }
-  }, [toptext, bottomtext, textParam]);
+  }, [textInput, textParam]);
 
   useEffect(() => {
     if (quotenew.length !== 0) {
       retry();
     }
-
+    
     function retry() {
       const lengt = quotenew.messages.personalized.length;
       const randomnum = Math.floor(Math.random() * lengt - 1);
       const singleq = quotenew.messages.personalized[randomnum];
 
       contextRef.current.font =
-        "bold " + textParam.fontSize + "px " + textParam.font;
+        "bold 50px " + textParam.font;
       const message = randomQuoteName + " " + singleq;
       const long = Math.floor(contextRef.current.measureText(message).width);
-     
-      
-      
+      contextRef.current.font =
+        "bold " + textParam.fontSize + "px " + textParam.font;
+    
 
       if (long < canvassize.width) {
         setSingleQ(singleq)
         drawforrandom(singleq)
         setPers(false)
+        setTextInput({toptext: "", bottomtext: ""})
       } 
       else {
         retry();
@@ -255,10 +256,11 @@ export default function Canvas({ toptext, bottomtext }) {
   }, [pers]);
 
   useEffect(()=>{
+    if(textInput.toptext.length===0&&textInput.bottomtext.length===0){
     contextRef.current.font="bold "+textParam.fontSize+"px "+ textParam.font;
-    drawforrandom(singleQ);
+    drawforrandom(singleQ);}
     
-  }, [textParam])
+  }, [textInput, textParam])
 
 
 

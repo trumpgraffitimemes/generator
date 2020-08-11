@@ -11,23 +11,14 @@ import "./App.css";
 function App() {
   const { theme } = useContext(StateContext);
 
-  const [toptexte, setToptexte] = useState("");
-  const [bottomtexte, setBottomtexte] = useState("");
-
-  function toptextf(e) {
-    setToptexte(e);
-  }
-
-  function bottomtextf(e) {
-    setBottomtexte(e);
-  }
+  
 
   return (
     <div id="main" className={`App ${theme}`}>
       <Header />
       <QuickNav />
-      <Form toptext={toptextf} bottomtext={bottomtextf} />
-      <Canvas toptext={toptexte} bottomtext={bottomtexte} />
+      <Form  />
+      <Canvas  />
       <ToolBar />
     </div>
   );
