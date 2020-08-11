@@ -11,7 +11,7 @@
 }
 
 .container {
-  display: flex;
+  display: block;
   flex-direction: row;
   justify-content: center;
 }
@@ -29,12 +29,10 @@
 }
 
 .buttoncontainer {
-  display: flex;
-  position: relative;
-  flex-direction: row;
+  display: block;
+  position: absolute;
   max-width: 800px;
-  left: 50%;
-  transform: translate(-400px, 0);
+  left: 60%;
   justify-content: center;
   align-items: center;
 }

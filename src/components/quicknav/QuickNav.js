@@ -45,13 +45,15 @@ function HideAndShowDivOnClick() {
         className={Styles.quicklistBtn}
         onClick={() => setShowDiv(!showDiv)}
       >
-        {showDiv ? "Hide" : "Quicklist"}
+        {showDiv ? "Hide" : "Customize"}
       </button>
+    
       {showDiv && (
-        <Tabs>
+        <Tabs className={Styles.tabs}>
           <TabList>
             <Tab>Donald</Tab>
             <Tab>Text-style</Tab>
+            <Tab>Font</Tab>
             <Tab>Graffiti-style</Tab>
           </TabList>
 
@@ -71,6 +73,29 @@ function HideAndShowDivOnClick() {
                 />
                 <label>TEXT COLOR</label>
               </div>
+              <div className={Styles.boxes}>
+                <input
+                  type="color"
+                  className={Styles.inputs}
+                  value={textParam.blurColor}
+                  onChange={(e) =>
+                    setTextParam({ ...textParam, blurColor: e.target.value })
+                  }
+                />
+                <label>BLUR COLOR</label>
+              </div>
+              <div className={Styles.boxes}>
+                <input
+                  type="color"
+                  className={Styles.inputs}
+                  value={textParam.threeDColor}
+                  onChange={(e) =>
+                    setTextParam({ ...textParam, threeDColor: e.target.value })
+                  }
+                />
+                <label>3D COLOR</label>
+              </div>
+
               <div className={Styles.boxes}>
                 <input
                   type="range"
@@ -97,30 +122,12 @@ function HideAndShowDivOnClick() {
                 />
                 <label>BLUR WIDTH: {textParam.blurWidth}</label>
               </div>
-              <div className={Styles.boxes}>
-                <input
-                  type="color"
-                  className={Styles.inputs}
-                  value={textParam.blurColor}
-                  onChange={(e) =>
-                    setTextParam({ ...textParam, blurColor: e.target.value })
-                  }
-                />
-                <label>BLUR COLOR</label>
-              </div>
-              <div className={Styles.boxes}>
-                <input
-                  type="color"
-                  className={Styles.inputs}
-                  value={textParam.threeDColor}
-                  onChange={(e) =>
-                    setTextParam({ ...textParam, threeDColor: e.target.value })
-                  }
-                />
-                <label>3D COLOR</label>
-              </div>
-              <div>
-                <p
+            </div>
+          </TabPanel>
+          <TabPanel>
+          <div className={Styles.fontContainer}>
+                {/*<p
+                className={Styles.listactive}
                   onClick={() => {
                     hideFontList === Styles.hide
                       ? setHideFontList(Styles.list)
@@ -128,89 +135,91 @@ function HideAndShowDivOnClick() {
                   }}
                 >
                   Font Choice
-                </p>
-                <ul className={hideFontList}>
-                  <li
-                    onClick={() =>
+                </p>*/}
+                {/* <ul className={Styles.list}>
+                  <li> */}
+                   <div className={Styles.wrapper1}>
+                   <p 
+                   className={Styles.psize}
+                   onClick={() =>
                       setTextParam({ ...textParam, font: "Indie Flower" })
                     }
                     className={Styles.indieFlower}
                   >
                     Indie Flower
-                  </li>
-                  <li
-                    onClick={() =>
+                  </p>
+                  <p
+                  className={Styles.psize}
+                  onClick={() =>
                       setTextParam({ ...textParam, font: "Kaushan Script" })
                     }
                     className={Styles.kaushanScript}
-                  >
-                    Kaushan Script
-                  </li>
-                  <li
-                    onClick={() =>
+                  >Kaushan Script
+                  </p>
+                  <p 
+                  className={Styles.psize}
+                  onClick={() =>
                       setTextParam({ ...textParam, font: "Pacifico" })
                     }
-                    className={Styles.pacifico}
-                  >
-                    Pacifico
-                  </li>
-                  <li
+                    className={Styles.pacifico}>
+                      Pacifico
+                  </p>
+                  </div>
+                 
+                  <div className={Styles.wrapper2}>
+                  <p
                     onClick={() =>
-                      setTextParam({ ...textParam, font: "Homemade Apple" })
+                      setTextParam({ ...textParam, font: "VT323" })
                     }
-                    className={Styles.homemadeApple}
+                    className={Styles.vt323}
                   >
-                    Homemade Apple
-                  </li>
-                  <li
+                    VT323
+                  </p>
+                  <p
                     onClick={() =>
                       setTextParam({ ...textParam, font: "Wallpoet" })
                     }
                     className={Styles.wallpoet}
                   >
                     Wallpoet
-                  </li>
-                  <li
-                    onClick={() =>
-                      setTextParam({ ...textParam, font: "Roboto Mono" })
-                    }
-                    className={Styles.robotoMono}
-                  >
-                    Roboto Mono
-                  </li>
-                  <li
+                  </p>
+                  <p
                     onClick={() =>
                       setTextParam({ ...textParam, font: "Bebas Neue" })
                     }
                     className={Styles.bebasNeue}
                   >
                     Bebas Neue
-                  </li>
-                  <li
+                  </p>
+                  </div>
+                  <div className={Styles.wrapper3}>
+                  <p
                     onClick={() =>
                       setTextParam({ ...textParam, font: "Monoton" })
                     }
                     className={Styles.monoton}
                   >
                     Monoton
-                  </li>
-                  <li
+                  </p>
+                  <p
                     onClick={() =>
                       setTextParam({ ...textParam, font: "Bangers" })
                     }
                     className={Styles.bangers}
                   >
                     Bangers
-                  </li>
-                  <li
+                  </p>
+                  <p
                     onClick={() =>
                       setTextParam({ ...textParam, font: "Piedra" })
                     }
                     className={Styles.piedra}
                   >
                     Piedra
-                  </li>
-                  <li
+                  </p>
+                  </div>
+                  <div className={Styles.wrapper4}>
+                  <p
                     onClick={() =>
                       setTextParam({
                         ...textParam,
@@ -220,16 +229,16 @@ function HideAndShowDivOnClick() {
                     className={Styles.frederickaTheGreat}
                   >
                     Fredericka the Great
-                  </li>
-                  <li
+                  </p>
+                  <p
                     onClick={() =>
-                      setTextParam({ ...textParam, font: "VT323" })
+                      setTextParam({ ...textParam, font: "Homemade Apple" })
                     }
-                    className={Styles.vt323}
+                    className={Styles.homemadeApple}
                   >
-                    VT323
-                  </li>
-                  <li
+                    Homemade Apple
+                  </p>
+                  <p
                     onClick={() =>
                       setTextParam({ ...textParam, font: "Vast Shadow" })
                     }
@@ -237,10 +246,10 @@ function HideAndShowDivOnClick() {
                   >
                     {" "}
                     Vast Shadow
-                  </li>
-                </ul>
-              </div>
-            </div>
+                  </p>
+                  </div>
+                {/* </ul> */}
+              </div> 
           </TabPanel>
           <TabPanel>
             <div className={Styles.container}>

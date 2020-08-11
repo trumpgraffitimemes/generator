@@ -3,7 +3,7 @@ import Styles from "./Canvas.module.css";
 import { StateContext } from "../statecontext/stateContext";
 
 export default function Canvas() {
-  const { picdatanew, quotenew, picID, grafitiParam, textParam, textInput, setTextInput } = useContext(
+  const { picdatanew, quotenew, picID, grafitiParam, textParam, textInput, setTextInput, pers, setPers, randomQuoteName } = useContext(
     StateContext
   );
   const contextRef = useRef(null);
@@ -14,15 +14,14 @@ export default function Canvas() {
   const [myImage, setMyImage] = useState();
   const [picturedata, setPicturedata] = useState();
   const [lined, setLined] = useState([]);
-  //const [startstop, setStartstop] = useState({});
   const [wholedata, setWholedata] = useState([]);
   const [startpos, setStartpos] = useState([]);
-  const [randomQuoteName, setRandomQuoteName] = useState("Robert");
-  const [pers, setPers] = useState(false);
+  // const [randomQuoteName, setRandomQuoteName] = useState("Robert");
+  // const [pers, setPers] = useState(false);
   const [singleQ, setSingleQ] = useState("")
   const [mouseTouch, setMouseTouch] = useState(true)
 
-  //set the basic canvas properties
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -322,7 +321,9 @@ export default function Canvas() {
 
   return (
     <div>
-      <div className={Styles.startcontainer}>
+
+      
+      {/*<div className={Styles.startcontainer}>
         <h4>Or, Generate A Random Quote ...</h4>
       </div>
       <div className={Styles.buttoncontainer}>
@@ -335,7 +336,9 @@ export default function Canvas() {
         <button className={Styles.button} onClick={() => setPers(true)}>
           Generate
         </button>
-      </div>
+  </div>*/}
+
+
 
       <div className={Styles.container}>
         <canvas
@@ -361,9 +364,7 @@ export default function Canvas() {
           height={canvassize.height}
           className={Styles.canvas}
         ></canvas>
-      </div>
-
-      <div className={Styles.buttoncontainer}>
+        <div className={Styles.buttoncontainer}>
         <a
           download="myimage.jpg"
           href={myImage}
@@ -373,6 +374,10 @@ export default function Canvas() {
           Download
         </a>
       </div>
+      </div>
+
+      
+
     </div>
   );
 }

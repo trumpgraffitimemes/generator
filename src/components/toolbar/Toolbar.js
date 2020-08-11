@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StateContext } from "../statecontext/stateContext";
 
 // create a separate css module file here still
-import "../../App.css";
+import Styles from "./Toolbar.module.css";
 
 export default function ToolBar() {
   const { theme, setTheme } = useContext(StateContext);
@@ -11,20 +11,23 @@ export default function ToolBar() {
     setTheme(themeName);
   };
 
+  //src={require("../../assets/trumpshaddow.svg")}
+
   return (
-    <div className="Toolbar">
-      <button
-        className={theme === "dark" ? "active" : ""}
+    <div className={Styles.Toolbar}>
+      {theme==="light"?
+      <button 
+      type="image"
+        className={theme === "dark" ? Styles.active : ""}
         onClick={() => setNewTheme("dark")}
-      >
-        dark
-      </button>
+      >dark 🌙</button>
+      :
       <button
-        className={theme === "light" ? "active" : ""}
+       type="image"
+        className={theme === "light" ? Styles.active : ""}
         onClick={() => setNewTheme("light")}
-      >
-        light
-      </button>
+      >light 💡</button>}
     </div>
   );
+
 }

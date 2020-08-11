@@ -8,6 +8,8 @@ export default function StateContextProvider({ children }) {
   const [picdatanew, setPicdatanew] = useState([]);
   const [quotenew, setQuotenew] = useState([]);
   const [picID, setPicID] = useState(0);
+  const [randomQuoteName, setRandomQuoteName] = useState("Robert");
+  const [pers, setPers] = useState(false);
   //const [iconID, setIconID] = useState(0);
   const [grafitiParam, setGrafitiParam] = useState({
     Color: "#FFFF00",
@@ -61,7 +63,11 @@ export default function StateContextProvider({ children }) {
         theme,
         setTheme,
         textInput, 
-        setTextInput
+        setTextInput,
+        pers, 
+        setPers, 
+        randomQuoteName,
+        setRandomQuoteName,
       }}
     >
       {children}
