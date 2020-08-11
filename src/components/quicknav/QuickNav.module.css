@@ -23,6 +23,10 @@
   position: relative;
 }
 
+.tabs {
+  font-family: "PatuaOne-Regular";
+}
+
 .boxes {
   display: flex;
   flex-direction: column;
@@ -39,11 +43,25 @@
   margin: 2px;
 }
 
+.listactive {
+  cursor: pointer;
+}
+
+.listactive:hover{
+  transform: scale(0.9);
+}
+
 .quicklistPic:hover {
   transform: scale(0.9);
 }
 .inputs {
   width: 80px;
+  cursor: pointer;
+  
+}
+
+.inputs:hover {
+  transform: scale(0.9);
 }
 
 .hide {
@@ -54,56 +72,165 @@
   list-style-type: none;
   position: absolute;
   line-height: 2em;
+  cursor: pointer;
+  background-color: white;
+
+  
+}
+
+.fontContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1em;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper1 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+
+}
+
+.wrapper2 {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.wrapper3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper4 {
+  display: flex;
+  flex-direction: column;
+}
+
+.psize {
+  margin: 100px;
+  padding: 100px;
+  background-color: blue;
+}
+
+.indieFlower:hover {
+  transform: scale(0.9);
 }
 
 .indieFlower {
   font-family: "Indie Flower";
 }
 
+.kaushanScript:hover {
+  transform: scale(0.9);
+}
+
 .kaushanScript {
-  font-family: "Kraushan Script";
+  font-family: "Kaushan Script";
+}
+
+.pacifico:hover {
+  transform: scale(0.9);
 }
 
 .pacifico {
   font-family: "Pacifico";
 }
 
+.homemadeApple:hover {
+  transform: scale(0.9);
+}
+
 .homemadeApple {
   font-family: "Homemade Apple";
+}
+
+.wallpoet:hover{
+  transform: scale(0.9);
 }
 
 .wallpoet {
   font-family: "Wallpoet";
 }
 
+.robotoMono:hover {
+  transform: scale(0.9);
+}
+
 .robotoMono {
   font-family: "Roboto Mono";
+}
+
+.bebasNeue:hover {
+  transform: scale(0.9);
 }
 
 .bebasNeue {
   font-family: "Bebas Neue";
 }
 
+.monoton:hover {
+  transform: scale(0.9);
+}
+
 .monoton {
-  font-family: "Monoto";
+  font-family: "Monoton";
+}
+
+.bangers:hover {
+  transform: scale(0.9);
 }
 
 .bangers {
   font-family: "Bangers";
 }
 
+.piedra:hover{
+  transform: scale(0.9);
+}
+
 .piedra {
   font-family: "Piedra";
+}
+
+.frederickaTheGreat:hover{
+  transform: scale(0.9);
 }
 
 .frederickaTheGreat {
   font-family: "Fredericka the Great";
 }
 
+.vt323:hover{
+  transform: scale(0.9);
+}
+
 .vt323 {
   font-family: "VT323";
 }
 
+.vastShadow:hover{
+  transform: scale(0.9);
+}
+
 .vastShadow {
   font-family: "Vast Shadow";
+}
+
+
+.button {
+  margin: 20px;
+  text-decoration: none;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  font-family: "PatuaOne-Regular";
+  background-color: rgb(28, 40, 207);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
 }

@@ -1,18 +1,12 @@
 .container {
   text-align: center;
-  padding: 10px;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-right: 40%;
 }
 
 h1,
 h2,
 h3 {
   text-align: center;
-}
-
-.yellowBanner {
-  background-color: yellow;
 }
 
 h1 {
@@ -57,3 +51,5 @@ h1 {
 .quotemark {
   font-size: large;
 }
+
+

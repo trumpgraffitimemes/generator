@@ -10,16 +10,20 @@ input {
   border-width: 3px;
   border-color: black;
   background-color: white;
-  width: 10rem;
+  width: 12rem;
   height: 2rem;
   margin-top: 5px;
   margin-bottom: 3px;
-}
+} 
 
 button {
+  margin: 20px;
+  text-decoration: none;
+  padding: 5px 20px;
+  background-color: rgb(28, 40, 207);
+  font-family: "PatuaOne-Regular";
+  /* background-color: rgb(28, 40, 207); */
   color: white;
-  background-color: rgba(59, 167, 59, 0.822);
-  border-style: none;
-  font-size: 20px;
-  width: 8rem;
+  font-size: medium;
+  border-radius: 5px;
 }

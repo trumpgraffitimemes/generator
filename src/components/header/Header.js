@@ -23,9 +23,9 @@ export default function Header() {
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.yellowBanner}>
+      {/* <div className={Styles.yellowBanner}>
         <p>Dont forget to vote!</p>
-      </div>
+      </div> */}
       <div className={Styles.titleFlex}>
         <img
           src={require("../../assets/trump-lightning.gif")}
@@ -36,11 +36,11 @@ export default function Header() {
           Trump <span className={Styles.graffitiText}>GRAFFITI</span> Memes
         </h1>
       </div>
-      <h3 className={Styles.quotes}>
+      {/* <h3 className={Styles.quotes}>
         <span className={Styles.quotemark}>" </span>
         {singquote}
         <span className={Styles.quotemark}> "</span>
-      </h3>
+      </h3> */}
     </div>
   );
 }

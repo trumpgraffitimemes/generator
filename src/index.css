@@ -7,11 +7,21 @@ body {
     "Fredericka the Great", "VT323", "Vast Shadow", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  border: 2px solid black;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
 }
 
 @font-face {

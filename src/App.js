@@ -11,15 +11,20 @@ import "./App.css";
 function App() {
   const { theme } = useContext(StateContext);
 
-  
-
   return (
     <div id="main" className={`App ${theme}`}>
-      <Header />
+      <div className="flex-header-container">
+        <Header className="flex-header-left"/>
+        <ToolBar />
+      </div>
+      <div className="flex-body-container">
+        <Form className="flex-wrapper-left" />
+        <Canvas className="flex-wrapper-right" />
+      </div>
       <QuickNav />
-      <Form  />
-      <Canvas  />
-      <ToolBar />
+      <div className="yellowBanner">
+        <p>Dont forget to vote on <span>3rd November 2020</span>!</p>
+      </div>
     </div>
   );
 }
