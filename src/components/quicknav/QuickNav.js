@@ -12,10 +12,10 @@ function HideAndShowDivOnClick() {
     setGrafitiParam,
     textParam,
     setTextParam,
+    myImage
   } = useContext(StateContext);
   const [showDiv, setShowDiv] = useState(false);
   const [chips, setChips] = useState();
-  const [hideFontList, setHideFontList] = useState(Styles.hide);
 
   function getInfo(e) {
     setPicID(e.target.id);
@@ -47,6 +47,11 @@ function HideAndShowDivOnClick() {
       >
         {showDiv ? "Hide" : "Customize"}
       </button>
+      <a
+          download="myimage.jpg"
+          href={myImage}>
+        <button  className={Styles.quicklistBtn}>Download</button>
+        </a>
     
       {showDiv && (
         <Tabs className={Styles.tabs}>

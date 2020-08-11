@@ -15,7 +15,6 @@ export default function StateContextProvider({ children }) {
     Color: "#FFFF00",
     Width: 10,
   });
-  const [grafitiColor, setGrafitiColor] = useState(0);
   const [textParam, setTextParam] = useState({
     textColor: "#FFFFFF",
     fontSize: 40,
@@ -25,6 +24,7 @@ export default function StateContextProvider({ children }) {
     font: "Arial",
   });
   const[textInput, setTextInput] = useState({toptext: "", bottomtext: ""})
+  const[myImage, setMyImage] = useState();
 
   useEffect(() => {
     fetch(
@@ -68,6 +68,8 @@ export default function StateContextProvider({ children }) {
         setPers, 
         randomQuoteName,
         setRandomQuoteName,
+        myImage, 
+        setMyImage
       }}
     >
       {children}
