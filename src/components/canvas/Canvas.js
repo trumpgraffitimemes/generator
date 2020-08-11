@@ -19,6 +19,8 @@ export default function Canvas({ toptext, bottomtext }) {
   const [startpos, setStartpos] = useState([]);
   const [randomQuoteName, setRandomQuoteName] = useState("Robert");
   const [pers, setPers] = useState(false);
+  const [singleQ, setSingleQ] = useState("")
+  const [mouseTouch, setMouseTouch] = useState(true)
 
   //set the basic canvas properties
 
@@ -56,46 +58,70 @@ export default function Canvas({ toptext, bottomtext }) {
 
   // draw, set a starting point and an end point
   const startDrawing = ({ nativeEvent }) => {
-    const { offsetX, offsetY } = nativeEvent;
+    
     contextRef.current.strokeStyle = grafitiParam.Color;
     contextRef.current.lineWidth = grafitiParam.Width;
     contextRef.current.shadowBlur = 0;
     contextRef.current.lineCap = "round";
     contextRef.current.beginPath();
-    contextRef.current.moveTo(offsetX, offsetY);
+    const LineColor = grafitiParam.Color;
+    const LineWidth = grafitiParam.Width;
     setIsDrawing(true);
     setStartpos([]);
     setLined([]);
-    const LineColor = grafitiParam.Color;
-    const LineWidth = grafitiParam.Width;
-    const xy = [offsetX, offsetY, LineColor, LineWidth];
+   
 
-    setStartpos((previous) => [...previous, xy]);
+    if(mouseTouch){
+      const { offsetX, offsetY } = nativeEvent;
+      const xy = [offsetX, offsetY, LineColor, LineWidth] 
+      contextRef.current.moveTo(xy[0], xy[1]);
+      setStartpos(previous=>[...previous, xy])
+    }
+
+    else {
+      const nn = nativeEvent.targetTouches[0]
+      const xy = [nn.pageX-nn.target.offsetLeft, nn.pageY-nn.target.offsetTop, LineColor, LineWidth]
+      contextRef.current.moveTo(xy[0], xy[1]);
+      setStartpos(previous=>[...previous, xy])}
   };
 
   // folow the cursor and draw
-  let nn = 0;
+  
   const draw = ({ nativeEvent }) => {
     if (!isDrawing) {
       return;
     }
+  
+    if(mouseTouch){
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.lineTo(offsetX, offsetY);
-    contextRef.current.stroke();
-    nn = nn + 1;
-
     const fishX = { offsetX, offsetY };
-    if (nn % 1 === 0) {
-      setLined((gp) => [...gp, fishX]);
+    setLined((gp) => [...gp, fishX]);
     }
+    
+    else{
+    const offsetX = nativeEvent.targetTouches[0].pageX-nativeEvent.targetTouches[0].target.offsetLeft
+    const offsetY = nativeEvent.targetTouches[0].pageY-nativeEvent.targetTouches[0].target.offsetTop
+    contextRef.current.lineTo(offsetX, offsetY);
+    const fishX = {offsetX, offsetY};
+    setLined(gp=>[...gp, fishX]);
+
+    }
+    
+    
+    
+   
+    contextRef.current.stroke();
+    
+    
+      
+    
   };
 
   //finish the drawing process and construct the data Array
   const finishDrawing = () => {
     const newStartStop = { movT: startpos, lineT: lined };
-    //setStartstop(newStartStop);
     setWholedata((ln) => [...ln, newStartStop]);
-    //contextRef.current.closePath()
     setIsDrawing(false);
   };
 
@@ -131,7 +157,6 @@ export default function Canvas({ toptext, bottomtext }) {
           contextRef.current.lineCap = "round";
           contextRef.current.beginPath();
 
-          // const i = [];
           var i;
           contextRef.current.moveTo(
             wholedata[z].movT[0][0],
@@ -213,81 +238,79 @@ export default function Canvas({ toptext, bottomtext }) {
         "bold " + textParam.fontSize + "px " + textParam.font;
       const message = randomQuoteName + " " + singleq;
       const long = Math.floor(contextRef.current.measureText(message).width);
-      const start = canvassize.width / 2 - long / 2;
+     
+      
+      
 
       if (long < canvassize.width) {
-        contextRef.current.clearRect(
-          0,
-          0,
-          canvasRef.current.width,
-          canvasRef.current.height
-        );
-        contextRef.current.drawImage(picturedata, 0, 0);
-
-        drawagain();
-        function drawagain() {
-          contextRef.current.shadowBlur = 0;
-
-          if (wholedata.length !== 0) {
-            var z;
-            for (z = 0; z < wholedata.length; z++) {
-              contextRef.current.lineWidth = wholedata[z].movT[0][3];
-              contextRef.current.strokeStyle = wholedata[z].movT[0][2];
-              contextRef.current.lineCap = "round";
-              contextRef.current.beginPath();
-
-              var i;
-              contextRef.current.moveTo(
-                wholedata[z].movT[0][0],
-                wholedata[z].movT[0][1]
-              );
-
-              for (i = 0; i < wholedata[z].lineT.length; i++) {
-                contextRef.current.lineTo(
-                  wholedata[z].lineT[i].offsetX,
-                  wholedata[z].lineT[i].offsetY
-                );
-              }
-              contextRef.current.stroke();
-            }
-          }
-        }
-
-        contextRef.current.shadowColor = textParam.blurColor;
-        contextRef.current.shadowBlur = textParam.blurWidth;
-        contextRef.current.fillStyle = "black";
-        contextRef.current.fillText(
-          randomQuoteName + " " + singleq,
-          start + 6,
-          50 + 6,
-          canvassize.width - 30
-        );
-        contextRef.current.fillStyle = textParam.threeDColor;
-        contextRef.current.fillText(
-          randomQuoteName + " " + singleq,
-          start + 4,
-          50 + 4,
-          canvassize.width - 30
-        );
-        contextRef.current.fillText(
-          randomQuoteName + " " + singleq,
-          start + 2,
-          50 + 2,
-          canvassize.width - 30
-        );
-
-        contextRef.current.fillStyle = textParam.textColor;
-        contextRef.current.fillText(
-          randomQuoteName + " " + singleq,
-          start,
-          50,
-          canvassize.width - 30
-        );
-      } else {
+        setSingleQ(singleq)
+        drawforrandom(singleq)
+        setPers(false)
+      } 
+      else {
         retry();
+        
       }
     }
   }, [pers]);
+
+  useEffect(()=>{
+    contextRef.current.font="bold "+textParam.fontSize+"px "+ textParam.font;
+    drawforrandom(singleQ);
+    
+  }, [textParam])
+
+
+
+  function drawforrandom(singleq){
+    if(picturedata!==undefined||singleQ!==""){
+     contextRef.current.font="bold "+textParam.fontSize+"px "+ textParam.font;
+     const message= randomQuoteName + " " + singleq   
+     const long = Math.floor(contextRef.current.measureText(message).width)
+     const start = (canvassize.width/2)-(long/2)
+     const starth = 50;
+     contextRef.current.clearRect(0,0, canvasRef.current.width, canvasRef.current.height)
+     contextRef.current.drawImage(picturedata, 0, 0)
+
+     drawagain()
+     function drawagain(){
+     contextRef.current.shadowBlur=0
+     contextRef.current.lineWidth = 10;
+     if (wholedata.length!==0){
+       console.log(wholedata.length)
+     var z
+     for(z=0; z<wholedata.length; z++){
+     contextRef.current.lineWidth = wholedata[z].movT[0][3];
+     contextRef.current.strokeStyle = wholedata[z].movT[0][2];
+     contextRef.current.lineCap = "round"
+  
+     contextRef.current.beginPath();
+     
+     var i 
+     contextRef.current.moveTo(wholedata[z].movT[0][0], wholedata[z].movT[0][1])
+
+     for(i=0; i<wholedata[z].lineT.length; i++){
+     contextRef.current.lineTo(wholedata[z].lineT[i].offsetX, wholedata[z].lineT[i].offsetY);
+     
+     }
+     contextRef.current.stroke()  
+   
+     }}
+     
+   }
+   contextRef.current.shadowColor= textParam.blurColor;
+   contextRef.current.shadowBlur= textParam.blurWidth;
+   contextRef.current.fillStyle = "black"
+   contextRef.current.fillText(randomQuoteName + " " + singleq, start + 6, starth + 6 , canvassize.width - 30)
+   contextRef.current.fillStyle = textParam.threeDColor
+   contextRef.current.fillText(randomQuoteName + " " + singleq, start + 4, starth + 4 , canvassize.width - 30)
+   contextRef.current.fillText(randomQuoteName + " " + singleq, start + 2, starth + 2 , canvassize.width - 30)
+     
+   contextRef.current.fillStyle = textParam.textColor
+   contextRef.current.fillText(randomQuoteName + " " + singleq, start, starth, canvassize.width - 30)
+  
+  
+  }}
 
   function downloa(el) {
     var image = canvasRef.current.toDataURL("image/jpg");
@@ -307,7 +330,7 @@ export default function Canvas({ toptext, bottomtext }) {
           className={Styles.input}
           onChange={(e) => setRandomQuoteName(e.target.value)}
         />
-        <button className={Styles.button} onClick={() => setPers(!pers)}>
+        <button className={Styles.button} onClick={() => setPers(true)}>
           Generate
         </button>
       </div>
@@ -315,9 +338,23 @@ export default function Canvas({ toptext, bottomtext }) {
       <div className={Styles.container}>
         <canvas
           ref={canvasRef}
-          onMouseDown={startDrawing}
-          onMouseUp={finishDrawing}
-          onMouseMove={draw}
+          onMouseDown={(e)=>{
+            startDrawing(e);
+            document.getElementsByTagName("body")[0].style="overflow: visible"
+            setMouseTouch(true);}}
+          onMouseUp={(e)=>{finishDrawing(e);
+            document.getElementsByTagName("body")[0].style="overflow: visible"
+            setMouseTouch(true)}}
+          onMouseMove={(e)=>{draw(e);
+            setMouseTouch(true)}}
+          onTouchStart={(e)=>{startDrawing(e);
+            document.getElementsByTagName("body")[0].style="overflow: hidden";
+          setMouseTouch(false)}}
+          onTouchEnd={(e)=>{finishDrawing(e);
+            document.getElementsByTagName("body")[0].style="overflow: visible"
+          setMouseTouch(false)}}
+          onTouchMove={(e)=>{draw(e);
+          setMouseTouch(false)}}
           width={canvassize.width}
           height={canvassize.height}
           className={Styles.canvas}
