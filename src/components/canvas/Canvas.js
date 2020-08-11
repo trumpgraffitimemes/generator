@@ -3,7 +3,7 @@ import Styles from "./Canvas.module.css";
 import { StateContext } from "../statecontext/stateContext";
 
 export default function Canvas() {
-  const { picdatanew, quotenew, picID, grafitiParam, textParam, textInput, setTextInput, pers, setPers, randomQuoteName } = useContext(
+  const { picdatanew, quotenew, picID, grafitiParam, textParam, textInput, setTextInput, pers, setPers, randomQuoteName, setMyImage } = useContext(
     StateContext
   );
   const contextRef = useRef(null);
@@ -11,7 +11,7 @@ export default function Canvas() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [canvassize, setCanvasSize] = useState({ width: 800, height: 800 });
 
-  const [myImage, setMyImage] = useState();
+  //const [myImage, setMyImage] = useState();
   const [picturedata, setPicturedata] = useState();
   const [lined, setLined] = useState([]);
   const [wholedata, setWholedata] = useState([]);
@@ -51,8 +51,11 @@ export default function Canvas() {
           picdatanew[picID].webformatWidth,
           picdatanew[picID].webformatHeight
         );
+        var image = canvasRef.current.toDataURL("image/jpg");
+        setMyImage(image);
       }, 2000);
     }
+    
   }, [picID, picdatanew]);
 
   // draw, set a starting point and an end point
@@ -122,6 +125,8 @@ export default function Canvas() {
     const newStartStop = { movT: startpos, lineT: lined };
     setWholedata((ln) => [...ln, newStartStop]);
     setIsDrawing(false);
+    var image = canvasRef.current.toDataURL("image/jpg");
+    setMyImage(image);
   };
 
   
@@ -221,6 +226,8 @@ export default function Canvas() {
         canvassize.width - 30
       );
     }
+    var image = canvasRef.current.toDataURL("image/jpg");
+    setMyImage(image);
   }, [textInput, textParam]);
 
   useEffect(() => {
@@ -310,11 +317,13 @@ export default function Canvas() {
    contextRef.current.fillStyle = textParam.textColor
    contextRef.current.fillText(randomQuoteName + " " + singleq, start, starth, canvassize.width - 30)
   
-  
+   var image = canvasRef.current.toDataURL("image/jpg");
+   setMyImage(image);
   }}
 
   function downloa(el) {
     var image = canvasRef.current.toDataURL("image/jpg");
+    console.log("123")
 
     setMyImage(image);
   }
@@ -364,16 +373,6 @@ export default function Canvas() {
           height={canvassize.height}
           className={Styles.canvas}
         ></canvas>
-        <div className={Styles.buttoncontainer}>
-        <a
-          download="myimage.jpg"
-          href={myImage}
-          onClick={downloa}
-          className={Styles.button}
-        >
-          Download
-        </a>
-      </div>
       </div>
 
       
