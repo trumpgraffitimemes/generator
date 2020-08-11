@@ -4,7 +4,7 @@ import { StateContext } from "../statecontext/stateContext";
 
 export default function Form() {
   const {
-    textInput, setTextInput, setPers, setRandomQuoteName
+    textInput, setTextInput, pers, setPers, setRandomQuoteName
   } = useContext(StateContext);
 
 
@@ -36,7 +36,8 @@ export default function Form() {
           className={Styles.inputinp}
           onChange={(e) => setRandomQuoteName(e.target.value)}
         />
-        <button onClick={() => setPers(true)}>
+        <button onClick={() => {setPers(!pers);
+        }}>
           Generate
         </button>
       </div>
