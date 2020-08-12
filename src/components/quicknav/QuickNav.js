@@ -47,6 +47,7 @@ function HideAndShowDivOnClick() {
       >
         {showDiv ? "Hide" : "Customize"}
       </button>
+
       <a download="meme.jpg" href={myImage}>
         <button className={Styles.downloadBtn}>Download</button>
       </a>
@@ -130,18 +131,6 @@ function HideAndShowDivOnClick() {
           </TabPanel>
           <TabPanel>
             <div className={Styles.fontContainer}>
-              {/*<p
-                className={Styles.listactive}
-                  onClick={() => {
-                    hideFontList === Styles.hide
-                      ? setHideFontList(Styles.list)
-                      : setHideFontList(Styles.hide);
-                  }}
-                >
-                  Font Choice
-                </p>*/}
-              {/* <ul className={Styles.list}>
-                  <li> */}
               <div className={Styles.wrapper1}>
                 <p
                   className={Styles.psize}

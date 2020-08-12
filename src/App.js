@@ -24,7 +24,11 @@ function App() {
       <QuickNav />
       <div className="yellowBanner">
         <p>
-          Dont forget to vote on <span>3rd November 2020</span>!
+          Share your memes on{" "}
+          <a href="https://twitter.com/hashtag/trumpgraffitimemes">
+            #trumpgraffitimemes
+          </a>{" "}
+          and please don't forget to vote on <span>3rd November 2020</span>!
         </p>
       </div>
     </div>

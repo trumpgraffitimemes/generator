@@ -37,7 +37,7 @@ export default function Canvas() {
 
   //show the selected picture
   useEffect(() => {
-    const img = new Image(); // Create new img element
+    const img = new Image();
     if (picdatanew.length !== 0) {
       img.src = picdatanew[picID].webformatURL;
       img.setAttribute("crossorigin", "anonymous");

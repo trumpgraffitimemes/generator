@@ -23,9 +23,6 @@ export default function Header() {
 
   return (
     <div className={Styles.container}>
-      {/* <div className={Styles.yellowBanner}>
-        <p>Dont forget to vote!</p>
-      </div> */}
       <div className={Styles.titleFlex}>
         <img
           src={require("../../assets/trump-lightning.gif")}

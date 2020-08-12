@@ -7,7 +7,6 @@ body {
     "Fredericka the Great", "VT323", "Vast Shadow", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
 }
 
 code {

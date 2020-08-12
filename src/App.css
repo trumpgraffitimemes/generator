@@ -1,6 +1,6 @@
 .App {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 }
 
 .Toolbar {
@@ -24,13 +24,14 @@
   background-color: yellow;
   height: auto;
   text-align: center;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 p {
   font-family: "PatuaOne-Regular";
   text-align: center;
 }
+
 .yellowBanner span {
   text-decoration: underline;
 }
@@ -40,7 +41,7 @@ p {
 .App.dark {
   background-color: #363940;
   color: rgb(163, 158, 158);
-  height: 100vh;
+  height: 110vh;
 }
 
 /* Light Mode */
@@ -67,8 +68,35 @@ p {
   margin: auto;
 }
 
+@media screen and (max-width: 1300px) {
+  .App.dark {
+    height: 150vh;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .flex-body-container {
     flex-direction: column;
+  }
+  .App.dark {
+    height: 220vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .App.dark {
+    height: 240vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .App.dark {
+    height: 350vh;
+  }
+
+  p {
+    font-family: "PatuaOne-Regular";
+    text-align: center;
+    font-size: small;
   }
 }
