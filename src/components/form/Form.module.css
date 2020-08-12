@@ -28,3 +28,9 @@ h4 {
   height: 100%;
   font-family: "UrbanHeroes";
 }
+
+@media screen and (max-width: 410px) {
+  .forminp {
+    padding-left: 20px;
+  }
+}

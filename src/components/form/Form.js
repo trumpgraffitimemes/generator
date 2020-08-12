@@ -51,7 +51,7 @@ export default function Form() {
         </button>
         <p>
           (Pssst... Don't forget to{" "}
-          <span className={Styles.graffitiText}>GRAFFITI</span> Donald!)
+          <span className={Styles.graffitiText}>DRAW ON DONALD</span>!)
         </p>
       </div>
     </div>

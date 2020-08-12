@@ -26,6 +26,11 @@ export default function StateContextProvider({ children }) {
   const [textInput, setTextInput] = useState({ toptext: "", bottomtext: "" });
   const [myImage, setMyImage] = useState();
 
+  // Medium sized image with a maximum width or height of 640 px (webformatWidth x webformatHeight).
+  // URL valid for 24 hours. Replace '_640' in any webformatURL value to access other image sizes:
+  // Replace with '_180' or '_340' to get a 180 or 340 px tall version of the image, respectively.
+  // Replace with '_960' to get the image in a maximum dimension of 960 x 720 px.
+
   useEffect(() => {
     fetch(
       "https://pixabay.com/api/?key=17706064-dbf47c15f3ffee1df9f90dd47&q=donald+trump&image_type=all&per_page=200"

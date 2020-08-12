@@ -14,7 +14,7 @@ function App() {
   return (
     <div id="main" className={`App ${theme}`}>
       <div className="flex-header-container">
-        <Header className="flex-header-left"/>
+        <Header className="flex-header-left" />
         <ToolBar />
       </div>
       <div className="flex-body-container">
@@ -23,7 +23,9 @@ function App() {
       </div>
       <QuickNav />
       <div className="yellowBanner">
-        <p>Dont forget to vote on <span>3rd November 2020</span>!</p>
+        <p>
+          Dont forget to vote on <span>3rd November 2020</span>!
+        </p>
       </div>
     </div>
   );

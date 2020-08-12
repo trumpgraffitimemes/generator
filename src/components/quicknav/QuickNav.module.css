@@ -3,6 +3,11 @@
   margin-right: 15%;
   text-align: center;
   padding-bottom: 10px;
+  margin-bottom: 80px;
+}
+
+.quicklistContent {
+  padding-left: 0px;
 }
 
 .quicklistBtn {
@@ -56,6 +61,7 @@
   outline-style: none;
   font-size: 0.8em;
   text-align: left;
+  margin: 5px;
 }
 
 .quicklistPic {
@@ -126,12 +132,6 @@
 .wrapper4 {
   display: flex;
   flex-direction: column;
-}
-
-.psize {
-  margin: 100px;
-  padding: 100px;
-  background-color: blue;
 }
 
 .indieFlower:hover {
@@ -248,4 +248,30 @@
   color: white;
   font-size: medium;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 410px) {
+  .tabs {
+    font-size: small;
+  }
+  .boxes {
+    width: 80px;
+  }
+
+  .inputs {
+    width: 50px;
+  }
+  .wrapper1 {
+    padding: 0 4px;
+  }
+  .wrapper2 {
+    padding: 0 4px;
+  }
+
+  .wrapper3 {
+    padding: 0 4px;
+  }
+  .wrapper4 {
+    padding: 0 4px;
+  }
 }

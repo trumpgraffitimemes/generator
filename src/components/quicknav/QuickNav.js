@@ -55,13 +55,14 @@ function HideAndShowDivOnClick() {
         <Tabs className={Styles.tabs}>
           <TabList>
             <Tab>Donald</Tab>
-            <Tab>Text-style</Tab>
+            <Tab>Text</Tab>
             <Tab>Font</Tab>
-            <Tab>Graffiti-style</Tab>
+            <Tab>Graffiti</Tab>
           </TabList>
 
           <TabPanel>
-            <ul className="quicklist-content">{chips}</ul>
+            {/* <ul className="quicklist-content">{chips}</ul> */}
+            <ul className={Styles.quicklistContent}>{chips}</ul>
           </TabPanel>
           <TabPanel>
             <div className={Styles.container}>

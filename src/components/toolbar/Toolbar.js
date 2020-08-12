@@ -15,19 +15,23 @@ export default function ToolBar() {
 
   return (
     <div className={Styles.Toolbar}>
-      {theme==="light"?
-      <button 
-      type="image"
-        className={theme === "dark" ? Styles.active : ""}
-        onClick={() => setNewTheme("dark")}
-      >dark 🌙</button>
-      :
-      <button
-       type="image"
-        className={theme === "light" ? Styles.active : ""}
-        onClick={() => setNewTheme("light")}
-      >light 💡</button>}
+      {theme === "light" ? (
+        <button
+          type="image"
+          className={theme === "dark" ? Styles.active : ""}
+          onClick={() => setNewTheme("dark")}
+        >
+          🌙
+        </button>
+      ) : (
+        <button
+          type="image"
+          className={theme === "light" ? Styles.active : ""}
+          onClick={() => setNewTheme("light")}
+        >
+          💡
+        </button>
+      )}
     </div>
   );
-
 }
