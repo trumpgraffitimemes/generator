@@ -1,5 +1,6 @@
 .App {
   height: 100vh;
+  width: 100%;
 }
 
 .Toolbar {
@@ -15,6 +16,10 @@
 }
 
 .yellowBanner {
+  position: fixed;
+  bottom: 0;
+  display: block;
+  width: 100%;
   font-family: "PatuaOne-Regular";
   background-color: yellow;
   height: auto;
@@ -22,6 +27,10 @@
   padding: 5px;
 }
 
+p {
+  font-family: "PatuaOne-Regular";
+  text-align: center;
+}
 .yellowBanner span {
   text-decoration: underline;
 }
@@ -51,8 +60,11 @@
 
 .flex-header-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  max-width: 1000px;
+  align-items: center;
+  margin: auto;
 }
 
 @media screen and (max-width: 1000px) {

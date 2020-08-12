@@ -1,6 +1,7 @@
 .container {
   text-align: center;
-  margin-right: 40%;
+  margin-right: 0%;
+  justify-items: space-between;
 }
 
 h1,
@@ -54,4 +55,20 @@ h1 {
   font-size: large;
 }
 
+@media screen and (max-width: 560px) {
+  .img {
+    display: none;
+  }
 
+  h1 {
+    padding-left: 20px;
+    font-size: x-large;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  h1 {
+    padding-left: 20px;
+    font-size: large;
+  }
+}

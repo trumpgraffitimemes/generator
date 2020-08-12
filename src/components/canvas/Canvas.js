@@ -355,46 +355,41 @@ export default function Canvas() {
   }
 
   return (
-    <div>
-      <div className={Styles.canvasContainer}>
-        <canvas
-          ref={canvasRef}
-          onMouseDown={(e) => {
-            startDrawing(e);
-            document.getElementsByTagName("body")[0].style =
-              "overflow: visible";
-            setMouseTouch(true);
-          }}
-          onMouseUp={(e) => {
-            finishDrawing(e);
-            document.getElementsByTagName("body")[0].style =
-              "overflow: visible";
-            setMouseTouch(true);
-          }}
-          onMouseMove={(e) => {
-            draw(e);
-            setMouseTouch(true);
-          }}
-          onTouchStart={(e) => {
-            startDrawing(e);
-            document.getElementsByTagName("body")[0].style = "overflow: hidden";
-            setMouseTouch(false);
-          }}
-          onTouchEnd={(e) => {
-            finishDrawing(e);
-            document.getElementsByTagName("body")[0].style =
-              "overflow: visible";
-            setMouseTouch(false);
-          }}
-          onTouchMove={(e) => {
-            draw(e);
-            setMouseTouch(false);
-          }}
-          width={canvassize.width}
-          height={canvassize.height}
-          className={Styles.canvas}
-        ></canvas>
-      </div>
+    <div className={Styles.canvasContainer}>
+      <canvas
+        ref={canvasRef}
+        onMouseDown={(e) => {
+          startDrawing(e);
+          document.getElementsByTagName("body")[0].style = "overflow: visible";
+          setMouseTouch(true);
+        }}
+        onMouseUp={(e) => {
+          finishDrawing(e);
+          document.getElementsByTagName("body")[0].style = "overflow: visible";
+          setMouseTouch(true);
+        }}
+        onMouseMove={(e) => {
+          draw(e);
+          setMouseTouch(true);
+        }}
+        onTouchStart={(e) => {
+          startDrawing(e);
+          document.getElementsByTagName("body")[0].style = "overflow: hidden";
+          setMouseTouch(false);
+        }}
+        onTouchEnd={(e) => {
+          finishDrawing(e);
+          document.getElementsByTagName("body")[0].style = "overflow: visible";
+          setMouseTouch(false);
+        }}
+        onTouchMove={(e) => {
+          draw(e);
+          setMouseTouch(false);
+        }}
+        width={canvassize.width}
+        height={canvassize.height}
+        className={Styles.canvas}
+      ></canvas>
     </div>
   );
 }
