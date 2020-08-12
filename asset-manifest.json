@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/rb-wbscoding/meme/static/css/main.904828cd.chunk.css",
+    "main.js": "/rb-wbscoding/meme/static/js/main.88a46b26.chunk.js",
+    "main.js.map": "/rb-wbscoding/meme/static/js/main.88a46b26.chunk.js.map",
+    "runtime-main.js": "/rb-wbscoding/meme/static/js/runtime-main.23670b51.js",
+    "runtime-main.js.map": "/rb-wbscoding/meme/static/js/runtime-main.23670b51.js.map",
+    "static/css/2.5c17b9f1.chunk.css": "/rb-wbscoding/meme/static/css/2.5c17b9f1.chunk.css",
+    "static/js/2.ca774f14.chunk.js": "/rb-wbscoding/meme/static/js/2.ca774f14.chunk.js",
+    "static/js/2.ca774f14.chunk.js.map": "/rb-wbscoding/meme/static/js/2.ca774f14.chunk.js.map",
+    "index.html": "/rb-wbscoding/meme/index.html",
+    "precache-manifest.9c6195ca773b7840bdbc6bba43e49496.js": "/rb-wbscoding/meme/precache-manifest.9c6195ca773b7840bdbc6bba43e49496.js",
+    "service-worker.js": "/rb-wbscoding/meme/service-worker.js",
+    "static/css/2.5c17b9f1.chunk.css.map": "/rb-wbscoding/meme/static/css/2.5c17b9f1.chunk.css.map",
+    "static/css/main.904828cd.chunk.css.map": "/rb-wbscoding/meme/static/css/main.904828cd.chunk.css.map",
+    "static/js/2.ca774f14.chunk.js.LICENSE.txt": "/rb-wbscoding/meme/static/js/2.ca774f14.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/rb-wbscoding/meme/static/media/UrbanHeroes.c9c41fdc.ttf",
+    "static/media/Canvas.module.css": "/rb-wbscoding/meme/static/media/Trump.ab647fc5.cur",
+    "static/media/trump-lightning.gif": "/rb-wbscoding/meme/static/media/trump-lightning.35210047.gif",
+    "static/media/Header.module.css": "/rb-wbscoding/meme/static/media/usa.5bec3578.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.23670b51.js",
+    "static/css/2.5c17b9f1.chunk.css",
+    "static/js/2.ca774f14.chunk.js",
+    "static/css/main.904828cd.chunk.css",
+    "static/js/main.88a46b26.chunk.js"
+  ]
+}
