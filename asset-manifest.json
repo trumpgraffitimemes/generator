@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/meme/static/css/main.de66bf00.chunk.css",
-    "main.js": "/meme/static/js/main.ada0f01d.chunk.js",
-    "main.js.map": "/meme/static/js/main.ada0f01d.chunk.js.map",
+    "main.css": "/meme/static/css/main.2af3064d.chunk.css",
+    "main.js": "/meme/static/js/main.9570bfb0.chunk.js",
+    "main.js.map": "/meme/static/js/main.9570bfb0.chunk.js.map",
     "runtime-main.js": "/meme/static/js/runtime-main.15acd509.js",
     "runtime-main.js.map": "/meme/static/js/runtime-main.15acd509.js.map",
     "static/css/2.5c17b9f1.chunk.css": "/meme/static/css/2.5c17b9f1.chunk.css",
     "static/js/2.ca774f14.chunk.js": "/meme/static/js/2.ca774f14.chunk.js",
     "static/js/2.ca774f14.chunk.js.map": "/meme/static/js/2.ca774f14.chunk.js.map",
     "index.html": "/meme/index.html",
-    "precache-manifest.34139f42b6e12820fc341e5bff9ffbce.js": "/meme/precache-manifest.34139f42b6e12820fc341e5bff9ffbce.js",
+    "precache-manifest.d37b14d36558ba45dddaf7621e40b780.js": "/meme/precache-manifest.d37b14d36558ba45dddaf7621e40b780.js",
     "service-worker.js": "/meme/service-worker.js",
     "static/css/2.5c17b9f1.chunk.css.map": "/meme/static/css/2.5c17b9f1.chunk.css.map",
-    "static/css/main.de66bf00.chunk.css.map": "/meme/static/css/main.de66bf00.chunk.css.map",
+    "static/css/main.2af3064d.chunk.css.map": "/meme/static/css/main.2af3064d.chunk.css.map",
     "static/js/2.ca774f14.chunk.js.LICENSE.txt": "/meme/static/js/2.ca774f14.chunk.js.LICENSE.txt",
     "static/media/index.css": "/meme/static/media/UrbanHeroes.c9c41fdc.ttf",
     "static/media/Canvas.module.css": "/meme/static/media/Trump.ab647fc5.cur",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.15acd509.js",
     "static/css/2.5c17b9f1.chunk.css",
     "static/js/2.ca774f14.chunk.js",
-    "static/css/main.de66bf00.chunk.css",
-    "static/js/main.ada0f01d.chunk.js"
+    "static/css/main.2af3064d.chunk.css",
+    "static/js/main.9570bfb0.chunk.js"
   ]
 }
