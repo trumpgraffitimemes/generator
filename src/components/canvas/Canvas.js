@@ -75,6 +75,13 @@ export default function Canvas() {
     setStartpos([]);
     setLined([]);
 
+    var sizechange = 1;
+    if (window.innerWidth < canvassize.width) {
+      sizechange = canvassize.width / window.innerWidth;
+    } else {
+      sizechange = 1;
+    }
+
     if (mouseTouch) {
       const { offsetX, offsetY } = nativeEvent;
       const xy = [offsetX, offsetY, LineColor, LineWidth];
@@ -83,8 +90,8 @@ export default function Canvas() {
     } else {
       const nn = nativeEvent.targetTouches[0];
       const xy = [
-        nn.pageX - nn.target.offsetLeft,
-        nn.pageY - nn.target.offsetTop,
+        sizechange * (nn.pageX - nn.target.offsetLeft),
+        sizechange * (nn.pageY - nn.target.offsetTop),
         LineColor,
         LineWidth,
       ];
@@ -99,6 +106,12 @@ export default function Canvas() {
     if (!isDrawing) {
       return;
     }
+    var sizechange = 1;
+    if (window.innerWidth < canvassize.width) {
+      sizechange = canvassize.width / window.innerWidth;
+    } else {
+      sizechange = 1;
+    }
 
     if (mouseTouch) {
       const { offsetX, offsetY } = nativeEvent;
@@ -107,11 +120,13 @@ export default function Canvas() {
       setLined((gp) => [...gp, fishX]);
     } else {
       const offsetX =
-        nativeEvent.targetTouches[0].pageX -
-        nativeEvent.targetTouches[0].target.offsetLeft;
+        sizechange *
+        (nativeEvent.targetTouches[0].pageX -
+          nativeEvent.targetTouches[0].target.offsetLeft);
       const offsetY =
-        nativeEvent.targetTouches[0].pageY -
-        nativeEvent.targetTouches[0].target.offsetTop;
+        sizechange *
+        (nativeEvent.targetTouches[0].pageY -
+          nativeEvent.targetTouches[0].target.offsetTop);
       contextRef.current.lineTo(offsetX, offsetY);
       const fishX = { offsetX, offsetY };
       setLined((gp) => [...gp, fishX]);

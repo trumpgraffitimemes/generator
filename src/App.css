@@ -1,5 +1,5 @@
 .App {
-  height: 100vh;
+  height: 150vh;
   width: 100vw;
 }
 
@@ -24,11 +24,18 @@
   background-color: yellow;
   height: auto;
   text-align: center;
-  /* padding: 5px; */
 }
 
 p {
   font-family: "PatuaOne-Regular";
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.privacyAndInfo {
+  background-color: none;
+  /* border-radius: 5%; */
   text-align: center;
 }
 
@@ -41,14 +48,14 @@ p {
 .App.dark {
   background-color: #363940;
   color: rgb(163, 158, 158);
-  height: 110vh;
+  height: 150vh;
 }
 
 /* Light Mode */
 
 .App.light {
   background-color: #fff;
-  height: 100vh;
+  height: 150vh;
 }
 
 .flex-body-container {
@@ -70,7 +77,7 @@ p {
 
 @media screen and (max-width: 1300px) {
   .App.dark {
-    height: 150vh;
+    height: 180vh;
   }
 }
 
@@ -85,13 +92,13 @@ p {
 
 @media screen and (max-width: 600px) {
   .App.dark {
-    height: 240vh;
+    height: 260vh;
   }
 }
 
 @media screen and (max-width: 400px) {
   .App.dark {
-    height: 350vh;
+    height: 330vh;
   }
 
   p {
