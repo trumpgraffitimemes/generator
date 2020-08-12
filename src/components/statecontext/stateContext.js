@@ -7,7 +7,7 @@ export default function StateContextProvider({ children }) {
   const [picdatanew, setPicdatanew] = useState([]);
   const [quotenew, setQuotenew] = useState([]);
   const [picID, setPicID] = useState(0);
-  const [randomQuoteName, setRandomQuoteName] = useState("Robert");
+  const [randomQuoteName, setRandomQuoteName] = useState("DONALD");
   const [pers, setPers] = useState(false);
   const [grafitiParam, setGrafitiParam] = useState({
     Color: "#FFFF00",
