@@ -31,8 +31,9 @@ function App() {
           and please don't forget to vote on <span>3rd November 2020</span>!
         </p>
         <p className="privacyAndInfo">
-          <a href="https://github.com/rb-wbscoding/meme/blob/master/README.md">
-            Attribution &amp; Policy
+          ❤️{" "}
+          <a href="https://github.com/trumpgraffitimemes/generator/blob/master/README.md">
+            Attribution
           </a>
         </p>
       </div>
