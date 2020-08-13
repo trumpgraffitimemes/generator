@@ -30,6 +30,15 @@ button:hover {
   transform: scale(0.9);
 }
 
+input,
+input:before,
+input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
 @font-face {
   font-family: "UrbanHeroes";
   src: local("UrbanHeroes"), url(./fonts/UrbanHeroes.ttf) format("truetype");

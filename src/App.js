@@ -31,7 +31,7 @@ function App() {
           and please don't forget to vote on <span>3rd November 2020</span>!
         </p>
         <p className="privacyAndInfo">
-          â¤ď¸{" "}
+          ❤️{" "}
           <a href="https://github.com/trumpgraffitimemes/generator/blob/master/README.md">
             Attribution
           </a>
