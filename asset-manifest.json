@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/generator/static/css/main.3201a721.chunk.css",
-    "main.js": "/generator/static/js/main.0f337c03.chunk.js",
-    "main.js.map": "/generator/static/js/main.0f337c03.chunk.js.map",
-    "runtime-main.js": "/generator/static/js/runtime-main.b4fc65ac.js",
-    "runtime-main.js.map": "/generator/static/js/runtime-main.b4fc65ac.js.map",
-    "static/css/2.5c17b9f1.chunk.css": "/generator/static/css/2.5c17b9f1.chunk.css",
-    "static/js/2.ca774f14.chunk.js": "/generator/static/js/2.ca774f14.chunk.js",
-    "static/js/2.ca774f14.chunk.js.map": "/generator/static/js/2.ca774f14.chunk.js.map",
-    "index.html": "/generator/index.html",
-    "precache-manifest.35a62e0b16aea9cb291932443ea7e589.js": "/generator/precache-manifest.35a62e0b16aea9cb291932443ea7e589.js",
-    "service-worker.js": "/generator/service-worker.js",
-    "static/css/2.5c17b9f1.chunk.css.map": "/generator/static/css/2.5c17b9f1.chunk.css.map",
-    "static/css/main.3201a721.chunk.css.map": "/generator/static/css/main.3201a721.chunk.css.map",
-    "static/js/2.ca774f14.chunk.js.LICENSE.txt": "/generator/static/js/2.ca774f14.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/generator/static/media/UrbanHeroes.c9c41fdc.ttf",
-    "static/media/Canvas.module.css": "/generator/static/media/Trump.ab647fc5.cur",
-    "static/media/trump-lightning.gif": "/generator/static/media/trump-lightning.35210047.gif",
-    "static/media/Header.module.css": "/generator/static/media/usa.5bec3578.jpg"
+    "main.css": "/static/css/main.bab1e95b.chunk.css",
+    "main.js": "/static/js/main.8156393a.chunk.js",
+    "main.js.map": "/static/js/main.8156393a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cba83858.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cba83858.js.map",
+    "static/css/2.5c17b9f1.chunk.css": "/static/css/2.5c17b9f1.chunk.css",
+    "static/js/2.ca774f14.chunk.js": "/static/js/2.ca774f14.chunk.js",
+    "static/js/2.ca774f14.chunk.js.map": "/static/js/2.ca774f14.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.fbe760d17e9fdd4e58a9fa5601d63f78.js": "/precache-manifest.fbe760d17e9fdd4e58a9fa5601d63f78.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.5c17b9f1.chunk.css.map": "/static/css/2.5c17b9f1.chunk.css.map",
+    "static/css/main.bab1e95b.chunk.css.map": "/static/css/main.bab1e95b.chunk.css.map",
+    "static/js/2.ca774f14.chunk.js.LICENSE.txt": "/static/js/2.ca774f14.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/UrbanHeroes.c9c41fdc.ttf",
+    "static/media/Canvas.module.css": "/static/media/Trump.ab647fc5.cur",
+    "static/media/trump-lightning.gif": "/static/media/trump-lightning.35210047.gif",
+    "static/media/Header.module.css": "/static/media/usa.5bec3578.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b4fc65ac.js",
+    "static/js/runtime-main.cba83858.js",
     "static/css/2.5c17b9f1.chunk.css",
     "static/js/2.ca774f14.chunk.js",
-    "static/css/main.3201a721.chunk.css",
-    "static/js/main.0f337c03.chunk.js"
+    "static/css/main.bab1e95b.chunk.css",
+    "static/js/main.8156393a.chunk.js"
   ]
 }
