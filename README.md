@@ -1,7 +1,7 @@
 NB! Before diving into the code, put your speakers on and play: https://www.youtube.com/watch?v=EPhWR4d3FJQ
 
 ## Creators
-* Michael: 
+* Michael: https://github.com/MrKnb
 * Richard: https://github.com/rb-wbscoding
 * Dirk: https://github.com/dirkbosman and https://twitter.com/dirkjobosman
 
