@@ -1,3 +1,5 @@
+NB! Before diving into the code, put your speakers on and play: https://www.youtube.com/watch?v=EPhWR4d3FJQ
+
 ## Creators
 * Michael: 
 * Richard: https://github.com/rb-wbscoding
@@ -12,5 +14,4 @@
 ## Sharing
 * https://twitter.com/hashtag/trumpgraffitimemes
 
-Ps: Before diving into the code, put your speakers on and play: https://www.youtube.com/watch?v=EPhWR4d3FJQ
 
