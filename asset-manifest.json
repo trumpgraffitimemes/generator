@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.7c23875e.chunk.css",
+    "main.css": "/static/css/main.5c7044fc.chunk.css",
     "main.js": "/static/js/main.e7781d5c.chunk.js",
     "main.js.map": "/static/js/main.e7781d5c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.cba83858.js",
@@ -9,10 +9,10 @@
     "static/js/2.ca774f14.chunk.js": "/static/js/2.ca774f14.chunk.js",
     "static/js/2.ca774f14.chunk.js.map": "/static/js/2.ca774f14.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.d5ecdc6ad19a534113ae9f657e472ef2.js": "/precache-manifest.d5ecdc6ad19a534113ae9f657e472ef2.js",
+    "precache-manifest.677e6078d0b3059fc5c4eeffe347d93a.js": "/precache-manifest.677e6078d0b3059fc5c4eeffe347d93a.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.5c17b9f1.chunk.css.map": "/static/css/2.5c17b9f1.chunk.css.map",
-    "static/css/main.7c23875e.chunk.css.map": "/static/css/main.7c23875e.chunk.css.map",
+    "static/css/main.5c7044fc.chunk.css.map": "/static/css/main.5c7044fc.chunk.css.map",
     "static/js/2.ca774f14.chunk.js.LICENSE.txt": "/static/js/2.ca774f14.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/UrbanHeroes.c9c41fdc.ttf",
     "static/media/Canvas.module.css": "/static/media/Trump.ab647fc5.cur",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.cba83858.js",
     "static/css/2.5c17b9f1.chunk.css",
     "static/js/2.ca774f14.chunk.js",
-    "static/css/main.7c23875e.chunk.css",
+    "static/css/main.5c7044fc.chunk.css",
     "static/js/main.e7781d5c.chunk.js"
   ]
 }
