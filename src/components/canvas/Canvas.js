@@ -15,6 +15,7 @@ export default function Canvas() {
     setPers,
     randomQuoteName,
     setMyImage,
+    canvasClear,
   } = useContext(StateContext);
   const contextRef = useRef(null);
   const canvasRef = useRef(null);
@@ -368,6 +369,23 @@ export default function Canvas() {
       setMyImage(image);
     }
   }
+
+  useEffect(() => {
+    if (picturedata !== undefined) {
+      contextRef.current.clearRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+      contextRef.current.drawImage(picturedata, 0, 0);
+      setTextInput({ toptext: "", bottomtext: "" });
+      setWholedata([]);
+      setStartpos([]);
+      setLined([]);
+      setSingleQ("");
+    }
+  }, [canvasClear]);
 
   return (
     <div className={Styles.canvasContainer}>

@@ -7,7 +7,7 @@ export default function StateContextProvider({ children }) {
   const [picdatanew, setPicdatanew] = useState([]);
   const [quotenew, setQuotenew] = useState([]);
   const [picID, setPicID] = useState(0);
-  const [randomQuoteName, setRandomQuoteName] = useState("DONALD");
+  const [randomQuoteName, setRandomQuoteName] = useState("");
   const [pers, setPers] = useState(false);
   const [grafitiParam, setGrafitiParam] = useState({
     Color: "#FFFF00",
@@ -23,6 +23,7 @@ export default function StateContextProvider({ children }) {
   });
   const [textInput, setTextInput] = useState({ toptext: "", bottomtext: "" });
   const [myImage, setMyImage] = useState();
+  const [canvasClear, setCanvasClear] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -68,6 +69,8 @@ export default function StateContextProvider({ children }) {
         setRandomQuoteName,
         myImage,
         setMyImage,
+        canvasClear,
+        setCanvasClear,
       }}
     >
       {children}
