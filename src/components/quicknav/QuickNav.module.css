@@ -1,6 +1,6 @@
 .quicklistContainer {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
   text-align: center;
   padding-bottom: 10px;
   margin-bottom: 40px;
@@ -13,7 +13,7 @@
 .quicklistBtn {
   text-align: center;
   padding: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-family: "PatuaOne-Regular";
   background-color: rgb(28, 40, 207);
   color: white;
@@ -26,10 +26,26 @@
   transform: scale(0.9);
 }
 
+.resetBtn {
+  text-align: center;
+  padding: 4px;
+  margin-bottom: 10px;
+  font-family: "PatuaOne-Regular";
+  background-color: rgb(202, 32, 32);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.resetBtn:hover {
+  transform: scale(0.9);
+}
+
 .downloadBtn {
   text-align: center;
   padding: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-family: "PatuaOne-Regular";
   background-color: rgb(49, 131, 49);
   color: white;
@@ -239,10 +255,10 @@
 }
 
 .button {
-  margin: 20px;
+  margin: 5px;
   text-decoration: none;
-  padding: 5px 20px;
-  margin-bottom: 20px;
+  padding: 5px 5px;
+  margin-bottom: 10px;
   font-family: "PatuaOne-Regular";
   background-color: rgb(28, 40, 207);
   color: white;

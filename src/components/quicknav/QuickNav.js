@@ -13,6 +13,8 @@ function HideAndShowDivOnClick() {
     textParam,
     setTextParam,
     myImage,
+    canvasClear,
+    setCanvasClear,
   } = useContext(StateContext);
   const [showDiv, setShowDiv] = useState(false);
   const [chips, setChips] = useState();
@@ -45,7 +47,14 @@ function HideAndShowDivOnClick() {
         className={Styles.quicklistBtn}
         onClick={() => setShowDiv(!showDiv)}
       >
-        {showDiv ? "Hide" : "Customize"}
+        {showDiv ? "Hide" : "Edit"}
+      </button>
+
+      <button
+        className={Styles.resetBtn}
+        onClick={() => setCanvasClear(!canvasClear)}
+      >
+        Reset
       </button>
 
       <a download="meme.jpg" href={myImage}>
